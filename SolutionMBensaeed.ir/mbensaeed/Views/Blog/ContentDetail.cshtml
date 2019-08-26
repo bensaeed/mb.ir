@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "ContentDetail";
+    Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+}
+
+<h2>ContentDetail</h2>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <!-- Single Blog Post -->
+        <div class="single-blog-post">
+            <!-- Blog Box Background -->
+            <div class="blog-box-bg blog-box-bg-1"></div>
+            <!-- Blog Content Box -->
+            <div class="blog-content-box">
+                <div class="blog-meta">
+                    <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
+                    <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
+                    <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
+                    <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
+                </div>
+                <div class="blog-content">
+                    <h5>راه های جلوگیری از هک شدن</h5>
+                    <p>
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                        است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
+                        فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                    </p>
+                    <br />
+                    <a class="blog-btn pull-left" href="@Url.Action("Index","Blog")">بازگشت به آخرين مطالب<i class="fas fa-long-arrow-alt-left"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+

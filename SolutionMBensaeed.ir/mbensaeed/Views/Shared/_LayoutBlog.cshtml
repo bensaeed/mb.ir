@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl" class="no-js" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/modernizr")*@
+
+
+
+</head>
+<body>
+    <div id="home"></div>
+
+    <!-- Pre-loader Start -->
+    <div class="elegant-preeloader">
+        <div class="preloader-spinner"></div>
+    </div>
+    <!-- Pre-loader End -->
+    <!-- Header Start -->
+    @*<header>*@
+    <!-- Menu Bars -->
+    <div class="menu-bars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Nav Start -->
+    <nav class="navigation">
+        <div class="navigation-inner">
+            <ul class="main-menu nav navbar-nav">
+                <li class="smooth-scroll active"><a href="@Url.Action("Index","Home")">خانه</a></li>
+                <li class="smooth-scroll"><a href="#about">درباره من</a></li>
+                <li class="smooth-scroll"><a href="#experiences">تجربیات</a></li>
+                <li class="smooth-scroll"><a href="#services">خدمات</a></li>
+                <li class="smooth-scroll"><a href="#portfolio">نمونه کار</a></li>
+                <li class="smooth-scroll"><a href="#testimonial">دیدگاه ها</a></li>
+                <li class="smooth-scroll"><a href="#blog">وبلاگ</a></li>
+                <li class="smooth-scroll"><a href="#contact">تماس با من</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Start Hero Area -->
+    @*<div class="hero-area">
+        <div class="elegant-table">
+            <div class="elegant-table-cell">
+                <div class="container">
+                    <!-- Hero Content -->
+                    <div class="hero-content">
+                        <h5>سلام</h5>
+                        <h1>
+                            <span>من</span> <br>
+                            محمد <br>
+                            بن سعيد هستم <br>
+                        </h1>
+                        <p>برنامه نویس و طراح وب</p>
+                        @*<a href="index.html" class="elegant-btn">مشاهده پروفایل</a>
+                            <a href="index.html" class="elegant-btn">دانلود پروفایل</a>*@
+    @*  </div>
+                        <!-- Social Area Start -->
+                        <div class="social-area">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+    @*</header>*@
+    <!-- Header End -->
+
+
+    @RenderBody()
+    <br />
+    <!-- Contact Start -->
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contact-us text-center">
+                        <h2 class="section-title" style="margin-bottom: 30px">با من در تماس باشید</h2>
+                        <a href="mailto:bensaeed.mohammad@gmail.com">bensaeed.mohammad@gmail.com</a> <br>
+                        <a href="tel:+989166534801" style="direction: ltr">09166534801</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="social-area">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact End -->
+    <!-- The ScrollToTop Start -->
+    <div class="ScrollToTop" style="display: none;">
+        <a href="#"><i class="fas fa-angle-up fa-lg"></i></a>
+    </div>
+    <!-- The ScrollToTop end -->
+    <!-- Footer Start-->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="copyright">
+                        ۱۳۹۸
+                        &copy;
+                        تمام حقوق محفوظ می باشد
+                        <a href="http://www.mBensaeed.ir" target="_blank">محمد بن سعيد</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+
+    @Scripts.Render("~/bundles/js")
+
+    @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $(function () {
+            $('body').persiaNumber();
+        });
+    </script>
+</body>
+</html>
