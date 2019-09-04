@@ -20,6 +20,11 @@ namespace mbensaeed.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Person> People { get; set; }
+        public DbSet<Posts> Posts { get; set; }
+        public DbSet<Activity> Activity { get; set; }
+        public DbSet<Image> Image { get; set; }
+        public DbSet<ActivityType> ActivityTypes { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

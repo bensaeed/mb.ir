@@ -1166,13 +1166,13 @@ header {
 .blog-box-bg {
     background: no-repeat center center #464646;
     background-size: cover;
-    height: 200px;
+    height: 300px;
     border-bottom: none;
     position: relative;
 }
-.blog-box-bg-1 {
-    background-image: url("image/blog/1.jpg");
-}
+/*.blog-box-bg-1 {
+    background-image: url("image/blog/bg-min.png");
+}*/
 .blog-box-bg-2 {
     background-image: url("image/blog/2.jpg");
 }

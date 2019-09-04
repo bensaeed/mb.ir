@@ -1,7 +1,10 @@
-﻿
+﻿@model PagedList.IPagedList<mbensaeed.ViewModels.vm_AllPost>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+    var AllPost = ViewBag.AllPost;
 }
 <br />
 <h2 class="section-title text-center">وبلاگ</h2>
@@ -15,17 +18,18 @@
 <section class="section-padding" id="blog">
     <div class="container">
         @*<div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="section-header">
-                    <h2 class="section-title text-center">وبلاگ</h2>
-                    <p>
-                        متن تستي
-                    </p>
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="section-header">
+                        <h2 class="section-title text-center">وبلاگ</h2>
+                        <p>
+                            متن تستي
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
         @{
-            for (int i = 1; i < 4; i++)
+            //for (int i = 1; i <AllPost.Count(); i++)
+            foreach (var item in AllPost)
             {
                 <div class="row">
                     <div class="col-md-4">
@@ -42,74 +46,84 @@
                                     <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
                                 </div>
                                 <div class="blog-content">
-                                    <h5>راه های جلوگیری از هک شدن</h5>
+
+                                    <h5>
+                                        @item.Title
+                                    </h5>
                                     <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                        است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                        فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                        @item.Content
                                     </p>
                                     <a class="blog-btn" href="#">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post">
-                            <!-- Blog Box Background -->
-                            <div class="blog-box-bg blog-box-bg-2"></div>
-                            <!-- Blog Content Box -->
-                            <div class="blog-content-box">
-                                <div class="blog-meta">
-                                    <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
-                                    <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
-                                    <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
-                                    <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
-                                </div>
-                                <div class="blog-content">
-                                    <h5>چند نکته درباره رابط کاربری</h5>
-                                    <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                        است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                        فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                                    </p>
-                                    <a class="blog-btn" href="@Url.Action("ContentDetail","Blog")">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!-- Single Blog Post -->
-                        <div class="single-blog-post">
-                            <!-- Blog Box Background -->
-                            <div class="blog-box-bg blog-box-bg-3"></div>
-                            <!-- Blog Content Box -->
-                            <div class="blog-content-box">
-                                <div class="blog-meta">
-                                    <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
-                                    <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
-                                    <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
-                                    <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
-                                </div>
-                                <div class="blog-content">
-                                    <h5>چگونه یک طراح وب شویم؟</h5>
-                                    <p>
-                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                        است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                        فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                                    </p>
-                                    <a class="blog-btn" href="#">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
+                    @*<div class="col-md-4">
+                            <!-- Single Blog Post -->
+                            <div class="single-blog-post">
+                                <!-- Blog Box Background -->
+                                <div class="blog-box-bg blog-box-bg-2"></div>
+                                <!-- Blog Content Box -->
+                                <div class="blog-content-box">
+                                    <div class="blog-meta">
+                                        <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
+                                        <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
+                                        <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h5>چند نکته درباره رابط کاربری</h5>
+                                        <p>
+                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
+                                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                        </p>
+                                        <a class="blog-btn" href="@Url.Action("ContentDetail","Blog")">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-md-4">
+                            <!-- Single Blog Post -->
+                            <div class="single-blog-post">
+                                <!-- Blog Box Background -->
+                                <div class="blog-box-bg blog-box-bg-3"></div>
+                                <!-- Blog Content Box -->
+                                <div class="blog-content-box">
+                                    <div class="blog-meta">
+                                        <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
+                                        <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
+                                        <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
+                                        <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
+                                    </div>
+                                    <div class="blog-content">
+                                        <h5>چگونه یک طراح وب شویم؟</h5>
+                                        <p>
+                                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
+                                            است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
+                                            فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                        </p>
+                                        <a class="blog-btn" href="#">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
                 </div>
                 <br /> <br />
             }
-          
-         
+
+
         }
 
     </div>
 </section>
+<div class="row content works">
+    <div class="col col-m-12 col-t-12 col-d-12 col-d-lg-12 ">
+        <div class="circle-bts">
+            @Html.PagedListPager((IPagedList)Model, page =>
+           Url.Action("Index", "Blog", new { @Page = page })
+           , new PagedListRenderOptions { LinkToFirstPageFormat = "<< ابتدا", LinkToPreviousPageFormat = "قبلی", LinkToNextPageFormat = "بعدی", LinkToLastPageFormat = "آخرین >>" })
+        </div>
+    </div>
+</div>
 <!-- Blog End -->
