@@ -1,3 +1,4 @@
+﻿using mbensaeed.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,26 @@ namespace mbensaeed
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+        /// <summary>
+        /// برای ثبت بازدید وبسایت
+        /// </summary>
+
+        protected void Session_Start()
+        {
+            NetworkOperation objNetworkOperation = new NetworkOperation();
+            VisitWebsiteLog objVisitWebsiteLog = new VisitWebsiteLog();
+            string CurrentClientIP = objNetworkOperation.ClientIPaddress();
+
+            try
+            {
+                objVisitWebsiteLog.StartOperation(CurrentClientIP);
+            }
+            catch (Exception)
+            {
+
+            }
+            //}
         }
     }
 }

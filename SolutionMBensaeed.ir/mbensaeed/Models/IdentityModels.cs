@@ -25,6 +25,7 @@ namespace mbensaeed.Models
         public DbSet<Activity> Activity { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<WebsiteVisit> WebsiteVisit { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

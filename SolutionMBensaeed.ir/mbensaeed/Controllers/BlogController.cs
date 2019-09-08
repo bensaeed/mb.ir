@@ -36,7 +36,7 @@ namespace mbensaeed.Controllers
             List<Posts> AllPost = _db.Posts.ToList();//.Where(x => x.IsActive == "1").ToList();
 
             var Result = new List<vm_AllPost>();
-            Result = (from ap in _db.Posts
+            Result = (from ap in AllPost
                       join ac in _db.Activity
                       on ap.ID equals ac.ID
                       join im in _db.Image
@@ -54,8 +54,6 @@ namespace mbensaeed.Controllers
                           ViewCount = 2,
                           ImageUrl=im.Url,
                           IsActive=ap.IsActive
-                          
-
                       }
                         ).OrderByDescending(x => x.PostTime)
                         .ThenByDescending(x => x.PostDate)
