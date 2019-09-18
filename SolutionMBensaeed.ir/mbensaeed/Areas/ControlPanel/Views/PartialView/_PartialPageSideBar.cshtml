@@ -1,0 +1,85 @@
+﻿      <!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- User profile -->
+        <div class="user-profile">
+            <!-- User profile image -->
+            <div class="profile-img">
+                <img src="~/Content/ControlPanel/assets/images/users/profile.png" alt="user">
+                <!-- this is blinking heartbit-->
+                <div class="notify setpos"> <span class="heartbit"></span> <span class="point"></span> </div>
+            </div>
+            <!-- User profile text-->
+            <div class="profile-text">
+                <h5>محمد بن سعيد</h5>
+                <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"><i class="mdi mdi-settings"></i></a>
+                <a href="app-email.html" class="" data-toggle="tooltip" title="ایمیل"><i class="mdi mdi-gmail"></i></a>
+                <a href="pages-login.html" class="" data-toggle="tooltip" title="خروج"><i class="mdi mdi-power"></i></a>
+                <div class="dropdown-menu animated flipInY">
+                    <!-- text-->
+                    <a href="#" class="dropdown-item"><i class="ti-user"></i> مشخصات من</a>
+                    <!-- text-->
+                    <a href="#" class="dropdown-item"><i class="ti-wallet"></i> موجودی حساب</a>
+                    <!-- text-->
+                    <a href="#" class="dropdown-item"><i class="ti-email"></i> صندوق ورودی</a>
+                    <!-- text-->
+                    <div class="dropdown-divider"></div>
+                    <!-- text-->
+                    <a href="#" class="dropdown-item"><i class="ti-settings"></i> تنظیمات حساب</a>
+                    <!-- text-->
+                    <div class="dropdown-divider"></div>
+                    <!-- text-->
+                    <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> خروج</a>
+                    <!-- text-->
+                </div>
+            </div>
+        </div>
+        <!-- End User profile text-->
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="nav-devider"></li>
+                <li class="nav-small-cap">اطلاعات پايه</li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">داشبورد <span class="label label-rouded label-themecolor pull-right">4</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="index.html">مینیمال</a></li>
+                        <li><a href="index2.html">تحلیلی</a></li>
+                        <li><a href="index3.html">دمو گرافیک</a></li>
+                        <li><a href="index4.html">مدرن</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-small-cap">مديريت وبلاگ</li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="@Url.Action("CreatePost","Home",new { Area ="ControlPanel"})">ايجاد پست جديد</a></li>
+                    </ul>
+                </li>
+ 
+                <li class="nav-small-cap">اجزاء اضافی</li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">طرح بندی صفحه</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="layout-single-column.html">1 ستون</a></li>
+                        <li><a href="layout-fix-header.html">سرتیتر ثابت</a></li>
+                        <li><a href="layout-fix-sidebar.html">نوار کناری ثابت</a></li>
+                        <li><a href="layout-fix-header-sidebar.html">هدر ثابت و نوار کناری</a></li>
+                        <li><a href="layout-boxed.html">طرح بندی جعبه ای</a></li>
+                        <li><a href="layout-logo-center.html">لوگو در وسط</a></li>
+                    </ul>
+                </li>
+   
+            </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+<!-- ============================================================== -->
