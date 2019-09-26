@@ -1,0 +1,304 @@
+﻿
+@{
+    ViewBag.Title = "CreatePost";
+    Layout = "~/Areas/ControlPanel/Views/Shared/_LayoutPageMain.cshtml";
+}
+
+<!-- ============================================================== -->
+<!-- Page wrapper  -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">ايجاد پست جديد</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">مديريت وبلاگ</a></li>
+                <li class="breadcrumb-item">پست هاي وبلاگ</li>
+                <li class="breadcrumb-item active">ايجاد پست جديد</li>
+            </ol>
+        </div>
+        <div class="">
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <h5 class="card-title">عنوان</h5>
+                            <input type="text" class="form-control" id="TitleID" placeholder="عنوان پست">
+                        </div>
+                        <div class="form-group">
+                            <h5 class="card-title">موضوع</h5>
+
+                            <select id="CategoryID" class="form-control">
+                                <option selected="selected" disabled="disabled">انتخاب موضوع</option>
+                                @*@foreach (var item in ListRitualInfo)
+                                    {
+                                        <option value="@item.ID">@item.ID - @item.Title - @DateConvertor.NumberToDate(item.Date_Shamsi) - @item.RitualTime</option>
+                                    }*@
+                                <option value="1">s1</option>
+
+                                <option value="2">s2</option>
+
+                            </select>
+
+                        </div>
+
+
+
+
+                        @*<h5 class="m-t-30">موضوع</h5>*@
+                        @*<select class="select2 form-control custom-select select2-hidden-accessible" style="width: 100%; height:36px;" tabindex="-1" aria-hidden="true">
+                                <option>انتخاب</option>
+                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                    <option value="AK">Alaska</option>
+                                    <option value="HI">Hawaii</option>
+                                </optgroup>
+                                <optgroup label="Pacific Time Zone">
+                                    <option value="CA">California</option>
+                                    <option value="NV">Nevada</option>
+                                    <option value="OR">Oregon</option>
+                                </optgroup>
+                                <optgroup label="Mountain Time Zone">
+                                    <option value="AZ">Arizona</option>
+                                    <option value="CO">Colorado</option>
+                                    <option value="ID">Idaho</option>
+
+                                </optgroup>
+                                <optgroup label="Central Time Zone">
+                                    <option value="AL">Alabama</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="IL">Illinois</option>
+
+                                </optgroup>
+                                <optgroup label="Eastern Time Zone">
+                                    <option value="CT">Connecticut</option>
+                                    <option value="DE">Delaware</option>
+                                    <option value="FL">Florida</option>
+
+                                </optgroup>
+                            </select>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        @*<div class="summernote" id="summernote" name="summernote">
+                                <h3></h3>
+                            </div>*@
+
+                        <div id="summernoteID">Hello Summernote</div>
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>بارگذاری فایل پیش فرض</label>
+                    <input type="file" class="form-control" id="PostInputFile" name="PostInputFile" aria-describedby="fileHelp">
+                </div>
+                <div class="form-group">
+
+                    <input type="checkbox" id="IsActiveID" class="filled-in chk-col-black" checked="checked">
+                    <label for="IsActiveID">ثبت موقت و عدم نمايش  پست</label>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        @*<button id="edit" class="btn btn-info btn-rounded" onclick="edit()" type="button">ویرایش</button>*@
+                        <button id="submitButton" class="btn btn-success btn-rounded" type="button">انتشار پست</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+
+</div>
+<!-- ============================================================== -->
+<!-- End Page wrapper  -->
+<!-- ============================================================== -->
+
+@section scripts {
+    <script type="text/javascript">
+        var txt1="ss";
+        var FlagOperation = true;
+        //jQuery(document).ready(function () {
+        // $('.summernote').summernote({
+        //        height: 350, // set editor height
+        //        minHeight: null, // set minimum height of editor
+        //        maxHeight: null, // set maximum height of editor
+        //        focus: false // set focus to editable area after initializing summernote
+        //    });
+        //    $('.inline-editor').summernote({
+        //        airMode: true
+        //    });
+        //});
+        //window.edit = function () {
+        //    $(".click2edit").summernote()
+        //},
+        //    window.save = function () {
+        //        $(".click2edit").summernote('destroy');
+        //    }
+
+
+        $(document).ready(function() {
+            $('#summernoteID').summernote(
+                {
+                height: 350, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: false // set focus to editable area after initializing summernote
+            });
+        });
+
+        $('#summernoteID').summernote('destroy');
+        //var PostContent="";
+        $("#submitButton").click(function () {
+
+            FlagOperation = true;
+            CheckStateBeforeSubmitPost();
+            //SubmitPost();
+        });
+        function CheckStateBeforeSubmitPost()
+        {
+            if ($("#TitleID").val() == null || $("#TitleID").val() == "" || ($("#TitleID").val()).Length < 5)
+            {
+                bootbox.alert("لطفا عنوان پست را وارد نمایید");
+                FlagOperation = false;
+                return FlagOperation;
+            }
+            if ($("#CategoryID").val() == null || $("#CategoryID").val() == "" || ($("#CategoryID").val()).Length < 5)
+            {
+                bootbox.alert("لطفا گروه موضوع پست را وارد نمایید");
+                FlagOperation = false;
+                return FlagOperation;
+            }
+            var PostContent = $('#summernoteID').summernote('code');
+            if (PostContent == null || PostContent == "" || PostContent.Length < 5)
+            {
+                bootbox.alert("لطفا متن پست را وارد نمایید");
+                FlagOperation = false;
+                return FlagOperation;
+            }
+            var extFile = "";
+            try {
+
+                extFile = getFileExtension2(_("PostInputFile").files[0].name);
+                var SizeFile = _("PostInputFile").files[0].size;
+            }
+            catch (err) { }
+            if (extFile == null || extFile == "" || extFile == undefined) {
+                var resultConfirm = false;
+                bootbox.confirm({
+                    message: "برای این پست تصویری انتخاب نشده است، آیا میخواهید پست بدون تصویر منتشر شود؟",
+                    buttons: {
+                        confirm: {
+                            label: 'بله',
+                            className: 'btn-danger'
+                        },
+                        cancel: {
+                            label: 'خیر',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result == true) {
+                            SubmitPost();
+                         }
+                    }
+                });
+            }
+            else if (extFile == "jpg" || extFile == "JPG") {
+                if ((SizeFile).val < 0) {
+                    bootbox.alert("تصویر انتخاب شده مشکل دارد ،لطفا تصویر مناسب انتخاب نمایید");
+                    FlagOperation = false;
+                    return FlagOperation;
+                }
+                else if (SizeFile > 1000000) {
+                    bootbox.alert(" لطفا تصویر خود را با حجم کمتر از 1 MB انتخاب نمایید");
+                    FlagOperation = false;
+                    return FlagOperation;
+                }
+                else {
+                    FlagHaveFile = true;
+                    var file = $("#PostInputFile").get(0).files;
+                    SubmitPost();
+                }
+            }
+            else {
+                bootbox.alert("لطفا تصویر با پسوند JPG انتخاب شود");
+                FlagOperation = false;
+                return FlagOperation;
+            }
+        }
+        function SubmitPost() {
+
+            var URL = '@Url.Action("PublishPost", "BlogManage")';
+            var IsActiveID = $("#IsActiveID").is(":checked");
+            alert("IsActiveID : " +IsActiveID);
+            if (FlagOperation == true) {
+                var formdata = new FormData();
+                if (FlagHaveFile == true)
+                {
+                    var file = $("#PostInputFile").get(0).files;
+                    formdata.append("PostInputFile", file[0]);
+
+                    alert("FlagHaveFile : " + FlagHaveFile);
+                }
+                formdata.append("Title", $("#TitleID").val());
+                formdata.append("CategoryID", $("#CategoryID").val());
+                formdata.append("Content", $('#summernoteID').summernote('code'));
+                formdata.append("IsActiveID", IsActiveID);
+                formdata.append("FlagHaveFile", FlagHaveFile);
+                $.ajax({
+                    url: URL,
+                    type: 'POST',
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (x) {
+                        if (x == "OK") {
+                            var dialog = bootbox.dialog({
+                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> خبر جدید با موفقیت ثبت شد</p>',
+                                closeButton: false
+                            });
+                            setTimeout(function () {
+                                dialog.modal('hide');
+                                location.reload();
+                                window.location.href = '@Url.Action("PublishPost", "BlogManage")';
+                            }, 3000)
+                        } else if (x == "Faild") {
+                            bootbox.alert("خطایی پیش آمده، مجددا سعی کنید");
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+}

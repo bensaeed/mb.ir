@@ -176,6 +176,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\ControlPanel\Controllers\BlogManageController.cs" />
     <Compile Include="Areas\ControlPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\ControlPanel\ControlPanelAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -185,85 +186,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\AjaxOnlyAttribute.cs" />
     <Compile Include="Helper\DateConvertor.cs" />
+    <Compile Include="Helper\HelpOperation.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
-    <Compile Include="Migrations\201908310550231_InitialCreate.cs" />
-    <Compile Include="Migrations\201908310550231_InitialCreate.Designer.cs">
-      <DependentUpon>201908310550231_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908310558171_v1.cs" />
-    <Compile Include="Migrations\201908310558171_v1.Designer.cs">
-      <DependentUpon>201908310558171_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908310559474_mamad_v2.cs" />
-    <Compile Include="Migrations\201908310559474_mamad_v2.Designer.cs">
-      <DependentUpon>201908310559474_mamad_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908310602132_mamad_v3.cs" />
-    <Compile Include="Migrations\201908310602132_mamad_v3.Designer.cs">
-      <DependentUpon>201908310602132_mamad_v3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908311006412_mb_bensaeed_v1.cs" />
-    <Compile Include="Migrations\201908311006412_mb_bensaeed_v1.Designer.cs">
-      <DependentUpon>201908311006412_mb_bensaeed_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908311007294_mb_bensaeed_v2.cs" />
-    <Compile Include="Migrations\201908311007294_mb_bensaeed_v2.Designer.cs">
-      <DependentUpon>201908311007294_mb_bensaeed_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908311041410_v11.cs" />
-    <Compile Include="Migrations\201908311041410_v11.Designer.cs">
-      <DependentUpon>201908311041410_v11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908311048409_mb_bensaeed_v4.cs" />
-    <Compile Include="Migrations\201908311048409_mb_bensaeed_v4.Designer.cs">
-      <DependentUpon>201908311048409_mb_bensaeed_v4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909020421273_mm_v1.cs" />
-    <Compile Include="Migrations\201909020421273_mm_v1.Designer.cs">
-      <DependentUpon>201909020421273_mm_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909020429533_Relation_v1.cs" />
-    <Compile Include="Migrations\201909020429533_Relation_v1.Designer.cs">
-      <DependentUpon>201909020429533_Relation_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909020433083_edit_v1.cs" />
-    <Compile Include="Migrations\201909020433083_edit_v1.Designer.cs">
-      <DependentUpon>201909020433083_edit_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909030430280_1.cs" />
-    <Compile Include="Migrations\201909030430280_1.Designer.cs">
-      <DependentUpon>201909030430280_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909030554319_edit.cs" />
-    <Compile Include="Migrations\201909030554319_edit.Designer.cs">
-      <DependentUpon>201909030554319_edit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909030644059_l.cs" />
-    <Compile Include="Migrations\201909030644059_l.Designer.cs">
-      <DependentUpon>201909030644059_l.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909030648373_a.cs" />
-    <Compile Include="Migrations\201909030648373_a.Designer.cs">
-      <DependentUpon>201909030648373_a.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909040814434_m.cs" />
-    <Compile Include="Migrations\201909040814434_m.Designer.cs">
-      <DependentUpon>201909040814434_m.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909041100488_m1.cs" />
-    <Compile Include="Migrations\201909041100488_m1.Designer.cs">
-      <DependentUpon>201909041100488_m1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909080729272_log.cs" />
-    <Compile Include="Migrations\201909080729272_log.Designer.cs">
-      <DependentUpon>201909080729272_log.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityType.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -693,6 +625,7 @@
     <Content Include="Scripts\ControlPanel\js\validation.js" />
     <Content Include="Scripts\ControlPanel\js\waves.js" />
     <Content Include="Scripts\ControlPanel\js\widget-data.js" />
+    <Content Include="Scripts\CustomOperation.js" />
     <Content Include="Scripts\js\bootstrap.min.js" />
     <Content Include="Scripts\js\counterup.min.js" />
     <Content Include="Scripts\js\easing.min.js" />
@@ -819,8 +752,8 @@
     <Content Include="Content\ControlPanel\assets\plugins\summernote\dist\font\summernote-1.eot" />
     <Content Include="Content\ControlPanel\assets\plugins\summernote\dist\font\summernote.eot" />
     <Content Include="Content\ControlPanel\assets\plugins\summernote\dist\font\summernote.woff" />
-    <Content Include="Areas\ControlPanel\Views\Home\CreatePost.cshtml" />
     <Content Include="Areas\ControlPanel\Views\PartialView\_PartialPageSideBar.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\BlogManage\CreatePost.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_LayoutBlog.cshtml" />
@@ -838,62 +771,6 @@
     <Content Include="Views\PartialView\_PartialPagePartner - Copy.cshtml" />
     <Content Include="Views\PartialView\_PartialPageContact.cshtml" />
     <Content Include="Views\PartialView\_PartialPageFooter.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201908310550231_InitialCreate.resx">
-      <DependentUpon>201908310550231_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908310558171_v1.resx">
-      <DependentUpon>201908310558171_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908310559474_mamad_v2.resx">
-      <DependentUpon>201908310559474_mamad_v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908310602132_mamad_v3.resx">
-      <DependentUpon>201908310602132_mamad_v3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908311006412_mb_bensaeed_v1.resx">
-      <DependentUpon>201908311006412_mb_bensaeed_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908311007294_mb_bensaeed_v2.resx">
-      <DependentUpon>201908311007294_mb_bensaeed_v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908311041410_v11.resx">
-      <DependentUpon>201908311041410_v11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908311048409_mb_bensaeed_v4.resx">
-      <DependentUpon>201908311048409_mb_bensaeed_v4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909020421273_mm_v1.resx">
-      <DependentUpon>201909020421273_mm_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909020429533_Relation_v1.resx">
-      <DependentUpon>201909020429533_Relation_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909020433083_edit_v1.resx">
-      <DependentUpon>201909020433083_edit_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909030430280_1.resx">
-      <DependentUpon>201909030430280_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909030554319_edit.resx">
-      <DependentUpon>201909030554319_edit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909030644059_l.resx">
-      <DependentUpon>201909030644059_l.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909030648373_a.resx">
-      <DependentUpon>201909030648373_a.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909040814434_m.resx">
-      <DependentUpon>201909040814434_m.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909041100488_m1.resx">
-      <DependentUpon>201909041100488_m1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909080729272_log.resx">
-      <DependentUpon>201909080729272_log.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

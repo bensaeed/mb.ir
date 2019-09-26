@@ -21,11 +21,12 @@ namespace mbensaeed.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Person> People { get; set; }
-        public DbSet<Posts> Posts { get; set; }
+        public DbSet<Post> Posts { get; set; }
         public DbSet<Activity> Activity { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<WebsiteVisit> WebsiteVisit { get; set; }
+        public DbSet<Category> Category { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -34,6 +35,22 @@ namespace mbensaeed.Models
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+
+            //modelbuilder.entity<post>().
+            //    hasrequired(x => x.image)
+            //    .withrequiredprincipal(x => x.post);
+
+            modelBuilder.Entity<Image>().
+                HasRequired(x => x.Post)
+                .WithRequiredPrincipal(x => x.Image);
+
+
+
         }
     }
 }

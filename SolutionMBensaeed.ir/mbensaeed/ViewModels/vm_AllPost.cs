@@ -6,7 +6,7 @@ using System.Web;
 
 namespace mbensaeed.ViewModels
 {
-    public class vm_AllPost :Posts
+    public class vm_AllPost : Post
     {
         public int ViewCount { get; set; }
         public int LikeCount { get; set; }

@@ -33,32 +33,31 @@ namespace mbensaeed.Controllers
         public IEnumerable<vm_AllPost> GetAllPost(int page, int ItemsPerPage, out int totalCount)
         {
 
-            List<Posts> AllPost = _db.Posts.ToList();//.Where(x => x.IsActive == "1").ToList();
+            List<Post> AllPost = _db.Posts.ToList();//.Where(x => x.IsActive == "1").ToList();
 
             var Result = new List<vm_AllPost>();
-            Result = (from ap in AllPost
-                      join ac in _db.Activity
-                      on ap.ID equals ac.ID
-                      join im in _db.Image
-                      on ap.Image.ID equals im.ID
-                      select new vm_AllPost
-                      {
-                          ID = ap.ID,
-                          Category = "",
-                          Content = ap.Content,
-                          LikeCount = 1,
-                          Labels = ap.Labels,
-                          PostDate = ap.PostDate,
-                          PostTime = ap.PostTime,
-                          Title = ap.Title,
-                          ViewCount = 2,
-                          ImageUrl=im.Url,
-                          IsActive=ap.IsActive
-                      }
-                        ).OrderByDescending(x => x.PostTime)
-                        .ThenByDescending(x => x.PostDate)
-                        .Skip(page * ItemsPerPage)
-                        .Take(ItemsPerPage).ToList();
+            //Result = (from ap in AllPost
+            //          join ac in _db.Activity
+            //          on ap.ImageId equals ac.
+            //          join im in _db.Image
+            //          on ap.Image.ID equals im.ImageId
+            //          select new vm_AllPost
+            //          {
+            //              ImageId = ap.ID,
+            //              Content = ap.Content,
+            //              LikeCount = 1,
+            //              Labels = ap.Labels,
+            //              PostDate = ap.PostDate,
+            //              PostTime = ap.PostTime,
+            //              Title = ap.Title,
+            //              ViewCount = 2,
+            //              ImageUrl=im.FileUrl,
+            //              IsActive=ap.IsActive
+            //          }
+            //            ).OrderByDescending(x => x.PostTime)
+            //            .ThenByDescending(x => x.PostDate)
+            //            .Skip(page * ItemsPerPage)
+            //            .Take(ItemsPerPage).ToList();
 
             //_objEntityRitualInfo.Dispose();
             // _objEntityMediaCountInRitual.Dispose();

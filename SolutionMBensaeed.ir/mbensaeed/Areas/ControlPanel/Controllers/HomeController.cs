@@ -13,9 +13,6 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
         {
             return View();
         }
-        public ActionResult CreatePost()
-        {
-            return View();
-        }
+     
     }
 }

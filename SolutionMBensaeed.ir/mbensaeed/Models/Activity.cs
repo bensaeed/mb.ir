@@ -16,7 +16,7 @@ namespace mbensaeed.Models
         public string Device { get; set; }
         public string HostName { get; set; }
         public string MoreInfo { get; set; }
-        public virtual Posts Posts { get; set; }
+        public virtual Post Posts { get; set; }
         public virtual ActivityType ActivityType { get; set; }
         public virtual Person Person { get; set; }
 

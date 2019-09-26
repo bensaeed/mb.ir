@@ -37,8 +37,8 @@ namespace mbensaeed
             //-------------------------------------
             //ControlPanel ------------------------
             bundles.Add(new StyleBundle("~/Content/cssCP").Include(
-                   // "~/Content/ControlPanel/css/colors/blue.css",
-                    "~/Content/ControlPanel/css/colors/red.css",
+                    "~/Content/ControlPanel/css/colors/blue.css",
+                   // "~/Content/ControlPanel/css/colors/red.css",
                    // "~/Content/ControlPanel/css/animate.css",
                     //"~/Content/ControlPanel/css/spinners.css",
                    // "~/Content/ControlPanel/scss/icons/flag-icon-css/flag-icon.min.css",
@@ -67,6 +67,7 @@ namespace mbensaeed
                     "~/Scripts/ControlPanel/assets/plugins/morrisjs/morris.min.js",
                     "~/Scripts/ControlPanel/assets/plugins/summernote/dist/summernote.min.js",
                     "~/Scripts/ControlPanel/js/dashboard1.js",
+                    "~/Scripts/CustomOperation.js",
                     "~/Scripts/ControlPanel/assets/plugins/styleswitcher/jQuery.style.switcher.js"));
             
                    // "~/Scripts/ControlPanel/js/dashboard-{version}.js",

@@ -10,7 +10,6 @@ namespace mbensaeed.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "mbensaeed.Models.ApplicationDbContext";
         }
 
         protected override void Seed(mbensaeed.Models.ApplicationDbContext context)
