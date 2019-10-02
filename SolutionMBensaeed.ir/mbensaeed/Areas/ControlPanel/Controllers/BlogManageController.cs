@@ -16,37 +16,25 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
         // GET: ControlPanel/Blog
         public ActionResult CreatePost()
         {
-            return View();
+            using (var _Context = new ApplicationDbContext())
+            {
+                var objEntityCategory = new RepositoryPattern<Category>(_Context);
+                ViewBag.ListCategory  = objEntityCategory.GetByPredicate(x=>x.IsActive=="1");
+                return View();
+            }
         }
+
+
         [AjaxOnly]
         //public ContentResult UploadFile(HttpPostedFileBase hpf,List<vm_FileUploadInfo> vm_Info)
         public JsonResult PublishPost(string Title, int CategoryID, string Content, string IsActive, bool FlagHaveFile)
         {//, string Labels
          //try
          //{
-            string NewsImageID;
+            string NewImageID;
             //InfoUser AppUser = new InfoUser();
             var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
             //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
-            using (var _Context = new ApplicationDbContext())
-            {
-                var _objEntityPost = new RepositoryPattern<Post>(_Context);
-                var NewItem = new Post
-                {
-                    Title = Title,Image
-                    //Category = CategoryID,
-                    //Image = NewsImageID,
-                    Content = Content,
-                    IsActive = IsActive == "true" ? "1" : "0",
-                    Labels = "",
-                    PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
-                    PostTime = DateConvertor.TimeNowShort()
-                    //ID_User_Reg = AppUser.ID,
-                };
-                _objEntityPost.Insert(NewItem);
-                _objEntityPost.Save();
-                _objEntityPost.Dispose();
-
                 if (FlagHaveFile == true)
                 {
                     HelpOperation.CreateArchiveFolderOnTheServer();
@@ -58,10 +46,10 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                     var FilePathOnServer = Server.MapPath(FilePath);
                     var FileUrl = HelpOperation.MapToUrl(FilePath);
                     Request.Files[0].SaveAs(FilePathOnServer);
-                    using (var _Context = new ApplicationDbContext())
+                    using (var _ContextImage = new ApplicationDbContext())
                     {
-                        var _objEntityImage = new RepositoryPattern<Image>(_Context);
-                        var NewItem = new Image
+                        var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
+                        var NewItemImage = new Image
                         {
                             ID = GuidID,
                             TitleUrl = Title,
@@ -70,15 +58,37 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                             FileUrl = FileUrl,
                             FilePathOnServer = FilePath
                         };
-                        NewsImageID = GuidID;
-                        _objEntityImage.Insert(NewItem);
+                        NewImageID = GuidID;
+                        _objEntityImage.Insert(NewItemImage);
                         _objEntityImage.Save();
                         _objEntityImage.Dispose();
                     }
 
+
+                using (var _ContextPost = new ApplicationDbContext())
+                {
+                    var objEntityPost = new RepositoryPattern<Post>(_ContextPost);
+                    var newItemPost = new Post
+                    {
+                        
+                        Title = Title,
+                        ImageID=NewImageID,
+                        //CategoryID=CategoryID,
+                        Categories = new List<Category>() { new Category() {ID = CategoryID, } },
+                        Content = Content,
+                        IsActive = IsActive == "true" ? "1" : "0",
+                        Labels = "",
+                        PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
+                        PostTime = DateConvertor.TimeNowShort()
+                    };
+                     //newItemPost.Categories.Add(new Category { })
+                    objEntityPost.Insert(newItemPost);
+                    objEntityPost.Save();
+                    objEntityPost.Dispose();
+
                 }
 
-
+       
             }
             return Json("OK");
             //}

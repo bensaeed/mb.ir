@@ -45,9 +45,9 @@ namespace mbensaeed.Models
             //    hasrequired(x => x.image)
             //    .withrequiredprincipal(x => x.post);
 
-            modelBuilder.Entity<Image>().
-                HasRequired(x => x.Post)
-                .WithRequiredPrincipal(x => x.Image);
+            //modelBuilder.Entity<Image>().
+            //    HasRequired(x => x.Post)
+            //    .WithRequiredPrincipal(x => x.Image);
 
 
 

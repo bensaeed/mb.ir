@@ -49,11 +49,15 @@ namespace mbensaeed.Repositories
         {
             try
             {
-                var ListItems = _entity.Where(predicate);
-                foreach (var item in ListItems)
-                {
-                    _entity.Remove(item);
-                }
+                //var ListItems = _entity.Where(predicate);
+                //if (ListItems == null)
+                //    throw new ArgumentNullException("null");
+                //foreach (var item in ListItems)
+                //{
+                //    _entity.Remove(item);
+                //}
+
+                _entity.Where(predicate)?.ToList().ForEach(x => _entity.Remove(x));
             }
             catch (Exception)
             {

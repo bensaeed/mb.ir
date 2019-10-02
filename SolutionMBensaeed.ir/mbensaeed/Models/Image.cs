@@ -18,9 +18,10 @@ namespace mbensaeed.Models
         public string FileUrl { get; set; }
         public string FilePathOnServer { get; set; }
 
-        //[ForeignKey("PostId")]
         //public int PostId { get; set; }
-        public virtual Post Post { get; set; }
+
+        //[ForeignKey("PostId")]
+        //public Post Post { get; set; }
 
     }
 }

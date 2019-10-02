@@ -6,13 +6,12 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
-    public class HomeController : Controller
+    public class DefaultController : Controller
     {
-        // GET: ControlPanel/Home
+        // GET: ControlPanel/Default
         public ActionResult Index()
         {
             return View();
         }
-     
     }
 }

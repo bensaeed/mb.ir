@@ -177,7 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ControlPanel\Controllers\BlogManageController.cs" />
-    <Compile Include="Areas\ControlPanel\Controllers\HomeController.cs" />
+    <Compile Include="Areas\ControlPanel\Controllers\DefaultController.cs" />
     <Compile Include="Areas\ControlPanel\ControlPanelAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -191,6 +191,22 @@
     <Compile Include="Helper\HelpOperation.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
+    <Compile Include="Migrations\201909300714117_edit2.cs" />
+    <Compile Include="Migrations\201909300714117_edit2.Designer.cs">
+      <DependentUpon>201909300714117_edit2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909300717234_ModifyPostEntity.cs" />
+    <Compile Include="Migrations\201909300717234_ModifyPostEntity.Designer.cs">
+      <DependentUpon>201909300717234_ModifyPostEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909300816525_EditModifi.cs" />
+    <Compile Include="Migrations\201909300816525_EditModifi.Designer.cs">
+      <DependentUpon>201909300816525_EditModifi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910010714528_ModifiDatabase1.cs" />
+    <Compile Include="Migrations\201910010714528_ModifiDatabase1.Designer.cs">
+      <DependentUpon>201910010714528_ModifiDatabase1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -748,12 +764,12 @@
     <Content Include="Content\ControlPanel\scss\icons\weather-icons\fonts\weathericons-regular-webfont.eot" />
     <Content Include="Content\ControlPanel\scss\icons\weather-icons\fonts\weathericons-regular-webfont.woff" />
     <Content Include="Areas\ControlPanel\Views\Shared\_LayoutPageMain.cshtml" />
-    <Content Include="Areas\ControlPanel\Views\Home\Index.cshtml" />
     <Content Include="Content\ControlPanel\assets\plugins\summernote\dist\font\summernote-1.eot" />
     <Content Include="Content\ControlPanel\assets\plugins\summernote\dist\font\summernote.eot" />
     <Content Include="Content\ControlPanel\assets\plugins\summernote\dist\font\summernote.woff" />
     <Content Include="Areas\ControlPanel\Views\PartialView\_PartialPageSideBar.cshtml" />
     <Content Include="Areas\ControlPanel\Views\BlogManage\CreatePost.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\Default\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_LayoutBlog.cshtml" />
@@ -771,6 +787,20 @@
     <Content Include="Views\PartialView\_PartialPagePartner - Copy.cshtml" />
     <Content Include="Views\PartialView\_PartialPageContact.cshtml" />
     <Content Include="Views\PartialView\_PartialPageFooter.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201909300714117_edit2.resx">
+      <DependentUpon>201909300714117_edit2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909300717234_ModifyPostEntity.resx">
+      <DependentUpon>201909300717234_ModifyPostEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909300816525_EditModifi.resx">
+      <DependentUpon>201909300816525_EditModifi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910010714528_ModifiDatabase1.resx">
+      <DependentUpon>201910010714528_ModifiDatabase1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -19,10 +19,16 @@ namespace mbensaeed.Models
         public string PostTime { get; set; }
         public string Labels { get; set; }
 
-        //[ForeignKey("ImageId")]
-        //public string ImageId { get; set; }
-        public virtual Image Image { get; set; }
+        public string ImageID { get; set; }
+        [ForeignKey("ImageID")]
+        public Image Image { get; set; }
 
-        public virtual Category Category { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
+
+        //public int CategoryID { get; set; }
+
+        //[ForeignKey("CategoryID")]
+        //public Category Category { get; set; }
+
     }
 }

@@ -1,7 +1,8 @@
-﻿
+﻿@using mbensaeed.Models
 @{
     ViewBag.Title = "CreatePost";
     Layout = "~/Areas/ControlPanel/Views/Shared/_LayoutPageMain.cshtml";
+    var ListCategory = Model.ToList();
 }
 
 <!-- ============================================================== -->
@@ -49,14 +50,10 @@
 
                             <select id="CategoryID" class="form-control">
                                 <option selected="selected" disabled="disabled">انتخاب موضوع</option>
-                                @*@foreach (var item in ListRitualInfo)
-                                    {
-                                        <option value="@item.ID">@item.ID - @item.Title - @DateConvertor.NumberToDate(item.Date_Shamsi) - @item.RitualTime</option>
-                                    }*@
-                                <option value="1">s1</option>
-
-                                <option value="2">s2</option>
-
+                                @foreach (var item in ViewBag.ListCategory)
+                                {
+                                    <option value="@item.ID">@item.DescriptionFa</option>
+                                }
                             </select>
 
                         </div>
@@ -260,15 +257,12 @@
 
             var URL = '@Url.Action("PublishPost", "BlogManage")';
             var IsActiveID = $("#IsActiveID").is(":checked");
-            alert("IsActiveID : " +IsActiveID);
             if (FlagOperation == true) {
                 var formdata = new FormData();
                 if (FlagHaveFile == true)
                 {
                     var file = $("#PostInputFile").get(0).files;
                     formdata.append("PostInputFile", file[0]);
-
-                    alert("FlagHaveFile : " + FlagHaveFile);
                 }
                 formdata.append("Title", $("#TitleID").val());
                 formdata.append("CategoryID", $("#CategoryID").val());
