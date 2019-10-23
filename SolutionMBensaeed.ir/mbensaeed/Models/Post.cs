@@ -23,12 +23,11 @@ namespace mbensaeed.Models
         [ForeignKey("ImageID")]
         public Image Image { get; set; }
 
-        public virtual ICollection<Category> Categories { get; set; }
+        //public virtual ICollection<Category> Categories { get; set; }
 
-        //public int CategoryID { get; set; }
-
-        //[ForeignKey("CategoryID")]
-        //public Category Category { get; set; }
+        public int CategoryID { get; set; }
+        [ForeignKey("CategoryID")]
+        public Category Category { get; set; }
 
     }
 }

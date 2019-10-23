@@ -207,6 +207,18 @@
     <Compile Include="Migrations\201910010714528_ModifiDatabase1.Designer.cs">
       <DependentUpon>201910010714528_ModifiDatabase1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910061238003_category_dropID.cs" />
+    <Compile Include="Migrations\201910061238003_category_dropID.Designer.cs">
+      <DependentUpon>201910061238003_category_dropID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910061330350_Edit_OneToOne_Post_Category.cs" />
+    <Compile Include="Migrations\201910061330350_Edit_OneToOne_Post_Category.Designer.cs">
+      <DependentUpon>201910061330350_Edit_OneToOne_Post_Category.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910061331566_Edit_OneToOne_Post_Category1.cs" />
+    <Compile Include="Migrations\201910061331566_Edit_OneToOne_Post_Category1.Designer.cs">
+      <DependentUpon>201910061331566_Edit_OneToOne_Post_Category1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -800,6 +812,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910010714528_ModifiDatabase1.resx">
       <DependentUpon>201910010714528_ModifiDatabase1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061238003_category_dropID.resx">
+      <DependentUpon>201910061238003_category_dropID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061330350_Edit_OneToOne_Post_Category.resx">
+      <DependentUpon>201910061330350_Edit_OneToOne_Post_Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910061331566_Edit_OneToOne_Post_Category1.resx">
+      <DependentUpon>201910061331566_Edit_OneToOne_Post_Category1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

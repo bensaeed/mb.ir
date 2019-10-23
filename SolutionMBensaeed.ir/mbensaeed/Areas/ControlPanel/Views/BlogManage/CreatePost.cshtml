@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "CreatePost";
     Layout = "~/Areas/ControlPanel/Views/Shared/_LayoutPageMain.cshtml";
-    var ListCategory = Model.ToList();
+    var ListCategory = ViewBag.ListCategory;
 }
 
 <!-- ============================================================== -->
@@ -50,7 +50,7 @@
 
                             <select id="CategoryID" class="form-control">
                                 <option selected="selected" disabled="disabled">انتخاب موضوع</option>
-                                @foreach (var item in ViewBag.ListCategory)
+                                @foreach (var item in ListCategory)
                                 {
                                     <option value="@item.ID">@item.DescriptionFa</option>
                                 }

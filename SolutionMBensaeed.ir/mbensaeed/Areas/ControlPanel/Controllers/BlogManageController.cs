@@ -19,7 +19,7 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             using (var _Context = new ApplicationDbContext())
             {
                 var objEntityCategory = new RepositoryPattern<Category>(_Context);
-                ViewBag.ListCategory  = objEntityCategory.GetByPredicate(x=>x.IsActive=="1");
+                ViewBag.ListCategory  = objEntityCategory.SearchFor(x=>x.IsActive=="1").ToList();
                 return View();
             }
         }
@@ -29,9 +29,9 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
         //public ContentResult UploadFile(HttpPostedFileBase hpf,List<vm_FileUploadInfo> vm_Info)
         public JsonResult PublishPost(string Title, int CategoryID, string Content, string IsActive, bool FlagHaveFile)
         {//, string Labels
-         //try
-         //{
-            string NewImageID;
+            try
+            {
+                string NewImageID;
             //InfoUser AppUser = new InfoUser();
             var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
             //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
@@ -64,26 +64,25 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                         _objEntityImage.Dispose();
                     }
 
-
                 using (var _ContextPost = new ApplicationDbContext())
                 {
                     var objEntityPost = new RepositoryPattern<Post>(_ContextPost);
                     var newItemPost = new Post
                     {
-                        
+
                         Title = Title,
-                        ImageID=NewImageID,
-                        //CategoryID=CategoryID,
-                        Categories = new List<Category>() { new Category() {ID = CategoryID, } },
+                        ImageID = NewImageID,
+                        CategoryID=CategoryID,
+                        //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
                         Content = Content,
                         IsActive = IsActive == "true" ? "1" : "0",
                         Labels = "",
                         PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                         PostTime = DateConvertor.TimeNowShort()
                     };
-                     //newItemPost.Categories.Add(new Category { })
                     objEntityPost.Insert(newItemPost);
                     objEntityPost.Save();
+       
                     objEntityPost.Dispose();
 
                 }
@@ -91,11 +90,28 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
        
             }
             return Json("OK");
-            //}
-            //catch (Exception)
-            //{
-            //    return Json("Faild");
-            //}
         }
+            catch (Exception)
+            {
+                return Json("Faild");
+    }
+}
+
+        //public void InsertManyToMany(int PostID,int CategoryID)
+        //{
+        //    using (var _db=new ApplicationDbContext())
+        //    {
+        //        Category cat = new Category { ID = CategoryID };
+        //        _db.Category.Add(cat);
+        //        _db.Category.Attach(cat);
+
+        //        Post po = new Post { ID = PostID };
+        //        _db.Posts.Add(po);
+        //        _db.Posts.Attach(po);
+
+        //        po.Categories.Add(cat);
+        //        _db.SaveChanges();
+        //    }
+        //}
     }
 }

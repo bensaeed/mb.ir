@@ -7,8 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using mbensaeed.ViewModels;
-
-
+using mbensaeed.Repositories;
 
 namespace mbensaeed.Controllers
 {
@@ -32,38 +31,44 @@ namespace mbensaeed.Controllers
         }
         public IEnumerable<vm_AllPost> GetAllPost(int page, int ItemsPerPage, out int totalCount)
         {
+            using (var _Context = new ApplicationDbContext())
+            {
+                var _objEntityPost = new RepositoryPattern<Post>(_Context);
+                var _post = _objEntityPost.SearchFor(x => x.IsActive == "1").ToList();
 
-            List<Post> AllPost = _db.Posts.ToList();//.Where(x => x.IsActive == "1").ToList();
+                var _objEntityActivity = new RepositoryPattern<Activity>(_Context);
+                var _activity = _objEntityActivity.GetAll();
 
-            var Result = new List<vm_AllPost>();
-            //Result = (from ap in AllPost
-            //          join ac in _db.Activity
-            //          on ap.ImageId equals ac.
-            //          join im in _db.Image
-            //          on ap.Image.ID equals im.ImageId
-            //          select new vm_AllPost
-            //          {
-            //              ImageId = ap.ID,
-            //              Content = ap.Content,
-            //              LikeCount = 1,
-            //              Labels = ap.Labels,
-            //              PostDate = ap.PostDate,
-            //              PostTime = ap.PostTime,
-            //              Title = ap.Title,
-            //              ViewCount = 2,
-            //              ImageUrl=im.FileUrl,
-            //              IsActive=ap.IsActive
-            //          }
-            //            ).OrderByDescending(x => x.PostTime)
-            //            .ThenByDescending(x => x.PostDate)
-            //            .Skip(page * ItemsPerPage)
-            //            .Take(ItemsPerPage).ToList();
+                var _objEntityImage = new RepositoryPattern<Image>(_Context);
+                var _image = _objEntityPost.GetAll();
 
-            //_objEntityRitualInfo.Dispose();
-            // _objEntityMediaCountInRitual.Dispose();
-            totalCount = Result.Count();
-            return Result;
-                        
+                var Result = new List<vm_AllPost>();
+                Result = (from pst in _post
+                          join ac in _activity
+                          on pst.ID equals ac.Posts.ID
+                          select new vm_AllPost
+                          {
+                              ImageID =pst.ImageID,
+                              Content = pst.Content,
+                              LikeCount = 1,//totalCount(ac.Posts.ID),
+                              Labels = pst.Labels,
+                              PostDate = pst.PostDate,
+                              PostTime = pst.PostTime,
+                              Title = pst.Title,
+                              ViewCount = 2,
+                              ImageUrl =pst.Image.FileUrl,
+                              IsActive = pst.IsActive
+                          }
+                            ).OrderByDescending(x => x.PostTime)
+                            .ThenByDescending(x => x.PostDate)
+                            .Skip(page * ItemsPerPage)
+                            .Take(ItemsPerPage).ToList();
+
+                //_objEntityRitualInfo.Dispose();
+                // _objEntityMediaCountInRitual.Dispose();
+                totalCount = Result.Count();
+                return Result;
+            }       
         }
         public ActionResult ContentDetail()
         {

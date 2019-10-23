@@ -80,6 +80,10 @@ namespace mbensaeed.Repositories
         {
             _entity.Add(obj);
         }
+        public void Attach(T obj)
+        {
+            _entity.Attach(obj);
+        }
         public void Update(T obj)
         {
             _entity.Attach(obj);

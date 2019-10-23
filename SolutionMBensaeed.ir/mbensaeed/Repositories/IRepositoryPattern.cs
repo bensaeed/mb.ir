@@ -15,6 +15,7 @@ namespace mbensaeed.Repositories
         T GetByString(string StrVal);
         T GetByInt(int IntVal);
         void Insert(T obj);
+        void Attach(T obj);
         void Update(T obj);
         void Delete(object ID);
         void DeleteMoreItem(Expression<Func<T, bool>> predicate);
