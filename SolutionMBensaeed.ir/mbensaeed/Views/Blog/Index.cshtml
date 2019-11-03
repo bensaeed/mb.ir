@@ -43,7 +43,7 @@
                             </div>
                         </div>
                     </div>*@
-                <div class="row">
+                <div class="row right">
                     @{ foreach (var item in Model)
                         {
 
@@ -52,12 +52,11 @@
                                 <div class="single-blog-post">
                                     <!-- Blog Box Background -->
                                     <style>
-                                        .blog-box-bg-12{
-                                           background-image: url("@item.ImageUrl.Substring(2)");
+                                        .blog-box-bg-Curr{
+                                           background-image: url("@item.ImageUrl");
                                         }
                                     </style>
-                                    <div class="blog-box-bg blog-box-bg-12">
-
+                                    <div class="blog-box-bg blog-box-bg-Curr">
                                         @*<img src="@Url.Content(item.ImageUrl)" alt="" style="height:310px;width:290px" />*@
                                     </div>
                                     <!-- Blog Content Box -->
@@ -69,14 +68,13 @@
                                             <span><a href="#"><i class="fas fa-heart"></i> @item.LikeCount</a></span>
                                         </div>
                                         <div class="blog-content">
-
                                             <h5>
                                                 @item.Title
                                             </h5>
                                             <p>
                                                 @item.Content
                                             </p>
-                                            <a class="blog-btn" href="#">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
+                                            <a class="blog-btn" href="@Url.Action("ContentDetail", "Blog" ,new { PostID =item.PostID })">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -85,16 +83,11 @@
                     }
                 </div>
                 <br /> <br />
-
-
-
-
-
             </div>
         </section>
         <div class="row content works">
             <div class="col col-m-12 col-t-12 col-d-12 col-d-lg-12 ">
-                <div class="circle-bts">
+                <div class="circle-bts center-block">
                     @Html.PagedListPager((IPagedList)Model, page =>
                    Url.Action("Index", "Blog", new { @Page = page })
                    , new PagedListRenderOptions { LinkToFirstPageFormat = "<< ابتدا", LinkToPreviousPageFormat = "قبلی", LinkToNextPageFormat = "بعدی", LinkToLastPageFormat = "آخرین >>" })

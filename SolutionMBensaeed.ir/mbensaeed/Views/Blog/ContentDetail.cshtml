@@ -1,39 +1,54 @@
-﻿
+﻿@model IEnumerable<mbensaeed.ViewModels.vm_AllPost>
+@using mbensaeed.Helper
 @{
     ViewBag.Title = "ContentDetail";
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
-}
-<br /><br />
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <!-- Single Blog Post -->
-        <div class="single-blog-post">
-            <!-- Blog Box Background -->
-            <div class="blog-box-bg text-center">
-                <img src="@Url.Content("~/Content/image/1.jpg")" style="height:300px;" onclick="">
-            </div>
-            <!-- Blog Content Box -->
-            <div class="blog-content-box">
-                <div class="blog-meta">
-                    <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
-                    <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
-                    <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
-                    <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
-                </div>
-                <div class="blog-content">
-                    <h5>راه های جلوگیری از هک شدن</h5>
-                    <p>
-                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                        است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                        فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                    </p>
-                    <br />
-                    <a class="blog-btn pull-left" href="@Url.Action("Index","Blog")">بازگشت به آخرين مطالب<i class="fas fa-long-arrow-alt-left"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-1"></div>
-</div>
+    var PostDetails = Model.FirstOrDefault();
 
+}
+<br />
+<br />
+<section class="section-padding" id="blog">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <!-- Single Blog Post -->
+                <div class="single-blog-post">
+                    <!-- Blog Box Background -->
+                    <style>
+                    .blog-box-bg-13{
+                        background-image:  url("@PostDetails.ImageUrl");
+                    }
+                    </style>
+                    <div class="blog-box-bg blog-box-bg-13">
+                        @*<img src="@Url.Content(item.ImageUrl)" alt="" style="height:310px;width:290px" />*@
+                    </div>
+
+                    <!-- Blog Content Box -->
+                    <div class="blog-content-box">
+                        <div class="blog-meta">
+                            <p>انتشار @DateConvertor.NumberToDate(@PostDetails.PostDate) <a href="#">محمد بن سعيد</a></p>
+                            <span><a href="#"><i class="fas fa-eye"></i> @PostDetails.ViewCount</a></span>
+                            <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
+                            <span><a href="#"><i class="fas fa-heart"></i> @PostDetails.LikeCount</a></span>
+                        </div>
+                        <div class="blog-content">
+                            <h5>
+                                @PostDetails.Title
+                            </h5>
+                            <p>
+                                @PostDetails.Content
+                            </p>
+                            <br />
+                            <br />
+                            <a class="blog-btn pull-left" href="@Url.Action("Index","Blog")">بازگشت به آخرين مطالب<i class="fas fa-long-arrow-alt-left"></i></a>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+</section>
