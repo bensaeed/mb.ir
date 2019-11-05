@@ -1,93 +1,67 @@
-﻿<section class="section-padding" id="blog">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="section-header">
-                    <h2 class="section-title">وبلاگ</h2>
-                    <p>
-                        <!-- توضيحات -->
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <!-- Single Blog Post -->
-                <div class="single-blog-post">
-                    <!-- Blog Box Background -->
-                    <div class="blog-box-bg blog-box-bg-1"></div>
-                    <!-- Blog Content Box -->
-                    <div class="blog-content-box">
-                        <div class="blog-meta">
-                            <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
-                            <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
-                            <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
-                            <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
-                        </div>
-                        <div class="blog-content">
-                            <h5>راه های جلوگیری از هک شدن</h5>
+﻿@using mbensaeed.Helper
+@{
+    DatabaseOperation _dop = new DatabaseOperation();
+    var ListPost = _dop.GetAllPost().Take(3);
+}
+@{ if (ListPost.Count() > 0)
+    {
+
+
+
+        <section class="section-padding" id="blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="section-header">
+                            <h2 class="section-title">وبلاگ</h2>
                             <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
+                                <!-- توضيحات -->
                             </p>
-                            <a class="blog-btn" href="#">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <!-- Single Blog Post -->
-                <div class="single-blog-post">
-                    <!-- Blog Box Background -->
-                    <div class="blog-box-bg blog-box-bg-2"></div>
-                    <!-- Blog Content Box -->
-                    <div class="blog-content-box">
-                        <div class="blog-meta">
-                            <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
-                            <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
-                            <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
-                            <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
-                        </div>
-                        <div class="blog-content">
-                            <h5>چند نکته درباره رابط کاربری</h5>
-                            <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                            </p>
-                            <a class="blog-btn" href="#">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
-                        </div>
-                    </div>
+                <div class="row">
+                    @{ foreach (var item in ListPost)
+                        {
+
+                            <div class="col-md-4">
+                                <!-- Single Blog Post -->
+                                <div class="single-blog-post">
+                                    <!-- Blog Box Background -->
+                                    <style>
+                                        .blog-box-bg-Curr{
+                                           background-image: url("@item.ImageUrl");
+                                        }
+                                    </style>
+                                    <div class="blog-box-bg blog-box-bg-Curr">
+                                        @*<img src="@Url.Content(item.ImageUrl)" alt="" style="height:310px;width:290px" />*@
+                                    </div>
+                                    <!-- Blog Content Box -->
+                                    <div class="blog-content-box">
+                                        <div class="blog-meta">
+                                            <p>انتشار @DateConvertor.NumberToDate(@item.PostDate) <a href="#">محمد بن سعيد</a></p>
+                                            <span><a href="#"><i class="fas fa-eye"></i> @item.ViewCount</a></span>
+                                            @*<span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>*@
+                                            <span><a href="#"><i class="fas fa-heart"></i> @item.LikeCount</a></span>
+                                        </div>
+                                        <div class="blog-content">
+                                            <h5>
+                                                @item.Title
+                                            </h5>
+                                            <p>
+                                                @item.Content
+                                            </p>
+                                            <a class="blog-btn" href="@Url.Action("ContentDetail", "Blog" ,new { PostID =item.PostID })">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
                 </div>
+                <br /> <br /><br />
+                <a class="blog-btn pull-left" href="@Url.Action("Index","Blog")"> ليست آخرين مطالب وبلاگ<i class="fas fa-long-arrow-alt-left"></i></a>
             </div>
-            <div class="col-md-4">
-                <!-- Single Blog Post -->
-                <div class="single-blog-post">
-                    <!-- Blog Box Background -->
-                    <div class="blog-box-bg blog-box-bg-3"></div>
-                    <!-- Blog Content Box -->
-                    <div class="blog-content-box">
-                        <div class="blog-meta">
-                            <p>۱۳ - مرداد ۱۳۹۷ توسط <a href="#">رابرت</a></p>
-                            <span><a href="#"><i class="fas fa-eye"></i> ۵۹۴</a></span>
-                            <span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>
-                            <span><a href="#"><i class="fas fa-heart"></i> ۳۳</a></span>
-                        </div>
-                        <div class="blog-content">
-                            <h5>چگونه یک طراح وب شویم؟</h5>
-                            <p>
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط
-                                فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-                            </p>
-                            <a class="blog-btn" href="@Url.Action("Index","Blog")">ادامه مطلب<i class="fas fa-long-arrow-alt-left"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br /> <br /><br />
-        <a class="blog-btn pull-left" href="@Url.Action("Index","Blog")"> ليست آخرين مطالب وبلاگ<i class="fas fa-long-arrow-alt-left"></i></a>
-    </div>
-</section>
+        </section>
+    } }

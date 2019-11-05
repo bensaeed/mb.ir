@@ -8,12 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using mbensaeed.ViewModels;
 using mbensaeed.Repositories;
+using Microsoft.Extensions.Caching.Memory;
+using mbensaeed.Helper;
 
 namespace mbensaeed.Controllers
 {
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private readonly DatabaseOperation _dop = new DatabaseOperation();
         // GET: Blog
         [HttpPost]
         public ActionResult Index()
@@ -31,8 +34,13 @@ namespace mbensaeed.Controllers
         }
         public IEnumerable<vm_AllPost> GetPost(int page, int ItemsPerPage, out int totalCount)
         {
+        
+
+
+
+
             var Result = new List<vm_AllPost>();
-            Result = _GetAllPost()
+            Result = _dop.GetAllPost()
                      .Skip(page * ItemsPerPage)
                      .Take(ItemsPerPage).ToList();
             totalCount = Result.Count();
@@ -46,56 +54,75 @@ namespace mbensaeed.Controllers
         [HttpGet]
         public ActionResult ContentDetail(int PostID)
         {
+            try
+            {
+                // Like 2
+                ViewBag.BeforeLiked = _dop.CheckLastActionPost(PostID,2);
+            }
+            catch (Exception)
+            {
+
+                ViewBag.BeforeLiked = false;
+            }
             var Result = new List<vm_AllPost>();
-            Result = _GetAllPost().ToList();
+            Result = _dop.GetAllPost().Where(x=>x.PostID==PostID).ToList();
 
             return View(Result);
         }
-   
-    public IEnumerable<vm_AllPost> _GetAllPost()
-    {
-        using (var _Context = new ApplicationDbContext())
+        [AjaxOnly]
+        public JsonResult ViewAndLikeLog(string MediaID, int ActionTypeID)
         {
-            var _objEntityPost = new RepositoryPattern<Post>(_Context);
-            var _post = _objEntityPost.SearchFor(x => x.IsActive == "1").ToList();
+            //var opt = new MemoryCacheOptions();
 
-            var _objEntityActivity = new RepositoryPattern<Activity>(_Context);
-            var _activity = _objEntityActivity.GetAll();
+            //var AllViews = new List<string>();
 
-            var _objEntityImage = new RepositoryPattern<Image>(_Context);
-            var _image = _objEntityImage.GetAll();
+            //IMemoryCache mc = new MemoryCache(opt);
 
-            var Result = new List<vm_AllPost>();
-            Result = (from pst in _post
-                      join im in _image
-                      on pst.ImageID equals im.ID
-                      //join ac in _activity
-                      //on pst.ID equals ac.Posts.ID into act
-                      //from PstAc in act.DefaultIfEmpty()
-                      select new vm_AllPost
-                      {
-                          PostID = pst.ID,
-                          Content = pst.Content,
-                          LikeCount = 1,//totalCount(ac.Posts.ID),
-                          Category = "ورزش",//pst.Category.DescriptionFa,
-                          Labels = pst.Labels,
-                          PostDate = pst.PostDate,
-                          PostTime = pst.PostTime,
-                          Title = pst.Title,
-                          ViewCount = 2,
-                          ImageUrl = im.FileUrl.Substring(1),//_image.Single(x=>x.ID==pst.ImageID).FileUrl, //pst.Image.FileUrl,
-                          IsActive = pst.IsActive
-                      }
-                        ).OrderByDescending(x => x.PostTime)
-                        .ThenByDescending(x => x.PostDate)
-                       .ToList();
 
-            _objEntityPost.Dispose();
-            _objEntityActivity.Dispose();
-            _objEntityImage.Dispose();
 
-            return Result;
+            //if (!mc.TryGetValue("views", out AllViews))
+            //{
+
+            //    var lst = new List<string> { "Ali", "Mohamad" };
+            //    mc.Set("views", lst);
+            //}
+            //else
+            //{
+            //    AllViews.Add("2");
+            //}
+
+
+            //// if () Timer > 5min
+            //// insert to db
+            //AllViews.Clear();
+
+
+            try
+            {
+                DatabaseOperation objEventLogger = new DatabaseOperation();
+                if (ActionTypeID == 1)
+                {
+                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.View));
+                }
+                else if (ActionTypeID == 2)
+                {
+                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.Like));
+                }
+                else if (ActionTypeID == 3)
+                {
+                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.Downlaod));
+                }
+                else if (ActionTypeID == 4)
+                {
+                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.DisLike));
+                }
+            }
+            catch (Exception)
+            {
+                return Json("OK");
+            }
+            return Json("OK");
         }
+
     }
-}
 }
