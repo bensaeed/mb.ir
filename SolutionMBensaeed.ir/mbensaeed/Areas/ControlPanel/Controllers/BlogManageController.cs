@@ -97,6 +97,69 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
     }
 }
 
+
+        [HttpGet]
+        public ActionResult WebManagement()//(string returnUrl)
+        {
+            //var model = new ViewModels.LoginUser
+            //{
+            //    ReturnUrl = returnUrl
+            //};
+
+            //return View(model);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult WebManagement(string UserName, string Password)
+        {
+            if (UserName == null || Password == null)
+            {
+                return View();
+            }
+            //using (var _Context = new ApplicationDbContext())
+            //{
+            //    HashClass _objHash = new HashClass();
+            //    string strHashPassword = _objHash.CreateHash(Password);
+            //    var _objEntityUser = new RepositoryPattern<TBL_Users>(_Context);
+            //    var CurrUser = _objEntityUser.GetByPredicate(x => x.UserName == UserName && x.PassWord == strHashPassword && x.Is_Active == "1");
+            //    if (CurrUser == null)
+            //    {
+            //        return View();
+            //    }
+            //    var ListOfUserRole = CurrUser.TBL_Roles.ToList();
+            //    if (ListOfUserRole == null)
+            //    {
+            //        return View();
+            //    }
+            //    var RoleName = ListOfUserRole.FirstOrDefault(x => x.Title == "Admin" || x.Title == "SuperAdmin");// ToList();
+
+            //    // Don't do this in production!
+            //    if (CurrUser != null && RoleName != null)
+            //    {
+            //        var identity = new ClaimsIdentity(new[] {
+            //        //new Claim(ClaimTypes.Name, "Ben"),
+            //        new Claim("ID",Convert.ToString( CurrUser.ID)),
+            //        new Claim("UserName", CurrUser.UserName),
+            //        new Claim("FirstName", CurrUser.FirstName),
+            //        new Claim("LastName",CurrUser.LastName),
+            //        new Claim("HasAccess", "1")
+            //        },
+            //            "ApplicationCookie");
+
+            //        var ctx = Request.GetOwinContext();
+            //        var authManager = ctx.Authentication;
+
+            //        authManager.SignIn(identity);
+
+            //        return RedirectToAction("index", "homeadmin", new { area = "Administrator" });
+            //        //return RedirectToAction(GetRedirectUrl("/"));
+            //    }
+            //}
+            // user authN failed
+            ModelState.AddModelError("", "Invalid email or password");
+            return View();
+        }
+
         //public void InsertManyToMany(int PostID,int CategoryID)
         //{
         //    using (var _db=new ApplicationDbContext())

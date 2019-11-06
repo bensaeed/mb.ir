@@ -1,7 +1,7 @@
 ﻿@using mbensaeed.Helper
 @{
     DatabaseOperation _dop = new DatabaseOperation();
-    var ListPost = _dop.GetAllPost().Take(3);
+    var ListPost = _dop.GetAllPost("3");
 }
 @{ if (ListPost.Count() > 0)
     {
@@ -21,6 +21,17 @@
                     </div>
                 </div>
                 <div class="row">
+                    @{
+                        if (ListPost.Count() == 1)
+                        {
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4"></div>
+                        }
+                        else if (ListPost.Count() == 2)
+                        {
+                            <div class="col-md-4"></div>
+                        }
+                    }
                     @{ foreach (var item in ListPost)
                         {
 

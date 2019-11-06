@@ -823,6 +823,8 @@
     <Content Include="Areas\ControlPanel\Views\PartialView\_PartialPageSideBar.cshtml" />
     <Content Include="Areas\ControlPanel\Views\BlogManage\CreatePost.cshtml" />
     <Content Include="Areas\ControlPanel\Views\Default\Index.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\BlogManage\WebManagement.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_LayoutBlog.cshtml" />

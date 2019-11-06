@@ -34,13 +34,8 @@ namespace mbensaeed.Controllers
         }
         public IEnumerable<vm_AllPost> GetPost(int page, int ItemsPerPage, out int totalCount)
         {
-        
-
-
-
-
             var Result = new List<vm_AllPost>();
-            Result = _dop.GetAllPost()
+            Result = _dop.GetAllPost("all")
                      .Skip(page * ItemsPerPage)
                      .Take(ItemsPerPage).ToList();
             totalCount = Result.Count();
@@ -65,20 +60,18 @@ namespace mbensaeed.Controllers
                 ViewBag.BeforeLiked = false;
             }
             var Result = new List<vm_AllPost>();
-            Result = _dop.GetAllPost().Where(x=>x.PostID==PostID).ToList();
+            Result = _dop.GetAllPost("all").Where(x=>x.PostID==PostID).ToList();
 
             return View(Result);
         }
         [AjaxOnly]
-        public JsonResult ViewAndLikeLog(string MediaID, int ActionTypeID)
+        public JsonResult ViewAndLikeLog(string PostID, int ActionTypeID)
         {
             //var opt = new MemoryCacheOptions();
 
             //var AllViews = new List<string>();
 
             //IMemoryCache mc = new MemoryCache(opt);
-
-
 
             //if (!mc.TryGetValue("views", out AllViews))
             //{
@@ -91,36 +84,34 @@ namespace mbensaeed.Controllers
             //    AllViews.Add("2");
             //}
 
-
             //// if () Timer > 5min
             //// insert to db
             //AllViews.Clear();
 
-
-            try
-            {
+            //try
+            //{
                 DatabaseOperation objEventLogger = new DatabaseOperation();
                 if (ActionTypeID == 1)
                 {
-                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.View));
+                    objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.View));
                 }
                 else if (ActionTypeID == 2)
                 {
-                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.Like));
-                }
-                else if (ActionTypeID == 3)
-                {
-                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.Downlaod));
+                    objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.Like));
                 }
                 else if (ActionTypeID == 4)
                 {
-                    objEventLogger.PostLog(MediaID, Convert.ToInt32(EnumMethod.ActionType.DisLike));
+                    objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.Downlaod));
                 }
-            }
-            catch (Exception)
-            {
-                return Json("OK");
-            }
+                else if (ActionTypeID == 3)
+                {
+                    objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.DisLike));
+                }
+            //}
+            //catch (Exception)
+            //{
+            //    return Json("OK");
+            //}
             return Json("OK");
         }
 
