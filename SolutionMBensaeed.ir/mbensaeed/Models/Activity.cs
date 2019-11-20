@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -16,9 +17,11 @@ namespace mbensaeed.Models
         public string Device { get; set; }
         public string HostName { get; set; }
         public string MoreInfo { get; set; }
+        public int? PostId { get; set; }
+        [ForeignKey("PostId")]
         public virtual Post Posts { get; set; }
+        public int? ActivityTypeId { get; set; }
+        [ForeignKey("ActivityTypeId")]
         public virtual ActivityType ActivityType { get; set; }
-        public virtual Person Person { get; set; }
-
     }
 }

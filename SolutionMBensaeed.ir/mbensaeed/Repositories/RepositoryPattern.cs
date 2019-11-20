@@ -38,13 +38,13 @@ namespace mbensaeed.Repositories
             try
             {
                 return _entity.Single(predicate);
-            }
+        }
             catch (Exception)
             {
                 return _entity.FirstOrDefault(predicate);
                 throw;
             }
-        }
+}
         public void DeleteMoreItem(Expression<Func<T, bool>> predicate)
         {
             try

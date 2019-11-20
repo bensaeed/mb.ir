@@ -25,6 +25,8 @@ namespace mbensaeed.Models
 
         //public virtual ICollection<Category> Categories { get; set; }
 
+        public virtual ICollection<Activity> Activity { get; set; }
+
         public int CategoryID { get; set; }
         [ForeignKey("CategoryID")]
         public Category Category { get; set; }

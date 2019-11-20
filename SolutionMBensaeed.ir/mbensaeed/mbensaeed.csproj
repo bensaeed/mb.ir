@@ -259,6 +259,14 @@
     <Compile Include="Migrations\201910301146302_1.Designer.cs">
       <DependentUpon>201910301146302_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911100909272_ModifyActivityEntity.cs" />
+    <Compile Include="Migrations\201911100909272_ModifyActivityEntity.Designer.cs">
+      <DependentUpon>201911100909272_ModifyActivityEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911100927013_ModifyActivitieFinal.cs" />
+    <Compile Include="Migrations\201911100927013_ModifyActivitieFinal.Designer.cs">
+      <DependentUpon>201911100927013_ModifyActivitieFinal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -271,6 +279,7 @@
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostAction.cs" />
     <Compile Include="Models\WebsiteVisit.cs" />
+    <Compile Include="OpratingClasses\C_LikeViewList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepositoryPattern.cs" />
     <Compile Include="Repositories\RepositoryPattern.cs" />
@@ -842,6 +851,7 @@
     <Content Include="Views\PartialView\_PartialPagePartner - Copy.cshtml" />
     <Content Include="Views\PartialView\_PartialPageContact.cshtml" />
     <Content Include="Views\PartialView\_PartialPageFooter.cshtml" />
+    <Content Include="Views\Home\Contact_US.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201909300714117_edit2.resx">
@@ -867,6 +877,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910301146302_1.resx">
       <DependentUpon>201910301146302_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911100909272_ModifyActivityEntity.resx">
+      <DependentUpon>201911100909272_ModifyActivityEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911100927013_ModifyActivitieFinal.resx">
+      <DependentUpon>201911100927013_ModifyActivitieFinal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

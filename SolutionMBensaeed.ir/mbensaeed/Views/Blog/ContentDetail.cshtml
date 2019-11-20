@@ -44,13 +44,13 @@
                                     @{
                                         if (ViewBag.BeforeLiked == true)
                                         {
-                                            <button id="HeartID"  onclick="LikeControl()" type="button" class="btn btn-primary btn-sm pull-left">
+                                            <button id="HeartID" onclick="LikeControl()" type="button" class="btn btn-primary btn-sm pull-left">
                                                 پسنديدم &nbsp; <span class="fas fa-heart"></span>
                                             </button>
                                         }
                                         else
                                         {
-                                            <button id="HeartID"  onclick="LikeControl()" type="button" class="btn btn-default btn-sm pull-left">
+                                            <button id="HeartID" onclick="LikeControl()" type="button" class="btn btn-default btn-sm pull-left" style="margin-top:10px;">
                                                 پسنديدم &nbsp; <span class="fas fa-heart"></span>
                                             </button>
                                         }
@@ -64,11 +64,33 @@
                                 </div>
 
                             </div>
-                            <p>
-                                @PostDetails.Content
-                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>
+                                        @PostDetails.Content
+                                    </p>
+                                </div>
+                            </div>
                             <br />
                             <br />
+                            <div class="row">
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>دسته بندی : <a href="#"><span class="badge">@PostDetails.Category</span></a></h6>
+                                </div>
+
+                            </div>
+                 
+                            <br />
+                            <div class="row">
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-4">
+                                    <h6>برچسب : <a href="#"><span class="badge">@PostDetails.Labels</span></a></h6>
+                                </div>
+
+                            </div>
                             <a class="blog-btn pull-left" href="@Url.Action("Index","Blog")">بازگشت به آخرين مطالب<i class="fas fa-long-arrow-alt-left"></i></a>
                             <br />
                         </div>
@@ -87,12 +109,12 @@
             //Like
             if (csName == "btn btn-primary btn-sm pull-left") {
                 document.getElementById('HeartID').className = 'btn btn-default btn-sm pull-left';
-                LikeLog();
+               DisLikeLog();
             }
             //Unlike
             else if (csName == "btn btn-default btn-sm pull-left") {
                 document.getElementById('HeartID').className = 'btn btn-primary btn-sm pull-left';
-                DisLikeLog();
+                 LikeLog();
             }
         }
         function LikeLog() {

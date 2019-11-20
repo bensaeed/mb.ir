@@ -51,69 +51,80 @@ namespace mbensaeed.Controllers
         {
             try
             {
-                // Like 2
-                ViewBag.BeforeLiked = _dop.CheckLastActionPost(PostID,2);
+                ViewBag.BeforeLiked = _dop.CheckLastActionPost(PostID, Convert.ToInt32(EnumMethod.ActionType.Like));
             }
             catch (Exception)
             {
-
                 ViewBag.BeforeLiked = false;
             }
+            ViewAndLikeLog(PostID, Convert.ToInt32(EnumMethod.ActionType.View));
             var Result = new List<vm_AllPost>();
-            Result = _dop.GetAllPost("all").Where(x=>x.PostID==PostID).ToList();
+            Result = _dop.GetAllPost("all").Where(x => x.PostID == PostID).ToList();
 
             return View(Result);
         }
         [AjaxOnly]
-        public JsonResult ViewAndLikeLog(string PostID, int ActionTypeID)
+        public JsonResult ViewAndLikeLog(int PostID, int ActionTypeID)
         {
-            //var opt = new MemoryCacheOptions();
-
-            //var AllViews = new List<string>();
-
-            //IMemoryCache mc = new MemoryCache(opt);
-
-            //if (!mc.TryGetValue("views", out AllViews))
-            //{
-
-            //    var lst = new List<string> { "Ali", "Mohamad" };
-            //    mc.Set("views", lst);
-            //}
-            //else
-            //{
-            //    AllViews.Add("2");
-            //}
-
-            //// if () Timer > 5min
-            //// insert to db
-            //AllViews.Clear();
-
-            //try
-            //{
+            try
+            {
                 DatabaseOperation objEventLogger = new DatabaseOperation();
-                if (ActionTypeID == 1)
+                if (ActionTypeID == Convert.ToInt32(EnumMethod.ActionType.View))
                 {
                     objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.View));
                 }
-                else if (ActionTypeID == 2)
+                else if (ActionTypeID == Convert.ToInt32(EnumMethod.ActionType.Like))
                 {
                     objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.Like));
                 }
-                else if (ActionTypeID == 4)
-                {
-                    objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.Downlaod));
-                }
-                else if (ActionTypeID == 3)
+                else if (ActionTypeID == Convert.ToInt32(EnumMethod.ActionType.DisLike))
                 {
                     objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.DisLike));
                 }
-            //}
-            //catch (Exception)
-            //{
-            //    return Json("OK");
-            //}
+                else if (ActionTypeID == Convert.ToInt32(EnumMethod.ActionType.Downlaod))
+                {
+                    objEventLogger.PostLog(PostID, Convert.ToInt32(EnumMethod.ActionType.Downlaod));
+                }
+            }
+            catch (Exception)
+            {
+                return Json("OK");
+            }
             return Json("OK");
         }
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* I Memory Cashe*/
+//var opt = new MemoryCacheOptions();
+
+//var AllViews = new List<string>();
+
+//IMemoryCache mc = new MemoryCache(opt);
+
+//if (!mc.TryGetValue("views", out AllViews))
+//{
+
+//    var lst = new List<string> { "Ali", "Mohamad" };
+//    mc.Set("views", lst);
+//}
+//else
+//{
+//    AllViews.Add("2");
+//}
+
+//// if () Timer > 5min
+//// insert to db
+//AllViews.Clear();

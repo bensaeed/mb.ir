@@ -72,8 +72,8 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
 
                         Title = Title,
                         ImageID = NewImageID,
-                        CategoryID=CategoryID,
-                        //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
+                         CategoryID=CategoryID,
+                       //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
                         Content = Content,
                         IsActive = IsActive == "true" ? "1" : "0",
                         Labels = "",

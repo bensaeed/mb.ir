@@ -26,7 +26,15 @@ namespace mbensaeed.Controllers
 
             return View();
         }
-
-    
+        [HttpGet]
+        public ActionResult Contact_US()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Contact_US(string Name, string Phone, string Email, string Messag)
+        {
+            return View();
+        }
     }
 }

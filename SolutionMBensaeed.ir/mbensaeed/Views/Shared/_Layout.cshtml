@@ -7,13 +7,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @*@Scripts.Render("~/bundles/modernizr")*@
-
-
-
 </head>
 <body>
     <div id="home"></div>
-
     <!-- Pre-loader Start -->
     <div class="elegant-preeloader">
         <div class="preloader-spinner"></div>
@@ -45,36 +41,12 @@
                 </ul>
             </div>
         </nav>
-        <!-- Start Hero Area -->
-        <div class="hero-area">
-            @Html.Partial("~/Views/PartialView/_PartialPageHeroArea.cshtml")
-        </div>
+    <!-- Start Hero Area -->
+    <div class="hero-area">
+        @Html.Partial("~/Views/PartialView/_PartialPageHeroArea.cshtml")
+    </div>
     </header>
     <!-- Header End -->
-    <!-- About Start -->
-    @Html.Partial("~/Views/PartialView/_PartialPageAbout.cshtml")
-    <!-- Ends About -->
-    <!-- Start Experience -->
-    @Html.Partial("~/Views/PartialView/_PartialPageExperience.cshtml")
-    <!-- Experience End -->
-    <!-- Counter Start -->
-    @*@Html.Partial("~/Views/PartialView/_PartialPageCounter.cshtml")*@ 
-    <!-- Counter End -->
-    <!-- Work Start-->
-    @Html.Partial("~/Views/PartialView/_PartialPageStart.cshtml")
-    <!-- Work End -->
-    <!-- Portfolio Start -->
-    @Html.Partial("~/Views/PartialView/_PartialPagePortfolio.cshtml")
-    <!-- Portfolio End -->
-    <!-- Testimonial Start -->
-    @*@Html.Partial("~/Views/PartialView/_PartialPageTestimonial.cshtml")*@
-    <!-- Testimonial End -->
-    <!-- Blog Start -->
-    @Html.Partial("~/Views/PartialView/_PartialPageBlog.cshtml")
-    <!-- Blog End -->
-    <!-- Media Partner Start -->
-    @*@Html.Partial("~/Views/PartialView/_PartialPagePartner.cshtml")*@
-    <!-- Media Partner End
     @RenderBody()
     <!-- Contact Start -->
     @Html.Partial("~/Views/PartialView/_PartialPageContact.cshtml")
