@@ -17,44 +17,54 @@
         </div>
         <br />
         <div class="row" dir="rtl">
-            <div class="col-md-3">
-                <div class="about-single-item" >
-                    <input type="text" class="form-control" id="EmailID" />
-                </div>
-            </div>
             <div class="col-md-1 col-sm-1">
-                <span>ايميل</span>
+            </div>
+            <div class="col-md-4">
+                <div class="about-single-item">
+                    <span>ايميل</span> <input type="text" class="form-control" id="EmailID" />
+                </div>
             </div>
             <div class="col-md-3">
                 <div class="about-single-item">
-                    <input type="text" class="form-control" id="PhoneID" />
+                    <span>تلفن تماس</span> <input type="text" class="form-control" id="PhoneID" />
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="about-single-item">
+                    <span>نام و نام خانوادگی</span><input type="text" class="form-control" id="FullNameID" />
                 </div>
             </div>
             <div class="col-md-1 col-sm-1">
-                <span>تلفن تماس</span>
-            </div>
-            <div class="col-md-2">
-                <div class="about-single-item">
-                    <input type="text" class="form-control" id="FullNameID" />
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-2">
-                <span>نام و نام خانوادگی</span>
             </div>
         </div>
-     <br />
-        @*<div class="row">
-            <div class="col-md-3 col-sm-3">
+        <br />
+        <div class="row">
+            <div class="col-md-1 col-sm-1">
             </div>
-            <div class="col-md-7">
-                <div class="about-single-item">
-                    <textarea class="form-control" id="CommentID" />
-                </div>
+            <div class="col-md-10 col-sm-10">
+                <div class="about-single-item"> </div>
+                <span>پيام</span><textarea rows="10" class="form-control" id="CommentI1D"></textarea>
             </div>
-            <div class="col-md-2 col-sm-2">
-                <span>نظرات و توضیحات</span>
+            <div class="col-md-1 col-sm-1">
+
             </div>
-        </div>*@
+        </div>   
+        <br />
+        <div class="row">
+            <div class="col-md-1 col-sm-1">
+            </div>
+            <div class="col-md-10 col-sm-10">
+                @*@Html.LabelFor(model => model.Captcha)
+
+        <img alt="Captcha" id="imgcpatcha" src="@Url.Action("CaptchaImage","Captcha")" style="" />*@
+
+                <p><img src="/home/ShowCaptchaImage" /></p>
+            </div>
+            <div class="col-md-1 col-sm-1">
+
+            </div>
+        </div>
     </div>
 </section>
 

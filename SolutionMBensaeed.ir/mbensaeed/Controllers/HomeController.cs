@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mbensaeed.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -35,6 +36,10 @@ namespace mbensaeed.Controllers
         public ActionResult Contact_US(string Name, string Phone, string Email, string Messag)
         {
             return View();
+        }
+        public CaptchaImageResult ShowCaptchaImage()
+        {
+            return new CaptchaImageResult();
         }
     }
 }
