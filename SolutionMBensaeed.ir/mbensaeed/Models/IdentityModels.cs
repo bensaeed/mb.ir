@@ -27,6 +27,7 @@ namespace mbensaeed.Models
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<WebsiteVisit> WebsiteVisit { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<Comment> Comment { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

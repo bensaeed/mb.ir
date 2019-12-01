@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace IssueCheck
+namespace mbensaeed.Helper
 {
-    class C_NumbertToString
+    class C_NumberToString
     {
 
         public  string GET_Number_To_PersianString(string TXT)

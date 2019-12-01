@@ -8,8 +8,9 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Helper
 {
-    public class CaptchaImageResult:ActionResult
+    public class CaptchaImageResult : ActionResult
     {
+        C_NumberToString numToString = new C_NumberToString();
         public string GetCaptchaString(int length)
         {
             int intZero = '0';
@@ -45,6 +46,12 @@ namespace mbensaeed.Helper
             response.ContentType = "image/jpeg";
             bmp.Save(response.OutputStream, ImageFormat.Jpeg);
             bmp.Dispose();
+        }
+        public string GetCaptchaStringNumber()
+        {
+            Random rnd = new Random();
+            int rndNumber = rnd.Next(1000, 9999);
+            return numToString.GET_Number_To_PersianString(Convert.ToString(rndNumber));
         }
     }
 }

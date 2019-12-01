@@ -44,47 +44,85 @@
             </div>
             <div class="col-md-10 col-sm-10">
                 <div class="about-single-item"> </div>
-                <span>پيام</span><textarea rows="10" class="form-control" id="CommentI1D"></textarea>
-            </div>
-            <div class="col-md-1 col-sm-1">
-
-            </div>
-        </div>   
-        <br />
-        <div class="row">
-            <div class="col-md-1 col-sm-1">
-            </div>
-            <div class="col-md-10 col-sm-10">
-                @*@Html.LabelFor(model => model.Captcha)
-
-        <img alt="Captcha" id="imgcpatcha" src="@Url.Action("CaptchaImage","Captcha")" style="" />*@
-
-                <p><img src="/home/ShowCaptchaImage" /></p>
+                <span>پيام</span><textarea rows="10" class="form-control" id="CommentID"></textarea>
             </div>
             <div class="col-md-1 col-sm-1">
 
             </div>
         </div>
+        <br />
+        <div class="row">
+            <div class="col-md-9 col-sm-9">
+
+            </div>
+            <div class="col-md-2 col-sm-2">
+                <p><img src="/home/ShowCaptchaImage" /></p>
+                <input type="text" class="form-control" id="CaptchaID" />
+            </div>
+            <div class="col-md-1 col-sm-1">
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-1 col-sm-1">
+            </div>
+            <div class="col-md-2">
+                <input type="button" id="SubmitButton" class="form-control" value="ثبت پيام" />
+            </div>
+            <div class="col-md-9"></div>
+        </div>
     </div>
 </section>
 
 
+@section scripts {
+    <script type="text/javascript">
 
-@*<ul class="personal-info">
-        <li>
-            <span>نام و نام خانوادگی</span>
-            <input type="text" id="FullNameID" />
-        </li>
-        <li>
-            <span>تلفن تماس</span>
-            <input type="text" id="PhoneID" />
-        </li>
-        <li>
-            <span>پست الکترونیک</span>
-            <input type="text" id="EmailID" />
-        </li>
-        <li>
-            <span>نظرات و توضیحات</span>
-            <textarea id="CommentID" />
-        </li>
-    </ul>*@
+        $("#SubmitButton").click(function () {
+            SubmitData();
+        });
+        function SubmitData() {
+            toastr.options.positionClass = "toast-bottom-left";
+            var FlagOperation = true;
+            var URL = '@Url.Action("Contact_US", "Home")';
+            if ($("#FullNameID").val() == null || $("#FullNameID").val() == "" || ($("#FullNameID").val()).Length < 3) {
+                toastr.error('لطفا نام و نام خانوادگی خود را وارد نمایید', 'خطا!', { timeOut: 5000 })
+                FlagOperation = false;
+            }
+            if ($("#CommentID").val() == null || $("#CommentID").val() == "" || ($("#CommentID").val()).Length < 10) {
+                toastr.error('لطفاٌ متن پیام مورد نظر را وارد نمایید', 'خطا!', { timeOut: 5000 })
+                FlagOperation = false;
+            }
+            if (FlagOperation == true) {
+                var options = {};
+                options.url = URL;
+                options.type = "POST";
+                options.data = JSON.stringify({
+                    Name: $("#FullNameID").val(),
+                    Phone: $("#PhoneID").val(),
+                    Email: $("#EmailID").val(),
+                    Message: $("#CommentID").val()
+                });
+                options.datatype = "json";
+                options.contentType = "application/json";
+                options.success = function (x) {
+                    if (x === "OK") {
+                        //$('#EditEntityModal').modal('hide');
+                        //var dialog = bootbox.dialog({
+                        //    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> با تشکر، پیام شما با موفقیت ارسال شد.</p>',
+                        //    closeButton: false
+                        //});
+                        toastr.success('با تشکر، پیام شما با موفقیت ارسال شد.', 'ارسال پیام', { timeOut: 6000 })
+                        setTimeout(function () {
+                            //dialog.modal('hide');
+
+                            location.reload();
+                        }, 3000)
+                    }
+                };
+                $.ajax(options);
+            }
+        }
+    </script>
+}

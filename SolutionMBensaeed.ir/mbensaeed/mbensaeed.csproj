@@ -224,7 +224,7 @@
     <Compile Include="Helper\AjaxOnlyAttribute.cs" />
     <Compile Include="Helper\CaptchaImageResult.cs" />
     <Compile Include="Helper\CaptchaResult.cs" />
-    <Compile Include="Helper\C_NumbertToString.cs" />
+    <Compile Include="Helper\C_NumberToString.cs" />
     <Compile Include="Helper\DatabaseOperation.cs" />
     <Compile Include="Helper\DateConvertor.cs" />
     <Compile Include="Helper\EnumMethod.cs" />
@@ -271,11 +271,16 @@
     <Compile Include="Migrations\201911100927013_ModifyActivitieFinal.Designer.cs">
       <DependentUpon>201911100927013_ModifyActivitieFinal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912011457214_Modify_TblComment.cs" />
+    <Compile Include="Migrations\201912011457214_Modify_TblComment.Designer.cs">
+      <DependentUpon>201912011457214_Modify_TblComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
     <Compile Include="Models\ActivityType.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -642,6 +647,7 @@
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\owl.theme.default.css" />
     <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\css\toastr.min.css" />
     <Content Include="Content\font\lg.svg" />
     <Content Include="Content\image\apple-icon-114x114.png" />
     <Content Include="Content\image\apple-icon-72x72.png" />
@@ -718,6 +724,7 @@
     <Content Include="Scripts\js\main.js" />
     <Content Include="Scripts\js\modernizr.js" />
     <Content Include="Scripts\js\owl.carousel.min.js" />
+    <Content Include="Scripts\js\toastr.min.js" />
     <Content Include="Scripts\js\wow.min.js" />
     <Content Include="Scripts\persianumber.min.js" />
     <Content Include="Web.config" />
@@ -888,6 +895,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911100927013_ModifyActivitieFinal.resx">
       <DependentUpon>201911100927013_ModifyActivitieFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912011457214_Modify_TblComment.resx">
+      <DependentUpon>201912011457214_Modify_TblComment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
