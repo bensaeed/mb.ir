@@ -36,23 +36,33 @@ namespace mbensaeed.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Contact_US(string Name, string Phone, string Email, string Message)
+        public ActionResult Contact_US(string Name, string Phone, string Email, string Message, string CaptchaText)
         {
-            var _objEntityMessage = new RepositoryPattern<Comment>(new ApplicationDbContext());
-            var NewItem = new Comment
+            if (CaptchaText == HttpContext.Session["captchastring"].ToString())
             {
-                FullName = Name,
-                PhoneNumber = Phone,
-                Email = Email,
-                CommentUser = Message,
-                SendDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
-                SendTime = DateConvertor.TimeNow()
-            };
-            _objEntityMessage.Insert(NewItem);
-            _objEntityMessage.Save();
-            _objEntityMessage.Dispose();
-            return Json("OK");
-            //return View();
+                var _objEntityMessage = new RepositoryPattern<Comment>(new ApplicationDbContext());
+                var NewItem = new Comment
+                {
+                    FullName = Name,
+                    PhoneNumber = Phone,
+                    Email = Email,
+                    CommentUser = Message,
+                    SendDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
+                    SendTime = DateConvertor.TimeNow(),
+                    Is_Read = "0"
+                };
+                _objEntityMessage.Insert(NewItem);
+                _objEntityMessage.Save();
+                _objEntityMessage.Dispose();
+                return Json("OK");
+            }
+            else
+            {
+                return Json("CaptchaTextMistake");
+                //ViewBag.Message = "CAPTCHA verification failed!";
+            }
+
+
         }
         public CaptchaImageResult ShowCaptchaImage()
         {

@@ -215,7 +215,6 @@
     <Compile Include="Areas\ControlPanel\ControlPanelAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\CaptchaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -231,49 +230,9 @@
     <Compile Include="Helper\HelpOperation.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
-    <Compile Include="Migrations\201909300714117_edit2.cs" />
-    <Compile Include="Migrations\201909300714117_edit2.Designer.cs">
-      <DependentUpon>201909300714117_edit2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909300717234_ModifyPostEntity.cs" />
-    <Compile Include="Migrations\201909300717234_ModifyPostEntity.Designer.cs">
-      <DependentUpon>201909300717234_ModifyPostEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909300816525_EditModifi.cs" />
-    <Compile Include="Migrations\201909300816525_EditModifi.Designer.cs">
-      <DependentUpon>201909300816525_EditModifi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910010714528_ModifiDatabase1.cs" />
-    <Compile Include="Migrations\201910010714528_ModifiDatabase1.Designer.cs">
-      <DependentUpon>201910010714528_ModifiDatabase1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910061238003_category_dropID.cs" />
-    <Compile Include="Migrations\201910061238003_category_dropID.Designer.cs">
-      <DependentUpon>201910061238003_category_dropID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910061330350_Edit_OneToOne_Post_Category.cs" />
-    <Compile Include="Migrations\201910061330350_Edit_OneToOne_Post_Category.Designer.cs">
-      <DependentUpon>201910061330350_Edit_OneToOne_Post_Category.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910061331566_Edit_OneToOne_Post_Category1.cs" />
-    <Compile Include="Migrations\201910061331566_Edit_OneToOne_Post_Category1.Designer.cs">
-      <DependentUpon>201910061331566_Edit_OneToOne_Post_Category1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910301146302_1.cs" />
-    <Compile Include="Migrations\201910301146302_1.Designer.cs">
-      <DependentUpon>201910301146302_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911100909272_ModifyActivityEntity.cs" />
-    <Compile Include="Migrations\201911100909272_ModifyActivityEntity.Designer.cs">
-      <DependentUpon>201911100909272_ModifyActivityEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201911100927013_ModifyActivitieFinal.cs" />
-    <Compile Include="Migrations\201911100927013_ModifyActivitieFinal.Designer.cs">
-      <DependentUpon>201911100927013_ModifyActivitieFinal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201912011457214_Modify_TblComment.cs" />
-    <Compile Include="Migrations\201912011457214_Modify_TblComment.Designer.cs">
-      <DependentUpon>201912011457214_Modify_TblComment.cs</DependentUpon>
+    <Compile Include="Migrations\201912042112563_1123.cs" />
+    <Compile Include="Migrations\201912042112563_1123.Designer.cs">
+      <DependentUpon>201912042112563_1123.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -766,7 +725,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ControlPanel\Models\" />
     <Folder Include="Content\ControlPanel\css\fonts\" />
-    <Folder Include="Views\Captcha\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -866,38 +824,8 @@
     <Content Include="Views\Home\Contact_US.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909300714117_edit2.resx">
-      <DependentUpon>201909300714117_edit2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909300717234_ModifyPostEntity.resx">
-      <DependentUpon>201909300717234_ModifyPostEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909300816525_EditModifi.resx">
-      <DependentUpon>201909300816525_EditModifi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910010714528_ModifiDatabase1.resx">
-      <DependentUpon>201910010714528_ModifiDatabase1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910061238003_category_dropID.resx">
-      <DependentUpon>201910061238003_category_dropID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910061330350_Edit_OneToOne_Post_Category.resx">
-      <DependentUpon>201910061330350_Edit_OneToOne_Post_Category.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910061331566_Edit_OneToOne_Post_Category1.resx">
-      <DependentUpon>201910061331566_Edit_OneToOne_Post_Category1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910301146302_1.resx">
-      <DependentUpon>201910301146302_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911100909272_ModifyActivityEntity.resx">
-      <DependentUpon>201911100909272_ModifyActivityEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911100927013_ModifyActivitieFinal.resx">
-      <DependentUpon>201911100927013_ModifyActivitieFinal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912011457214_Modify_TblComment.resx">
-      <DependentUpon>201912011457214_Modify_TblComment.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912042112563_1123.resx">
+      <DependentUpon>201912042112563_1123.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

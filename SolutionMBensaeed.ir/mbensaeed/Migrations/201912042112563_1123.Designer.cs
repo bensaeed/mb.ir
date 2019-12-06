@@ -7,13 +7,13 @@ namespace mbensaeed.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class ModifiDatabase1 : IMigrationMetadata
+    public sealed partial class _1123 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifiDatabase1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(_1123));
         
         string IMigrationMetadata.Id
         {
-            get { return "201910010714528_ModifiDatabase1"; }
+            get { return "201912042112563_1123"; }
         }
         
         string IMigrationMetadata.Source

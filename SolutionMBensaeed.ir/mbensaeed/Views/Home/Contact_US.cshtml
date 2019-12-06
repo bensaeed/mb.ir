@@ -3,6 +3,7 @@
     ViewBag.Title = "Contact_US";
 }
 
+
 <section class="section-padding" id="about">
     <div class="container">
         <div class="row">
@@ -83,6 +84,7 @@
             SubmitData();
         });
         function SubmitData() {
+         
             toastr.options.positionClass = "toast-bottom-left";
             var FlagOperation = true;
             var URL = '@Url.Action("Contact_US", "Home")';
@@ -107,7 +109,10 @@
                 options.datatype = "json";
                 options.contentType = "application/json";
                 options.success = function (x) {
-                    if (x === "OK") {
+                    if (x === "CaptchaTextMistake") {
+                        
+                    }
+                    else if (x === "OK") {
                         //$('#EditEntityModal').modal('hide');
                         //var dialog = bootbox.dialog({
                         //    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> با تشکر، پیام شما با موفقیت ارسال شد.</p>',

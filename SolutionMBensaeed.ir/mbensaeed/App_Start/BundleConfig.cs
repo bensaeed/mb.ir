@@ -17,6 +17,7 @@ namespace mbensaeed
                       "~/Content/css/owl.theme.default.css",
                       "~/Content/css/responsive.css",
                       "~/Content/web-fonts-with-css/css/fontawesome-all.min.css",
+                      "~/Content/css/toastr.min.css",
                       "~/Content/style.css"));
 
 
@@ -33,6 +34,7 @@ namespace mbensaeed
                      "~/Scripts/js/owl.carousel.min.js",
                      "~/Scripts/js/wow.min.js",
                      "~/Scripts/persianumber.min.js",
+                     "~/Scripts/js/toastr.min.js" ,
                      "~/Scripts/js/main.js"));
             //-------------------------------------
             //ControlPanel ------------------------
