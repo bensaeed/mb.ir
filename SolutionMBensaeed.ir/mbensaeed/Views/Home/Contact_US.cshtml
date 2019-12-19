@@ -56,9 +56,11 @@
             <div class="col-md-9 col-sm-9">
 
             </div>
-            <div class="col-md-2 col-sm-2">
-                <p><img src="/home/ShowCaptchaImage" /></p>
-                <input type="text" class="form-control" id="CaptchaID" />
+            <div class="col-md-2 col-sm-2" id="divCaptchaImageID" >
+                <p id="CaptchaImageID">
+                    <img src="/home/ShowCaptchaImage" />
+                </p>
+                <input type="text" class="form-control" id="CaptchaTextID" />
             </div>
             <div class="col-md-1 col-sm-1">
 
@@ -104,13 +106,15 @@
                     Name: $("#FullNameID").val(),
                     Phone: $("#PhoneID").val(),
                     Email: $("#EmailID").val(),
-                    Message: $("#CommentID").val()
+                    Message: $("#CommentID").val(),
+                    CaptchaText: $("#CaptchaTextID").val()
                 });
                 options.datatype = "json";
                 options.contentType = "application/json";
                 options.success = function (x) {
                     if (x === "CaptchaTextMistake") {
-                        
+                        RemoveCaptchaImageTag();
+                        AddCaptchaImageTag();
                     }
                     else if (x === "OK") {
                         //$('#EditEntityModal').modal('hide');
@@ -128,6 +132,39 @@
                 };
                 $.ajax(options);
             }
+        }
+        function RemoveCaptchaImageTag() {
+            alert("RemoveCaptchaImageTag");
+            var elm1 = document.getElementById('CaptchaImageID');
+            elm1.parentNode.removeChild(elm1);
+            var elm2 = document.getElementById('CaptchaTextID');
+            elm2.parentNode.removeChild(elm2);
+        }
+        function AddCaptchaImageTag() {
+            CreatePElement();
+            alert("AddCaptchaImageTag");
+            var tag =" <img src="+"/home/ShowCaptchaImage"+ "/> " ;
+            $("#CaptchaImageID").append(tag);
+            CreateInputElement();
+        }
+           function CreatePElement() {
+            var CurrentImg = document.createElement("p");
+            CurrentImg.id = "CaptchaImageID";
+            CurrentImg.alt = "";
+            CurrentImg.className = "Fixedheight";
+            CurrentImg.width = 300;
+            CurrentImg.height = 250;
+            $("#divCaptchaImageID").append(CurrentImg);
+        }
+         function CreateInputElement() {
+            var CurrentInput = document.createElement("Input");
+            CurrentInput.id = "CaptchaTextID";
+            CurrentInput.alt = "";
+             CurrentInput.className = "form-control";
+             CurrentInput.type="Text";
+            CurrentInput.width = 300;
+            CurrentInput.height = 250;
+            $("#CaptchaImageID").append(CurrentInput);
         }
     </script>
 }

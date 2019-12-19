@@ -38,7 +38,7 @@ namespace mbensaeed.Controllers
         [HttpPost]
         public ActionResult Contact_US(string Name, string Phone, string Email, string Message, string CaptchaText)
         {
-            if (CaptchaText == HttpContext.Session["captchastring"].ToString())
+            if (CaptchaText.ToLower() == HttpContext.Session["captchastring"].ToString().ToLower())
             {
                 var _objEntityMessage = new RepositoryPattern<Comment>(new ApplicationDbContext());
                 var NewItem = new Comment
