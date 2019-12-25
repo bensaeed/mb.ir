@@ -3,7 +3,7 @@
 @using PagedList;
 @using mbensaeed.Helper
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "وبلاگ";
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
     //var AllPost = ViewBag.AllPost;
     //var CountAllPost = Model.Count();
@@ -25,7 +25,7 @@
     {
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <h2 class="pull-right"> آخرين مطالب </h2>
+            <h2 class="pull-right"> @ViewBag.TitlePage </h2>
             <br />
         </div>
         <div class="col-lg-1"></div>
@@ -52,11 +52,11 @@
                                 <div class="single-blog-post">
                                     <!-- Blog Box Background -->
                                     <style>
-                                        .blog-box-bg-Curr{
+                                        .blog-box-bg-Curr-@item.PostID{
                                            background-image: url("@item.ImageUrl");
                                         }
                                     </style>
-                                    <div class="blog-box-bg blog-box-bg-Curr">
+                                    <div class="blog-box-bg blog-box-bg-Curr-@item.PostID">
                                         @*<img src="@Url.Content(item.ImageUrl)" alt="" style="height:310px;width:290px" />*@
                                     </div>
                                     <!-- Blog Content Box -->

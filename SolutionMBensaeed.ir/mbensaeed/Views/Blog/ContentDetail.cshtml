@@ -4,24 +4,24 @@
     ViewBag.Title = "ContentDetail";
     Layout = "~/Views/Shared/_LayoutBlog.cshtml";
     var PostDetails = Model.FirstOrDefault();
-
+    var strTags = (string)PostDetails.Labels;
+    string[] PostTags = HelpOperation.SplitString(strTags).ToArray();
 }
 <br />
 <br />
 <section class="section-padding" id="blog">
     <div class="container">
         <div class="row">
-
             <div class="col-md-12">
                 <!-- Single Blog Post -->
                 <div class="single-blog-post">
                     <!-- Blog Box Background -->
                     <style>
-                    .blog-box-bg-13{
-                        background-image:  url("@PostDetails.ImageUrl");
+                    .blog-box-bg-Cur{
+                        background-image:url("@PostDetails.ImageUrl");
                     }
                     </style>
-                    <div class="blog-box-bg blog-box-bg-13">
+                    <div class="blog-box-bg blog-box-bg-Cur">
                         @*<img src="@Url.Content(item.ImageUrl)" alt="" style="height:310px;width:290px" />*@
                     </div>
 
@@ -77,17 +77,32 @@
                                 <div class="col-md-8">
                                 </div>
                                 <div class="col-md-4">
-                                    <h6>دسته بندی : <a href="#"><span class="badge">@PostDetails.Category</span></a></h6>
+                                    <h6>دسته بندی :   <a href="@Url.Action("Index", "Blog", new {@Page=1, @Category = @PostDetails.Category })"><span class="badge">@PostDetails.Category</span></a></h6>
                                 </div>
 
                             </div>
-                 
+
                             <br />
+
+
+
+
                             <div class="row">
                                 <div class="col-md-8">
                                 </div>
                                 <div class="col-md-4">
-                                    <h6>برچسب : <a href="#"><span class="badge">@PostDetails.Labels</span></a></h6>
+                                    <h6>
+                                      برچسب ها :
+                                        @{
+                                            foreach (var item in PostTags)
+                                            {
+                                                <a href="@Url.Action("Index", "Blog", new {@Page=1, @tag = @item })">
+                                                    <span class="badge">@Html.Raw(@item)</span>
+                                                </a>
+                                            }
+                                        }
+
+                                    </h6>
                                 </div>
 
                             </div>

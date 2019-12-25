@@ -257,6 +257,8 @@
     <Compile Include="ViewModels\vm_AllPost.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\ControlPanel\assets\plugins\bootstrap-select\bootstrap-select.min.css" />
+    <Content Include="Content\ControlPanel\assets\plugins\bootstrap-tagsinput\dist\bootstrap-tagsinput.css" />
     <Content Include="Content\ControlPanel\assets\plugins\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\ControlPanel\assets\plugins\morrisjs\morris.css" />
     <Content Include="Content\ControlPanel\assets\plugins\morrisjs\morris.js" />
@@ -641,6 +643,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-select\bootstrap-select.min.js" />
+    <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap\js\bootstrap.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap\js\popper.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\jquery\jquery.min.js" />

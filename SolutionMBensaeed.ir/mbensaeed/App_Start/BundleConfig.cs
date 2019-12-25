@@ -51,11 +51,13 @@ namespace mbensaeed
                     //"~/Content/ControlPanel/scss/icons/material-design-iconic-font/css/materialdesignicons.min.css",
                     //"~/Content/ControlPanel/scss/icons/simple-line-icons/css/simple-line-icons.css",
                     "~/Content/ControlPanel/assets/plugins/bootstrap/css/bootstrap.min.css",
+                    "~/Content/ControlPanel/assets/plugins/bootstrap-select/bootstrap-select.min.css",
+                    "~/Content/ControlPanel/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css",
                     "~/Content/ControlPanel/assets/plugins/morrisjs/morris.css",
                     "~/Content/ControlPanel/assets/plugins/summernote/dist/summernote.css", 
                     "~/Content/ControlPanel/css/style.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/jsCP").Include(
+     
+                bundles.Add(new ScriptBundle("~/bundles/jsCP").Include(
                     "~/Scripts/ControlPanel/assets/plugins/jquery/jquery.min.js",
                     "~/Scripts/ControlPanel/assets/plugins/bootstrap/js/popper.min.js",
                     "~/Scripts/ControlPanel/assets/plugins/bootstrap/js/bootstrap.min.js",
@@ -70,21 +72,24 @@ namespace mbensaeed
                     "~/Scripts/ControlPanel/assets/plugins/summernote/dist/summernote.min.js",
                     "~/Scripts/ControlPanel/js/dashboard1.js",
                     "~/Scripts/CustomOperation.js",
+                    "~/Scripts/ControlPanel/assets/plugins/bootstrap-select/bootstrap-select.min.js",
+                    "~/Scripts/ControlPanel/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js",
                     "~/Scripts/ControlPanel/assets/plugins/styleswitcher/jQuery.style.switcher.js"));
-            
-                   // "~/Scripts/ControlPanel/js/dashboard-{version}.js",
-                   // "~/Scripts/ControlPanel/js/chat.js",
-                   // "~/Scripts/ControlPanel/js/flot-data.js",
-                   // "~/Scripts/ControlPanel/js/footable-init.js",
-                   // "~/Scripts/ControlPanel/js/jasny-bootstrap.js",
-                   // "~/Scripts/ControlPanel/js/jquery.PrintArea.js",
-                   // "~/Scripts/ControlPanel/js/jsgrid-init.js",
-                   // "~/Scripts/ControlPanel/js/mask.js",
-                   // "~/Scripts/ControlPanel/js/morris-data.js",
-                   // "~/Scripts/ControlPanel/js/toastr.js",
-                   // "~/Scripts/ControlPanel/js/validation.js",
-                   // "~/Scripts/ControlPanel/js/widget-data.js",
-             //-------------------------------
+
+            // "~/Scripts/ControlPanel/js/dashboard-{version}.js",
+            // "~/Scripts/ControlPanel/js/chat.js",
+            // "~/Scripts/ControlPanel/js/flot-data.js",
+            // "~/Scripts/ControlPanel/js/footable-init.js",
+            // "~/Scripts/ControlPanel/js/jasny-bootstrap.js",
+            // "~/Scripts/ControlPanel/js/jquery.PrintArea.js",
+            // "~/Scripts/ControlPanel/js/jsgrid-init.js",
+            // "~/Scripts/ControlPanel/js/mask.js",
+            // "~/Scripts/ControlPanel/js/morris-data.js",
+            // "~/Scripts/ControlPanel/js/toastr.js",
+            // "~/Scripts/ControlPanel/js/validation.js",
+            // "~/Scripts/ControlPanel/js/widget-data.js",
+            //-------------------------------
+            bundles.GetHashCode();
         }
     }
 }

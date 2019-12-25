@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
+    [Authorize]
     public class BlogManageController : Controller
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
@@ -24,10 +25,9 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             }
         }
 
-
         [AjaxOnly]
         //public ContentResult UploadFile(HttpPostedFileBase hpf,List<vm_FileUploadInfo> vm_Info)
-        public JsonResult PublishPost(string Title, int CategoryID, string Content, string IsActive, bool FlagHaveFile)
+        public JsonResult PublishPost(string Title, int CategoryID, string Content, string IsActive, bool FlagHaveFile,string Tagsinput)
         {//, string Labels
             try
             {
@@ -76,7 +76,7 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                        //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
                         Content = Content,
                         IsActive = IsActive == "true" ? "1" : "0",
-                        Labels = "",
+                        Labels = Tagsinput,
                         PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                         PostTime = DateConvertor.TimeNowShort()
                     };

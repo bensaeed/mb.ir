@@ -10,6 +10,7 @@ using mbensaeed.ViewModels;
 using mbensaeed.Repositories;
 using Microsoft.Extensions.Caching.Memory;
 using mbensaeed.Helper;
+using System.Threading.Tasks;
 
 namespace mbensaeed.Controllers
 {
@@ -24,23 +25,47 @@ namespace mbensaeed.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult Index(int? Page)
+        public async Task<ActionResult> Index(int? Page,string Tag, string Category)
         {
-            ViewBag.Title = "عنوان آخرين پست";
+            ViewBag.Title = "وبلاگ";
+            string TitlePage = "آخرين مطالب";
+            if (!(Tag == "" || Tag == null))
+            {
+                TitlePage = "مطالب مشابه به : " + Tag;
+            }
+            else if (!(Category == "" || Category == null))
+            {
+                TitlePage = "مطالب در دسته بندی : " + Category;
+            }
+            ViewBag.TitlePage = TitlePage;
             PagingStatus.PageIndex = (Page ?? 1) - 1;
-            var ListAllPost = GetPost(PagingStatus.PageIndex, PagingStatus.ItemsPerPage, out int totalCount);
-            var result = new StaticPagedList<vm_AllPost>(ListAllPost, PagingStatus.PageIndex + 1, PagingStatus.ItemsPerPage, totalCount);
+            var ListAllPost = await GetPost(PagingStatus.PageIndex, PagingStatus.ItemsPerPage/*, out int totalCount*/, Tag , Category);
+            var result = new StaticPagedList<vm_AllPost>(ListAllPost, PagingStatus.PageIndex + 1, PagingStatus.ItemsPerPage, ListAllPost.Count());
             return View(result);
         }
-        public IEnumerable<vm_AllPost> GetPost(int page, int ItemsPerPage, out int totalCount)
+        public Task<List<vm_AllPost>> GetPost(int page, int ItemsPerPage/*, out int totalCount*/,string Tag, string Category)
         {
-            var Result = new List<vm_AllPost>();
-            Result = _dop.GetAllPost("all")
-                     .Skip(page * ItemsPerPage)
-                     .Take(ItemsPerPage).ToList();
-            totalCount = Result.Count();
-            return Result;
+            return Task.Run(()=>
+            {
+                var Result = new List<vm_AllPost>();
+                Result = _dop.GetAllPost("all").ToList();
+                if (!(Tag == "" || Tag == null))
+                {
+                    Result = Result.Where(x => x.Labels.Contains(Tag)).ToList();
+                }
+                else if (!(Category == "" || Category == null))
+                {
+                    Result = Result.Where(x => x.Category == Category).ToList();
+                }
+
+                Result = Result.Skip(page * ItemsPerPage)
+                         .Take(ItemsPerPage).ToList();
+                //totalCount = Result.Count();
+                return Result;
+            });
         }
+
+
         [HttpPost]
         public ActionResult ContentDetail()
         {
@@ -59,7 +84,7 @@ namespace mbensaeed.Controllers
             }
             ViewAndLikeLog(PostID, Convert.ToInt32(EnumMethod.ActionType.View));
             var Result = new List<vm_AllPost>();
-            Result = _dop.GetAllPost("all").Where(x => x.PostID == PostID).ToList();
+            Result = _dop.GetAllPost("all").Where(x => x.PostID == PostID).ToList();        
 
             return View(Result);
         }

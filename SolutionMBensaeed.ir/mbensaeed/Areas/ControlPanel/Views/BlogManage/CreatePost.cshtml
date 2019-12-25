@@ -102,13 +102,23 @@
                 <div class="card">
                     <div class="card-body">
                         @*<div class="summernote" id="summernote" name="summernote">
-                                <h3></h3>
-                            </div>*@
+                    <h3></h3>
+                </div>*@
 
                         <div id="summernoteID">Hello Summernote</div>
 
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">برچسب های پست</h4>
+                        <div class="tags-default">
+                            <input type="text" value="" id="tagsinput" data-role="tagsinput" placeholder="add tags" style="display: none;">
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>بارگذاری فایل پیش فرض</label>
                     <input type="file" class="form-control" id="PostInputFile" name="PostInputFile" aria-describedby="fileHelp">
@@ -121,11 +131,12 @@
                 <div class="card">
                     <div class="card-body">
                         @*<button id="edit" class="btn btn-info btn-rounded" onclick="edit()" type="button">ویرایش</button>*@
-                        <button id="submitButton" class="btn btn-success btn-rounded" type="button">انتشار پست</button>
+                        <button id="submitButton" class="btn btn-success btn-rounded pull-right" type="button">انتشار پست</button>
                     </div>
                 </div>
             </div>
         </div>
+   
         <!-- ============================================================== -->
         <!-- End PAge Content -->
         <!-- ============================================================== -->
@@ -202,6 +213,16 @@
                 FlagOperation = false;
                 return FlagOperation;
             }
+           
+            var strTagsInput = $("#tagsinput").val();
+
+            if (strTagsInput == null || strTagsInput == "" || strTagsInput.Length < 3)
+            {
+                bootbox.alert("لطفا حداقل یک برچسب برای پست خود را وارد نمایید");
+                FlagOperation = false;
+                return FlagOperation;
+            }
+         
             var extFile = "";
             try {
 
@@ -209,6 +230,7 @@
                 var SizeFile = _("PostInputFile").files[0].size;
             }
             catch (err) { }
+            alert(extFile);
             if (extFile == null || extFile == "" || extFile == undefined) {
                 var resultConfirm = false;
                 bootbox.confirm({
@@ -252,9 +274,11 @@
                 FlagOperation = false;
                 return FlagOperation;
             }
+       
         }
+      
+       
         function SubmitPost() {
-
             var URL = '@Url.Action("PublishPost", "BlogManage")';
             var IsActiveID = $("#IsActiveID").is(":checked");
             if (FlagOperation == true) {
@@ -269,6 +293,7 @@
                 formdata.append("Content", $('#summernoteID').summernote('code'));
                 formdata.append("IsActiveID", IsActiveID);
                 formdata.append("FlagHaveFile", FlagHaveFile);
+                formdata.append("Tagsinput", $("#tagsinput").val());
                 $.ajax({
                     url: URL,
                     type: 'POST',
