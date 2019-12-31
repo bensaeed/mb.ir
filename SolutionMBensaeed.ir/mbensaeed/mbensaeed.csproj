@@ -212,7 +212,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ControlPanel\Controllers\BlogManageController.cs" />
     <Compile Include="Areas\ControlPanel\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\ControlPanel\Controllers\WebSettingController.cs" />
     <Compile Include="Areas\ControlPanel\ControlPanelAreaRegistration.cs" />
+    <Compile Include="Attributes\WebStatusAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -643,6 +645,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="MediaFiles\Image\02cd1b6abad44d938ceb40a4c9200cdf.jpg" />
+    <Content Include="MediaFiles\Image\29c18ae7240143b3a3deb603d9475642.jpg" />
+    <Content Include="MediaFiles\Image\50743021573543fda70ad26e1e70251a.jpg" />
+    <Content Include="MediaFiles\Image\Other\iconfinder-instagram_32.png" />
+    <Content Include="MediaFiles\Image\Other\iconfinder-telegram_32.png" />
+    <Content Include="MediaFiles\Image\Other\iconfinder_gmail_32.png" />
+    <Content Include="MediaFiles\Image\Other\logoUpdating.png" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap\js\bootstrap.min.js" />
@@ -729,6 +738,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\ControlPanel\Models\" />
     <Folder Include="Content\ControlPanel\css\fonts\" />
+    <Folder Include="MediaFiles\Audio\" />
+    <Folder Include="MediaFiles\Movie\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -808,6 +819,7 @@
     <Content Include="Areas\ControlPanel\Views\Default\Index.cshtml" />
     <Content Include="Areas\ControlPanel\Views\BlogManage\WebManagement.cshtml" />
     <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\WebSetting\WebsiteStatus.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_LayoutBlog.cshtml" />
@@ -826,6 +838,8 @@
     <Content Include="Views\PartialView\_PartialPageContact.cshtml" />
     <Content Include="Views\PartialView\_PartialPageFooter.cshtml" />
     <Content Include="Views\Home\Contact_US.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageUpdating.cshtml" />
+    <Content Include="Views\Home\Updating.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201912042112563_1123.resx">

@@ -60,7 +60,14 @@
                         <li><a href="@Url.Action("CreatePost","BlogManage",new { Area ="ControlPanel"})">ايجاد پست جديد</a></li>
                     </ul>
                 </li>
- 
+                <li class="nav-small-cap">تنظيمات وبسايت</li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="@Url.Action("WebsiteStatus","WebSetting",new { Area ="ControlPanel"})">وضعیت نمایش وبسایت</a></li>
+                    </ul>
+                </li>
+
                 <li class="nav-small-cap">اجزاء اضافی</li>
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">طرح بندی صفحه</span></a>
@@ -73,7 +80,7 @@
                         <li><a href="layout-logo-center.html">لوگو در وسط</a></li>
                     </ul>
                 </li>
-   
+
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
-    [Authorize]
+   // [Authorize]
     public class BlogManageController : Controller
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();

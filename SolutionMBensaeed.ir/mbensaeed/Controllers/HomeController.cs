@@ -1,4 +1,5 @@
-﻿using mbensaeed.Helper;
+﻿using mbensaeed.Attributes;
+using mbensaeed.Helper;
 using mbensaeed.Models;
 using mbensaeed.Repositories;
 using System;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Controllers
 {
+    [WebStatusAttribute]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -71,7 +73,7 @@ namespace mbensaeed.Controllers
         public ActionResult Updating()
         {
             var State = ConfigurationManager.AppSettings["ActiveWebSite"];
-            if (State == "False")
+            if (State == "False" || State == "false")
             {
                 return View();
             }
@@ -81,5 +83,10 @@ namespace mbensaeed.Controllers
             }
 
         }
+        public ActionResult Nothing()
+        {
+            return View();
+        }
+       
     }
 }

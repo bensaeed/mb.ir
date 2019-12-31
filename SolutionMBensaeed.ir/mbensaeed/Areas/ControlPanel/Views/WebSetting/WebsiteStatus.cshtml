@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "WebsiteStatus";
+    Layout = "~/Areas/ControlPanel/Views/Shared/_LayoutPageMain.cshtml";
+}
+<div class="page-wrapper">
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">وضعیت نمایش وبسایت</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="switch">
+                                            <label>
+                                                فعال
+                                                <input type="checkbox" id="StatusChecked_ID" name="OptRadioActiveStateID" checked="">
+                                                <span class="lever"></span>
+                                                غیر فعال(در حالت بروزرسانی)
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-lg-10 p-head">
+                                توجه : وقتی در حالت غیرفعال قرار گرفت ، وبسایت فقط صفحه مربوط به پیغام بروز رسانی را نمایش می دهد.
+                            </div>
+
+                            <div class="col-lg-2 ">
+                                <button id="submitButton" class="btn btn-info">ثبت</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+
+        window.onload=function()
+        {
+            LoadEntity();
+        }
+        function LoadEntity() {
+            var options = {};
+            options.url = "@Url.Action("GetWebsiteStatusInfo", "WebSetting")";
+            options.type = "POST";
+            options.data = JSON.stringify({});
+            options.datatype = "json";
+            options.contentType = "application/json";
+            options.success = function (x) {
+
+                if (x === "true") {
+                    document.getElementById("StatusChecked_ID").checked = true;
+                    document.getElementById("StatusChecked_ID").val = true;
+                } else {
+                    document.getElementById("StatusChecked_ID").checked = false;
+                    document.getElementById("StatusChecked_ID").val = false;
+                }
+            };
+            $.ajax(options);
+        }
+
+
+
+        $("#StatusChecked_ID").on('change', function (){
+            if ($(this).is(':checked')) {
+                $(this).attr('value', 'true');
+                //alert($(this).val());
+            }
+            else {
+               $(this).attr('value', 'false');
+               //alert($(this).val());
+            }
+        });
+
+
+
+        $("#submitButton").click(function () {
+            UpdateWebsiteStatus();
+        });
+        function UpdateWebsiteStatus() {
+            var FlagOperation = true;
+            var URL = '@Url.Action("UpdateWebsiteStatus", "WebSetting")';
+            var StateID = $("#StatusChecked_ID").val();
+            //var StateID = $('input[name="OptRadioActiveStateID"]:checked').val();
+            if (StateID == "" || StateID == null || StateID == undefined) {
+                FlagOperation = false;
+            }
+            alert(StateID);
+            if (FlagOperation == true) {
+                var formdata = new FormData();
+                formdata.append("StateID", StateID);
+                $.ajax({
+                    url: URL,
+                    type: 'POST',
+                    data: formdata,
+                    contentType: false,
+                    processData: false,
+                    async: true,
+                    success: function (x) {
+                        if (x == "OK") {
+                            $('#CoverEntityModal').modal('hide');
+                            var dialog = bootbox.dialog({
+                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> وضعیت وبسایت با موفقیت بروز رسانی شد</p>',
+                                closeButton: false
+                            });
+                            setTimeout(function () {
+                                dialog.modal('hide');
+                                location.reload();
+                            }, 3000)
+                        } else if (x == "Faild") {
+                            bootbox.alert("خطایی پیش آمده، مجددا سعی کنید");
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+}
+
