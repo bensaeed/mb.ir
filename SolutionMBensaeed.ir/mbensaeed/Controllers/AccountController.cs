@@ -56,7 +56,12 @@ namespace mbensaeed.Controllers
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
-        {
+        {   
+            //if (returnUrl == null || returnUrl == "")
+            //{
+            //    returnUrl = "ControlPanel/Default/Index";
+            //}
+                
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -79,7 +84,8 @@ namespace mbensaeed.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+                    return RedirectToAction("Index","Default",  new { area = "ControlPanel" });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

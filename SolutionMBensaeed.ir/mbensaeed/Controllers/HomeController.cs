@@ -47,7 +47,7 @@ namespace mbensaeed.Controllers
                 {
                     FullName = Name,
                     PhoneNumber = Phone,
-                    Email = Email,
+                    Email = Email, 
                     CommentUser = Message,
                     SendDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                     SendTime = DateConvertor.TimeNow(),
