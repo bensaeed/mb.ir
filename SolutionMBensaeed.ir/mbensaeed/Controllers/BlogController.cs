@@ -8,6 +8,7 @@ using mbensaeed.ViewModels;
 using mbensaeed.Helper;
 using System.Threading.Tasks;
 using mbensaeed.Attributes;
+using mbensaeed.Repositories;
 
 namespace mbensaeed.Controllers
 {
@@ -114,6 +115,52 @@ namespace mbensaeed.Controllers
                 return Json("OK");
             }
             return Json("OK");
+        }
+        [AjaxOnly]
+        public  ActionResult AddComment(int PostID,string Name,string Email,string Message,string CaptchaText)
+        {
+            if (CaptchaText.ToLower() == HttpContext.Session["captchastring"].ToString().ToLower())
+            {
+                
+                NetworkOperation objNetworkOperation = new NetworkOperation();
+                VisitWebsiteLog visitWebsiteLog = new VisitWebsiteLog();
+                string CurrentClientIP = null;
+                CurrentClientIP = objNetworkOperation.ClientIPaddress();
+                IpInformation IpInfo = visitWebsiteLog.GetLocationIPINFO(CurrentClientIP);
+                var _objEntityMessage = new RepositoryPattern<PostComment>(new ApplicationDbContext());
+                var NewItem = new PostComment
+                {
+                    PostID=PostID,
+                    FullName = Name,
+                    Comment=Message,
+                    Email = Email,
+                    SendDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
+                    SendTime = DateConvertor.TimeNow(),
+                    Browser = objNetworkOperation.ClientBrowser(),
+                    DeviceInfo = objNetworkOperation.ClientDeviceType(),
+                    IP_Address = CurrentClientIP,
+                    HostName = objNetworkOperation.ClientHostName(),
+                    Country = IpInfo.country,
+                    city = IpInfo.city,
+                    countryCode = IpInfo.countryCode,
+                    org = IpInfo.org,
+                    region = IpInfo.region,
+                    regionName = IpInfo.regionName,
+                    Status = IpInfo.status,
+                    timezone = IpInfo.timezone,
+                    mobile = IpInfo.mobile == true ? "1" : "0",
+                    Is_Active = "1"
+                };
+                _objEntityMessage.Insert(NewItem);
+                _objEntityMessage.Save();
+                _objEntityMessage.Dispose();
+                return PartialView(NewItem);
+            }
+            else
+            {
+                return Json("CaptchaTextMistake");
+                //ViewBag.Message = "CAPTCHA verification failed!";
+            }
         }
 
     }

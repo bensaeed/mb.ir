@@ -36,10 +36,10 @@ namespace mbensaeed.Helper
         }
         public override void ExecuteResult(ControllerContext context)
         {
-            Bitmap bmp = new Bitmap(100, 30);
+            Bitmap bmp = new Bitmap(70, 30);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.Navy);
-            string randomString = GetCaptchaString(6);
+            string randomString = GetCaptchaString(4);
             context.HttpContext.Session["captchastring"] = randomString;
             g.DrawString(randomString, new Font("Courier", 16), new SolidBrush(Color.WhiteSmoke), 2, 2);
             HttpResponseBase response = context.HttpContext.Response;

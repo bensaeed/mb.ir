@@ -56,7 +56,7 @@
                                         }
                                     }
                                 </div>
-
+                                <input hidden id="CurrentPostID" value="@PostDetails.PostID"/>
                                 <div class="col-md-11">
                                     <h5>
                                         @PostDetails.Title
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <h6>
-                                      برچسب ها :
+                                        برچسب ها :
                                         @{
                                             foreach (var item in PostTags)
                                             {
@@ -106,6 +106,84 @@
                                 </div>
 
                             </div>
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="section-header">
+                                        <h2 class="section-title">ارسال دیدگاه</h2>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row" dir="rtl">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                        <div class="about-single-item">
+                                            <input placeholder="ایمیل" type="text" class="form-control" id="EmailID" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="about-single-item">
+                                            <input placeholder="نام و نام خانوادگی" type="text" class="form-control" id="FullNameID" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="row">
+
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="about-single-item"> </div>
+                                        <span>پيام</span><textarea rows="3" class="form-control" id="CommentID"></textarea>
+                                    </div>
+
+                                </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-2">
+                                        <input type="button" id="SubmitButton" class="form-control" value="ثبت پيام" />
+                                    </div>
+                                    <div class="col-md-7 col-sm-7">
+                                    </div>
+                                    <div class="col-md-2 col-sm-2" id="divCaptchaImageID">
+                                        <input type="text" class="form-control" id="CaptchaTextID" />
+                                    </div>
+                                    <div class="col-md-1 col-sm-1" id="divCaptchaImageID">
+                                        <p id="CaptchaImageID">
+                                            <img src="/home/ShowCaptchaImage" />
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <br />
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12  col-sm-12">
+                                        <div class="about-single-item">
+                                            <h4> نظرات کاربران</h4>
+                                            @{
+                                                for (int i = 0; i < 10; i++)
+                                                {
+                                                    <div class="comments">
+                                                        <div class="row">
+                                                            <div class="col-md-2"><h6 class="pull-left"> تاریخ ارسال : 1398/10/15</h6></div>
+                                                            <div class="col-md-7"></div>
+                                                            <div class="col-md-3"><h6> محمد بن سعید</h6></div>
+                                                        </div>
+                                                        <hr />
+                                                        گوشه ای از مصاحبه آنتن با پوریا جراحی مربی بدنساز سابق تیم هایی نظیر گل گهر سیرجان، نفت تهران و ..
+                                                        که در مورد مسائل مختلفی نظیر فشردگی بازی ها، میزان مصدومیت ها و سایر مسائل مرتبط با بدنسازی تیم ها گفتگو کرد.
+                                                    </div>
+                                                }
+                                            }
+                                            <div id="NewComment">
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                             <a class="blog-btn pull-left" href="@Url.Action("Index","Blog")">بازگشت به آخرين مطالب<i class="fas fa-long-arrow-alt-left"></i></a>
                             <br />
                         </div>
@@ -116,9 +194,119 @@
         </div>
     </div>
 </section>
-@section scripts
-{
+<style>
+    .comments {
+        background: rgb(250,250,250) none repeat scroll 0% 0%;
+        margin: 10px 0px;
+        padding: 10px 10px 10px;
+        border-radius: 5px;
+    }
+</style>
+
+@section scripts{
     <script type="text/javascript">
+
+        $("#SubmitButton").click(function () {
+            SubmitData();
+        });
+        function SubmitData() {
+        
+            toastr.options.positionClass = "toast-bottom-left";
+            var FlagOperation = true;
+            var URL = '@Url.Action("AddComment", "Blog")';
+            if ($("#CaptchaTextID").val() == null || $("#CaptchaTextID").val() == "" ) {
+                toastr.error('لطفاٌ کد امنیتی مورد نظر را وارد نمایید', 'خطا!', { timeOut: 5000 })
+                FlagOperation = false;
+            }
+            alert($("#FullNameID").val() + "  " + $("#CommentID").val());
+            if ($("#FullNameID").val() == null || $("#FullNameID").val() == "" || ($("#FullNameID").val()).Length < 3) {
+                toastr.error('لطفا نام و نام خانوادگی خود را وارد نمایید', 'خطا!', { timeOut: 5000 })
+                FlagOperation = false;
+            }
+            if ($("#CommentID").val() == null || $("#CommentID").val() == "" || ($("#CommentID").val()).Length < 3) {
+                toastr.error('لطفاٌ متن پیام مورد نظر را وارد نمایید', 'خطا!', { timeOut: 5000 })
+                FlagOperation = false;
+            }
+            if (FlagOperation == true) {
+                var options = {};
+                options.url = URL;
+                options.type = "POST";
+                options.data = JSON.stringify({
+                    PostID: $("#CurrentPostID").val(),
+                    Name: $("#FullNameID").val(),
+                    Email: $("#EmailID").val(),
+                    Message: $("#CommentID").val(),
+                    CaptchaText: $("#CaptchaTextID").val()
+                });   
+                options.datatype = "json";
+                options.contentType = "application/json";
+                options.success = function (x) {
+                    if (x === "CaptchaTextMistake") {
+                        RemoveCaptchaImageTag();
+                        AddCaptchaImageTag();
+                    }
+                    else if (x === "OK") {
+                        //$('#EditEntityModal').modal('hide');
+                        //var dialog = bootbox.dialog({
+                        //    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> با تشکر، پیام شما با موفقیت ارسال شد.</p>',
+                        //    closeButton: false
+                        //});
+                        toastr.success('با تشکر، دیدگاه شما با موفقیت ارسال شد.', 'ارسال پیام', { timeOut: 6000 })
+                        setTimeout(function () {
+                            //dialog.modal('hide');
+                            location.reload();
+                        }, 3000)
+                    }
+                };
+                $.ajax(options);
+            }
+        }
+        function RemoveCaptchaImageTag() {
+            alert("RemoveCaptchaImageTag");
+            var elm1 = document.getElementById('CaptchaImageID');
+            elm1.parentNode.removeChild(elm1);
+            var elm2 = document.getElementById('CaptchaTextID');
+            elm2.parentNode.removeChild(elm2);
+        }
+        function AddCaptchaImageTag() {
+            CreatePElement();
+            alert("AddCaptchaImageTag");
+            var tag =" <img src="+"/home/ShowCaptchaImage"+ "/> " ;
+            $("#CaptchaImageID").append(tag);
+            CreateInputElement();
+        }
+           function CreatePElement() {
+            var CurrentImg = document.createElement("p");
+            CurrentImg.id = "CaptchaImageID";
+            CurrentImg.alt = "";
+            CurrentImg.className = "Fixedheight";
+            CurrentImg.width = 300;
+            CurrentImg.height = 250;
+            $("#divCaptchaImageID").append(CurrentImg);
+        }
+         function CreateInputElement() {
+            var CurrentInput = document.createElement("Input");
+            CurrentInput.id = "CaptchaTextID";
+            CurrentInput.alt = "";
+             CurrentInput.className = "form-control";
+             CurrentInput.type="Text";
+            CurrentInput.width = 300;
+            CurrentInput.height = 250;
+            $("#CaptchaImageID").append(CurrentInput);
+        }
+    </script>
+
+    <script type="text/javascript">
+
+          $(window).scroll(function () {
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+                    GetMoreComments();
+                }
+            });
+          function GetMoreComments() {
+
+}
+
        function LikeControl() {
             var csName = document.getElementById("HeartID").className;
             //Like

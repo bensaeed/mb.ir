@@ -232,9 +232,9 @@
     <Compile Include="Helper\HelpOperation.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
-    <Compile Include="Migrations\201912042112563_1123.cs" />
-    <Compile Include="Migrations\201912042112563_1123.Designer.cs">
-      <DependentUpon>201912042112563_1123.cs</DependentUpon>
+    <Compile Include="Migrations\202001080750533_AddModelPostComment_Edit1.cs" />
+    <Compile Include="Migrations\202001080750533_AddModelPostComment_Edit1.Designer.cs">
+      <DependentUpon>202001080750533_AddModelPostComment_Edit1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -248,6 +248,7 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostAction.cs" />
+    <Compile Include="Models\PostComment.cs" />
     <Compile Include="Models\WebsiteVisit.cs" />
     <Compile Include="OpratingClasses\C_LikeViewList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -840,10 +841,11 @@
     <Content Include="Views\Home\Contact_US.cshtml" />
     <Content Include="Views\Shared\_LayoutPageUpdating.cshtml" />
     <Content Include="Views\Home\Updating.cshtml" />
+    <Content Include="Views\Blog\_PartialPageComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201912042112563_1123.resx">
-      <DependentUpon>201912042112563_1123.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001080750533_AddModelPostComment_Edit1.resx">
+      <DependentUpon>202001080750533_AddModelPostComment_Edit1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

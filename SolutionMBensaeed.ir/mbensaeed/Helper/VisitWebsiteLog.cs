@@ -17,7 +17,7 @@ namespace mbensaeed.Helper
         {
             NetworkOperation objNetworkOperation = new NetworkOperation();
             //string CurrentClientIP = ClientIPaddress();
-            GetLocationIPINFO(CurrentClientIP);
+            IpInformation IpInfo= GetLocationIPINFO(CurrentClientIP);
 
             var _objEntityWebsiteVisit = new RepositoryPattern<WebsiteVisit>(new ApplicationDbContext());
 
@@ -64,18 +64,19 @@ namespace mbensaeed.Helper
         //    var persianDateTimeNow = DateTime.Now;
         //    return persianDateTimeNow.ToString("yyyy/MM/dd");
         //}
-        IpInformation IpInfo;
-        public void GetLocationIPINFO(string ipaddress)
+
+        public IpInformation GetLocationIPINFO(string ipaddress)
         {
-            IpInfo = new IpInformation();
+            //IpInformation IpInfo = new IpInformation();
             try
             {
                 string url = "http://ip-api.com/json/" + ipaddress + "?fields=status,message,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,isp,org,as,reverse,mobile,proxy,query";
                 string strResponse = new WebClient().DownloadString(url);
-                IpInfo = JsonConvert.DeserializeObject<IpInformation>(strResponse);
+                return JsonConvert.DeserializeObject<IpInformation>(strResponse);
             }
             catch (Exception)
             {
+                return null;
             }
 
         }
