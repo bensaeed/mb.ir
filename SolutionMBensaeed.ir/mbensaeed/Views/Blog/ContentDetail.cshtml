@@ -28,7 +28,7 @@
                     <!-- Blog Content Box -->
                     <div class="blog-content-box">
                         <div class="blog-meta">
-                            <p>انتشار @DateConvertor.NumberToDate(@PostDetails.PostDate) <a href="#">محمد بن سعيد</a></p>
+                            <p>انتشار @DateConvertor.NumberToDate(@PostDetails.PostDate) <a href="#"></a></p>
                             <span><a href="#"><i class="fas fa-eye"></i> @PostDetails.ViewCount</a></span>
                             @*<span><a href="#"><i class="fas fa-comments"></i> ۱۹</a></span>*@
                             @* <span><a href="#"><i class="fas fa-heart"></i> @PostDetails.LikeCount</a></span>*@
@@ -56,7 +56,7 @@
                                         }
                                     }
                                 </div>
-                                <input hidden id="CurrentPostID" value="@PostDetails.PostID"/>
+                                <input hidden id="CurrentPostID" value="@PostDetails.PostID" />
                                 <div class="col-md-11">
                                     <h5>
                                         @PostDetails.Title
@@ -83,10 +83,6 @@
                             </div>
 
                             <br />
-
-
-
-
                             <div class="row">
                                 <div class="col-md-8">
                                 </div>
@@ -129,12 +125,10 @@
                                 </div>
                                 <br />
                                 <div class="row">
-
                                     <div class="col-md-12 col-sm-12">
                                         <div class="about-single-item"> </div>
                                         <span>پيام</span><textarea rows="3" class="form-control" id="CommentID"></textarea>
                                     </div>
-
                                 </div>
                                 <br />
                                 <div class="row">
@@ -154,25 +148,22 @@
 
                                 </div>
                                 <br />
-
-
-
                                 <div class="row">
                                     <div class="col-md-12  col-sm-12">
                                         <div class="about-single-item">
                                             <h4> نظرات کاربران</h4>
                                             @{
-                                                for (int i = 0; i < 10; i++)
+                                                foreach (var item in ViewBag.listPostComment)
                                                 {
-                                                    <div class="comments">
+
+                                                    <div class="CommentsBox">
                                                         <div class="row">
-                                                            <div class="col-md-2"><h6 class="pull-left"> تاریخ ارسال : 1398/10/15</h6></div>
+                                                            <div class="col-md-2"><h6 class="pull-left"> تاریخ ارسال : @item.SendDate</h6></div>
                                                             <div class="col-md-7"></div>
-                                                            <div class="col-md-3"><h6> محمد بن سعید</h6></div>
+                                                            <div class="col-md-3"><h6>@item.FullName</h6></div>
                                                         </div>
                                                         <hr />
-                                                        گوشه ای از مصاحبه آنتن با پوریا جراحی مربی بدنساز سابق تیم هایی نظیر گل گهر سیرجان، نفت تهران و ..
-                                                        که در مورد مسائل مختلفی نظیر فشردگی بازی ها، میزان مصدومیت ها و سایر مسائل مرتبط با بدنسازی تیم ها گفتگو کرد.
+                                                        @item.Comment
                                                     </div>
                                                 }
                                             }
@@ -194,23 +185,20 @@
         </div>
     </div>
 </section>
-<style>
-    .comments {
-        background: rgb(250,250,250) none repeat scroll 0% 0%;
-        margin: 10px 0px;
-        padding: 10px 10px 10px;
-        border-radius: 5px;
-    }
-</style>
+
 
 @section scripts{
     <script type="text/javascript">
 
+        function LoadLastComment(x) {
+            $('#NewComment').html(x);
+        }
+
         $("#SubmitButton").click(function () {
             SubmitData();
         });
+
         function SubmitData() {
-        
             toastr.options.positionClass = "toast-bottom-left";
             var FlagOperation = true;
             var URL = '@Url.Action("AddComment", "Blog")';
@@ -218,7 +206,6 @@
                 toastr.error('لطفاٌ کد امنیتی مورد نظر را وارد نمایید', 'خطا!', { timeOut: 5000 })
                 FlagOperation = false;
             }
-            alert($("#FullNameID").val() + "  " + $("#CommentID").val());
             if ($("#FullNameID").val() == null || $("#FullNameID").val() == "" || ($("#FullNameID").val()).Length < 3) {
                 toastr.error('لطفا نام و نام خانوادگی خود را وارد نمایید', 'خطا!', { timeOut: 5000 })
                 FlagOperation = false;
@@ -237,7 +224,7 @@
                     Email: $("#EmailID").val(),
                     Message: $("#CommentID").val(),
                     CaptchaText: $("#CaptchaTextID").val()
-                });   
+                });
                 options.datatype = "json";
                 options.contentType = "application/json";
                 options.success = function (x) {
@@ -245,22 +232,27 @@
                         RemoveCaptchaImageTag();
                         AddCaptchaImageTag();
                     }
-                    else if (x === "OK") {
+                    else
+                    {
+                        LoadLastComment(x)
+                    }
+                    //else if (x === "OK") {
+
                         //$('#EditEntityModal').modal('hide');
                         //var dialog = bootbox.dialog({
                         //    message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> با تشکر، پیام شما با موفقیت ارسال شد.</p>',
                         //    closeButton: false
                         //});
-                        toastr.success('با تشکر، دیدگاه شما با موفقیت ارسال شد.', 'ارسال پیام', { timeOut: 6000 })
-                        setTimeout(function () {
+                        //toastr.success('با تشکر، دیدگاه شما با موفقیت ارسال شد.', 'ارسال پیام', { timeOut: 6000 })
+                        //setTimeout(function () {
                             //dialog.modal('hide');
-                            location.reload();
-                        }, 3000)
+                         //   location.reload();
+                        //}, 3000)
                     }
                 };
                 $.ajax(options);
             }
-        }
+
         function RemoveCaptchaImageTag() {
             alert("RemoveCaptchaImageTag");
             var elm1 = document.getElementById('CaptchaImageID');
@@ -294,18 +286,14 @@
             CurrentInput.height = 250;
             $("#CaptchaImageID").append(CurrentInput);
         }
-    </script>
 
-    <script type="text/javascript">
 
-          $(window).scroll(function () {
-                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-                    GetMoreComments();
-                }
-            });
-          function GetMoreComments() {
-
-}
+          //$(window).scroll(function () {
+          //      if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+          //          GetMoreComments();
+          //      }
+          //  });
+          //function GetMoreComments() {}
 
        function LikeControl() {
             var csName = document.getElementById("HeartID").className;

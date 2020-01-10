@@ -232,9 +232,9 @@
     <Compile Include="Helper\HelpOperation.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
-    <Compile Include="Migrations\202001080750533_AddModelPostComment_Edit1.cs" />
-    <Compile Include="Migrations\202001080750533_AddModelPostComment_Edit1.Designer.cs">
-      <DependentUpon>202001080750533_AddModelPostComment_Edit1.cs</DependentUpon>
+    <Compile Include="Migrations\202001101327518_PostsComments13981015.cs" />
+    <Compile Include="Migrations\202001101327518_PostsComments13981015.Designer.cs">
+      <DependentUpon>202001101327518_PostsComments13981015.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -612,6 +612,7 @@
     <Content Include="Content\css\owl.theme.default.css" />
     <Content Include="Content\css\responsive.css" />
     <Content Include="Content\css\toastr.min.css" />
+    <Content Include="Content\Custom.css" />
     <Content Include="Content\font\lg.svg" />
     <Content Include="Content\image\apple-icon-114x114.png" />
     <Content Include="Content\image\apple-icon-72x72.png" />
@@ -844,8 +845,8 @@
     <Content Include="Views\Blog\_PartialPageComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001080750533_AddModelPostComment_Edit1.resx">
-      <DependentUpon>202001080750533_AddModelPostComment_Edit1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001101327518_PostsComments13981015.resx">
+      <DependentUpon>202001101327518_PostsComments13981015.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

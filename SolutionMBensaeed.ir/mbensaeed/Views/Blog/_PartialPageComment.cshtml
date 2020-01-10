@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<mbensaeed.Models.PostComment>
 
-<div class="comments">
+<div class="CommentsBox">
     <div class="row">
         <div class="col-md-2"><h6 class="pull-left"> تاریخ ارسال : @Model.FirstOrDefault().SendDate</h6></div>
         <div class="col-md-7"></div>
@@ -9,4 +9,4 @@
     <hr />
     @Model.FirstOrDefault().Comment
 </div>
-                }
+               

@@ -24,7 +24,7 @@ namespace mbensaeed.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<ActionResult> Index(int? Page,string Tag, string Category)
+        public async Task<ActionResult> Index(int? Page, string Tag, string Category)
         {
             ViewBag.Title = "وبلاگ";
             string TitlePage = "آخرين مطالب";
@@ -38,13 +38,13 @@ namespace mbensaeed.Controllers
             }
             ViewBag.TitlePage = TitlePage;
             PagingStatus.PageIndex = (Page ?? 1) - 1;
-            var ListAllPost = await GetPost(PagingStatus.PageIndex, PagingStatus.ItemsPerPage/*, out int totalCount*/, Tag , Category);
+            var ListAllPost = await GetPost(PagingStatus.PageIndex, PagingStatus.ItemsPerPage/*, out int totalCount*/, Tag, Category);
             var result = new StaticPagedList<vm_AllPost>(ListAllPost, PagingStatus.PageIndex + 1, PagingStatus.ItemsPerPage, ListAllPost.Count());
             return View(result);
         }
-        public Task<List<vm_AllPost>> GetPost(int page, int ItemsPerPage/*, out int totalCount*/,string Tag, string Category)
+        public Task<List<vm_AllPost>> GetPost(int page, int ItemsPerPage/*, out int totalCount*/, string Tag, string Category)
         {
-            return Task.Run(()=>
+            return Task.Run(() =>
             {
                 var Result = new List<vm_AllPost>();
                 Result = _dop.GetAllPost("all").ToList();
@@ -83,8 +83,13 @@ namespace mbensaeed.Controllers
             }
             ViewAndLikeLog(PostID, Convert.ToInt32(EnumMethod.ActionType.View));
             var Result = new List<vm_AllPost>();
-            Result = _dop.GetAllPost("all").Where(x => x.PostID == PostID).ToList();        
-
+            Result = _dop.GetAllPost("all").Where(x => x.PostID == PostID).ToList();
+            using (var _Context = new ApplicationDbContext())
+            {
+                var _objEntityPostComment = new RepositoryPattern<PostComment>(_Context);
+                var _PostComment = _objEntityPostComment.SearchFor(x=>x.PostID==PostID && x.Is_Active=="1").ToList();
+                ViewBag.listPostComment = _PostComment;
+            }
             return View(Result);
         }
         [AjaxOnly]
@@ -117,11 +122,11 @@ namespace mbensaeed.Controllers
             return Json("OK");
         }
         [AjaxOnly]
-        public  ActionResult AddComment(int PostID,string Name,string Email,string Message,string CaptchaText)
+        public ActionResult AddComment(int PostID, string Name, string Email, string Message, string CaptchaText)
         {
             if (CaptchaText.ToLower() == HttpContext.Session["captchastring"].ToString().ToLower())
             {
-                
+
                 NetworkOperation objNetworkOperation = new NetworkOperation();
                 VisitWebsiteLog visitWebsiteLog = new VisitWebsiteLog();
                 string CurrentClientIP = null;
@@ -130,9 +135,9 @@ namespace mbensaeed.Controllers
                 var _objEntityMessage = new RepositoryPattern<PostComment>(new ApplicationDbContext());
                 var NewItem = new PostComment
                 {
-                    PostID=PostID,
+                    PostID = PostID,
                     FullName = Name,
-                    Comment=Message,
+                    Comment = Message,
                     Email = Email,
                     SendDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                     SendTime = DateConvertor.TimeNow(),
