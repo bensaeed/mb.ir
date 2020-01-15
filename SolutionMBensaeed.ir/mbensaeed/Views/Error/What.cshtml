@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "خطا";
+    Layout = "~/Views/Shared/_LayoutPageError.cshtml";
+    var errorCode = Url.RequestContext.RouteData.Values["id"].ToString();
+}
+<br /><br /><br />
+<section class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header">
+
+                    @if (errorCode == "403")
+                    {
+                        <img src="~/MediaFiles/Image/Other/404-icon.png" />
+                        <br /> <br />
+                        <h1>دسترسی غیرمجاز</h1>
+                        <h3>شما به این بخش دسترسی ندارید</h3>
+                    }
+                    else if (errorCode == "404")
+                    {
+                        <img src="~/MediaFiles/Image/Other/404-icon.png" />
+                        <br /> <br />
+                        <h1>پیدا نشد</h1>
+                        <h3>درخواست شما برای یافتن اطلاعات ناموفق بود</h3>
+                    }
+                    else if (errorCode == "500")
+                    {
+                        <img src="~/MediaFiles/Image/Other/404-icon.png" />
+                        <br /> <br />
+                        <h1>خطای سرور</h1>
+                        <h3>سرور دچار خطا شده است، لطفا به پشتیبان اطلاع دهید</h3>
+                    }
+                    else
+                    {
+                        <img src="~/MediaFiles/Image/Other/404-icon.png" />
+                        <br /> <br />
+                        <h1>خطای طبقه‌بندی نشده</h1>
+                        <h3>لطفا به پشتیبان سیستم اطلاع دهید</h3>
+                    }
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header">
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Home")">بازگشت به صفحه اصلی</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

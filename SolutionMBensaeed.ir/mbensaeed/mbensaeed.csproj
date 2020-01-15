@@ -217,6 +217,7 @@
     <Compile Include="Attributes\WebStatusAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -232,9 +233,9 @@
     <Compile Include="Helper\HelpOperation.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
-    <Compile Include="Migrations\202001101327518_PostsComments13981015.cs" />
-    <Compile Include="Migrations\202001101327518_PostsComments13981015.Designer.cs">
-      <DependentUpon>202001101327518_PostsComments13981015.cs</DependentUpon>
+    <Compile Include="Migrations\202001111053010_CerateNewDataBase.cs" />
+    <Compile Include="Migrations\202001111053010_CerateNewDataBase.Designer.cs">
+      <DependentUpon>202001111053010_CerateNewDataBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -257,6 +258,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\IpInformation.cs" />
     <Compile Include="ViewModels\PagingStatus.cs" />
+    <Compile Include="ViewModels\vmComment.cs" />
+    <Compile Include="ViewModels\vmPublishPost.cs" />
     <Compile Include="ViewModels\vm_AllPost.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -647,9 +650,8 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="MediaFiles\Image\02cd1b6abad44d938ceb40a4c9200cdf.jpg" />
-    <Content Include="MediaFiles\Image\29c18ae7240143b3a3deb603d9475642.jpg" />
-    <Content Include="MediaFiles\Image\50743021573543fda70ad26e1e70251a.jpg" />
+    <Content Include="MediaFiles\Image\Other\404-icon.png" />
+    <Content Include="MediaFiles\Image\70f4ddd36e32448dbd980876a8f475fe.jpg" />
     <Content Include="MediaFiles\Image\Other\iconfinder-instagram_32.png" />
     <Content Include="MediaFiles\Image\Other\iconfinder-telegram_32.png" />
     <Content Include="MediaFiles\Image\Other\iconfinder_gmail_32.png" />
@@ -710,7 +712,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -823,7 +825,6 @@
     <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
     <Content Include="Areas\ControlPanel\Views\WebSetting\WebsiteStatus.cshtml" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Shared\_LayoutBlog.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\ContentDetail.cshtml" />
@@ -843,10 +844,13 @@
     <Content Include="Views\Shared\_LayoutPageUpdating.cshtml" />
     <Content Include="Views\Home\Updating.cshtml" />
     <Content Include="Views\Blog\_PartialPageComment.cshtml" />
+    <Content Include="Views\Shared\_LayoutPageError.cshtml" />
+    <Content Include="Views\Error\What.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001101327518_PostsComments13981015.resx">
-      <DependentUpon>202001101327518_PostsComments13981015.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001111053010_CerateNewDataBase.resx">
+      <DependentUpon>202001111053010_CerateNewDataBase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

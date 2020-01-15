@@ -122,9 +122,14 @@ namespace mbensaeed.Controllers
             return Json("OK");
         }
         [AjaxOnly]
-        public ActionResult AddComment(int PostID, string Name, string Email, string Message, string CaptchaText)
+        public ActionResult AddComment(vmComment input)//int PostID, string Name, string Email, string Message, string CaptchaText)
         {
-            if (CaptchaText.ToLower() == HttpContext.Session["captchastring"].ToString().ToLower())
+            if (input is null)
+            {
+                return Json("null");
+            }
+
+            if (input.CaptchaText.ToLower() == HttpContext.Session["captchastring"].ToString().ToLower())
             {
 
                 NetworkOperation objNetworkOperation = new NetworkOperation();
@@ -135,10 +140,10 @@ namespace mbensaeed.Controllers
                 var _objEntityMessage = new RepositoryPattern<PostComment>(new ApplicationDbContext());
                 var NewItem = new PostComment
                 {
-                    PostID = PostID,
-                    FullName = Name,
-                    Comment = Message,
-                    Email = Email,
+                    PostID = input.PostID,
+                    FullName = input.FullName,
+                    Comment = input.Comment,
+                    Email = input.Email,
                     SendDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                     SendTime = DateConvertor.TimeNow(),
                     Browser = objNetworkOperation.ClientBrowser(),
@@ -159,7 +164,7 @@ namespace mbensaeed.Controllers
                 _objEntityMessage.Insert(NewItem);
                 _objEntityMessage.Save();
                 _objEntityMessage.Dispose();
-                return PartialView(NewItem);
+                return PartialView("_PartialPageComment", NewItem);
             }
             else
             {

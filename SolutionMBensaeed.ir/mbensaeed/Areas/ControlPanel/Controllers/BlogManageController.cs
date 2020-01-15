@@ -1,6 +1,7 @@
 ﻿using mbensaeed.Helper;
 using mbensaeed.Models;
 using mbensaeed.Repositories;
+using mbensaeed.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,8 +27,9 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
         }
 
         [AjaxOnly]
+        [ValidateInput(false)]
         //public ContentResult UploadFile(HttpPostedFileBase hpf,List<vm_FileUploadInfo> vm_Info)
-        public JsonResult PublishPost(string Title, int CategoryID, string Content, string IsActive, bool FlagHaveFile,string Tagsinput)
+        public JsonResult PublishPost(vmPublishPost input)//string Title, int CategoryID, string Content, string IsActive, bool FlagHaveFile,string Tagsinput)
         {//, string Labels
             try
             {
@@ -35,7 +37,7 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             //InfoUser AppUser = new InfoUser();
             var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
             //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
-                if (FlagHaveFile == true)
+                if (input.FlagHaveFile == true)
                 {
                     HelpOperation.CreateArchiveFolderOnTheServer();
                     HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
@@ -52,7 +54,7 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                         var NewItemImage = new Image
                         {
                             ID = GuidID,
-                            TitleUrl = Title,
+                            TitleUrl = input.Title,
                             FileName = FileNameOnServer,
                             FileSize = FileSize,
                             FileUrl = FileUrl,
@@ -70,13 +72,13 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                     var newItemPost = new Post
                     {
 
-                        Title = Title,
+                        Title = input.Title,
                         ImageID = NewImageID,
-                         CategoryID=CategoryID,
+                         CategoryID= input.CategoryID,
                        //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
-                        Content = Content,
-                        IsActive = IsActive == "true" ? "1" : "0",
-                        Labels = Tagsinput,
+                        Content = input.Content,
+                        IsActive = input.IsActive == "true" ? "1" : "0",
+                        Labels = input.Tagsinput,
                         PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                         PostTime = DateConvertor.TimeNowShort()
                     };

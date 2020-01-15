@@ -105,7 +105,9 @@
                     <h3></h3>
                 </div>*@
 
-                        <div id="summernoteID">Hello Summernote</div>
+                        <div id="summernoteID">
+
+                        </div>
 
                     </div>
                 </div>
@@ -230,7 +232,7 @@
                 var SizeFile = _("PostInputFile").files[0].size;
             }
             catch (err) { }
-            alert(extFile);
+           
             if (extFile == null || extFile == "" || extFile == undefined) {
                 var resultConfirm = false;
                 bootbox.confirm({
@@ -279,6 +281,7 @@
       
        
         function SubmitPost() {
+            var strContent;
             var URL = '@Url.Action("PublishPost", "BlogManage")';
             var IsActiveID = $("#IsActiveID").is(":checked");
             if (FlagOperation == true) {
@@ -288,9 +291,13 @@
                     var file = $("#PostInputFile").get(0).files;
                     formdata.append("PostInputFile", file[0]);
                 }
+                
                 formdata.append("Title", $("#TitleID").val());
                 formdata.append("CategoryID", $("#CategoryID").val());
-                formdata.append("Content", $('#summernoteID').summernote('code'));
+
+                strContent = $('#summernoteID').summernote('code')
+                formdata.append("Content", strContent);
+
                 formdata.append("IsActiveID", IsActiveID);
                 formdata.append("FlagHaveFile", FlagHaveFile);
                 formdata.append("Tagsinput", $("#tagsinput").val());
@@ -304,7 +311,7 @@
                     success: function (x) {
                         if (x == "OK") {
                             var dialog = bootbox.dialog({
-                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> خبر جدید با موفقیت ثبت شد</p>',
+                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> پست جدید با موفقیت ثبت شد</p>',
                                 closeButton: false
                             });
                             setTimeout(function () {
