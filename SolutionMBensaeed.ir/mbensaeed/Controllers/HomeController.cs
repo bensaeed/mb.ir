@@ -14,12 +14,18 @@ namespace mbensaeed.Controllers
     [WebStatusAttribute]
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
             //throw new System.Exception("hhhh");
             return View();
         }
-
+        [HttpPost]
+        public ActionResult Index(string year)
+        {
+            //throw new System.Exception("hhhh");
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -88,6 +94,6 @@ namespace mbensaeed.Controllers
         {
             return View();
         }
-       
+  
     }
 }

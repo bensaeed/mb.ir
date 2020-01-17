@@ -3,7 +3,7 @@ namespace mbensaeed.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddModelPostComment_Edit1 : DbMigration
+    public partial class PostsComments13981015 : DbMigration
     {
         public override void Up()
         {

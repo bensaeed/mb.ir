@@ -9,7 +9,7 @@
     @*@Scripts.Render("~/bundles/modernizr")*@
 </head>
 <body>
-    <div id="home"></div>
+    <div id="homeSectionID"></div>
     <!-- Pre-loader Start -->
     <div class="elegant-preeloader">
         <div class="preloader-spinner"></div>
@@ -28,17 +28,17 @@
         <nav class="navigation">
             <div class="navigation-inner">
                 <ul class="main-menu nav navbar-nav">
-                    <li class="smooth-scroll active"><a href="#home">خانه</a></li>
-                    <li class="smooth-scroll"><a href="#about">درباره من</a></li>
-                    <li class="smooth-scroll"><a href="#experiences">تجربیات</a></li>
-                    <li class="smooth-scroll"><a href="#services">خدمات</a></li>
-                    <li class="smooth-scroll"><a href="#portfolio">نمونه کار</a></li>
-                    @*<li class="smooth-scroll"><a href="#testimonial">دیدگاه ها</a></li>*@
-                    <li class="smooth-scroll"><a href="#blog">وبلاگ</a></li>
-                    <li class="smooth-scroll"><a href="#contact">تماس با من</a></li>
-                    @*<li class="smooth-scroll"><a href="@Url.Action("Register","Account")">ورود به سيستم</a></li>*@
+                    <li class="smooth-scroll active"><a href="#homeSectionID" >خانه</a></li>
+                    <li class="smooth-scroll"><a href="#aboutSectionID">درباره من</a></li>
+                    <li class="smooth-scroll"><a href="#experiencesSectionID">تجربیات</a></li>
+                    <li class="smooth-scroll"><a href="#servicesSectionID" onclick="ScrollIntoDivByID('servicesSectionID')">خدمات</a></li>
+                    <li class="smooth-scroll"><a href="#portfolioSectionID">نمونه کار</a></li>
+                    @*<li class="smooth-scroll"><a href="#testimonialSectionID">دیدگاه ها</a></li>*@
+                    <li class="smooth-scroll"><a href="#blogSectionID">وبلاگ</a></li>
+                    <li class="smooth-scroll"><a href="@Url.Action("Contact_US","Home")">تماس با من</a></li>
+                    @*<li class="smooth-scroll"><a href="#contactSectionID">تماس با من</a></li>*@
+                    @*<li class="smooth-scroll"><a href="@Url.Action("Register","Account")">ثبت نام در سيستم</a></li>*@
                     <li class="smooth-scroll"><a href="@Url.Action("Login","Account")">ورود به سيستم</a></li>
-
                 </ul>
             </div>
         </nav>
@@ -69,6 +69,17 @@
         $(function () {
             $('body').persiaNumber();
         });
+
+        function ScrollIntoDivByID(IdOfElement) {
+            alert(IdOfElement);
+            if (document.getElementById(IdOfElement) == null) {
+                alert("false");
+                window.location.href='@Url.Action("index", "home")';
+            } else {
+                alert("true");
+                document.getElementById(IdOfElement).scrollIntoView({ behavior: "smooth" });
+            } 
+        }
     </script>
 </body>
 </html>

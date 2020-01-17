@@ -7,13 +7,13 @@ namespace mbensaeed.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddModelPostComment_Edit1 : IMigrationMetadata
+    public sealed partial class PostsComments13981015 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddModelPostComment_Edit1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PostsComments13981015));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001080750533_AddModelPostComment_Edit1"; }
+            get { return "202001101327518_PostsComments13981015"; }
         }
         
         string IMigrationMetadata.Source

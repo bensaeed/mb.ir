@@ -52,29 +52,29 @@
             </div>
         </div>
         <br />
-        <div class="row">
-            <div class="col-md-9 col-sm-9">
 
+        <div class="row">
+            <div class="col-md-1 col-sm-1">
             </div>
-            <div class="col-md-2 col-sm-2" id="divCaptchaImageID" >
+            <div class="col-md-2 col-sm-2">
+                <input type="button" id="SubmitButton" class="form-control" value="ثبت پيام" />
+            </div>
+            <div class="col-md-5 col-sm-5">
+            </div>
+            <div class="col-md-2 col-sm-2" id="divCaptchaImageID">
+                <input type="text" class="form-control" id="CaptchaTextID" />
+            </div>
+            <div class="col-md-1 col-sm-1" id="divCaptchaImageID">
                 <p id="CaptchaImageID">
                     <img src="/home/ShowCaptchaImage" />
                 </p>
-                <input type="text" class="form-control" id="CaptchaTextID" />
             </div>
             <div class="col-md-1 col-sm-1">
+            </div>
+        </div>
 
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-1 col-sm-1">
-            </div>
-            <div class="col-md-2">
-                <input type="button" id="SubmitButton" class="form-control" value="ثبت پيام" />
-            </div>
-            <div class="col-md-9"></div>
-        </div>
+
+
     </div>
 </section>
 
@@ -134,7 +134,7 @@
             }
         }
         function RemoveCaptchaImageTag() {
-            alert("RemoveCaptchaImageTag");
+           
             var elm1 = document.getElementById('CaptchaImageID');
             elm1.parentNode.removeChild(elm1);
             var elm2 = document.getElementById('CaptchaTextID');
@@ -142,7 +142,7 @@
         }
         function AddCaptchaImageTag() {
             CreatePElement();
-            alert("AddCaptchaImageTag");
+           
             var tag =" <img src="+"/home/ShowCaptchaImage"+ "/> " ;
             $("#CaptchaImageID").append(tag);
             CreateInputElement();
