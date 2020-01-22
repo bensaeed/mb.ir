@@ -237,6 +237,10 @@
     <Compile Include="Migrations\202001111053010_CerateNewDataBase.Designer.cs">
       <DependentUpon>202001111053010_CerateNewDataBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001221140359_AddNewFieldToPostComment.cs" />
+    <Compile Include="Migrations\202001221140359_AddNewFieldToPostComment.Designer.cs">
+      <DependentUpon>202001221140359_AddNewFieldToPostComment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -824,6 +828,7 @@
     <Content Include="Areas\ControlPanel\Views\BlogManage\WebManagement.cshtml" />
     <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
     <Content Include="Areas\ControlPanel\Views\WebSetting\WebsiteStatus.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\BlogManage\CommnetDetails.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_LayoutBlog.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
@@ -851,6 +856,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001111053010_CerateNewDataBase.resx">
       <DependentUpon>202001111053010_CerateNewDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001221140359_AddNewFieldToPostComment.resx">
+      <DependentUpon>202001221140359_AddNewFieldToPostComment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

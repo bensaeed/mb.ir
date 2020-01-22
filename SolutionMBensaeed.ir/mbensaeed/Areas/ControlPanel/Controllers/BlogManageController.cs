@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
-   // [Authorize]
+    // [Authorize]
     public class BlogManageController : Controller
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
@@ -21,7 +21,7 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             using (var _Context = new ApplicationDbContext())
             {
                 var objEntityCategory = new RepositoryPattern<Category>(_Context);
-                ViewBag.ListCategory  = objEntityCategory.SearchFor(x=>x.IsActive=="1").ToList();
+                ViewBag.ListCategory = objEntityCategory.SearchFor(x => x.IsActive == "1").ToList();
                 return View();
             }
         }
@@ -34,9 +34,9 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             try
             {
                 string NewImageID;
-            //InfoUser AppUser = new InfoUser();
-            var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
-            //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
+                //InfoUser AppUser = new InfoUser();
+                var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
+                //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
                 if (input.FlagHaveFile == true)
                 {
                     HelpOperation.CreateArchiveFolderOnTheServer();
@@ -66,39 +66,49 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                         _objEntityImage.Dispose();
                     }
 
-                using (var _ContextPost = new ApplicationDbContext())
-                {
-                    var objEntityPost = new RepositoryPattern<Post>(_ContextPost);
-                    var newItemPost = new Post
+                    using (var _ContextPost = new ApplicationDbContext())
                     {
+                        var objEntityPost = new RepositoryPattern<Post>(_ContextPost);
+                        var newItemPost = new Post
+                        {
 
-                        Title = input.Title,
-                        ImageID = NewImageID,
-                         CategoryID= input.CategoryID,
-                       //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
-                        Content = input.Content,
-                        IsActive = input.IsActive == "true" ? "1" : "0",
-                        Labels = input.Tagsinput,
-                        PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
-                        PostTime = DateConvertor.TimeNowShort()
-                    };
-                    objEntityPost.Insert(newItemPost);
-                    objEntityPost.Save();
-       
-                    objEntityPost.Dispose();
+                            Title = input.Title,
+                            ImageID = NewImageID,
+                            CategoryID = input.CategoryID,
+                            //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
+                            Content = input.Content,
+                            IsActive = input.IsActive == "true" ? "1" : "0",
+                            Labels = input.Tagsinput,
+                            PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
+                            PostTime = DateConvertor.TimeNowShort()
+                        };
+                        objEntityPost.Insert(newItemPost);
+                        objEntityPost.Save();
+
+                        objEntityPost.Dispose();
+
+                    }
+
 
                 }
-
-       
+                return Json("OK");
             }
-            return Json("OK");
-        }
             catch (Exception)
             {
                 return Json("Faild");
-    }
-}
+            }
+        }
 
+        public  ActionResult CommnetDetails()
+        {
+            using (var _Context=new ApplicationDbContext())
+            {
+                var objPostCommnet = new RepositoryPattern<PostComment>(_Context);
+                var AllCommnet = objPostCommnet.GetAll().OrderByDescending(x => x.SendTime).OrderByDescending(x => x.SendDate); ;
+                return View(AllCommnet);
+            }
+          
+        }
 
         [HttpGet]
         public ActionResult WebManagement()//(string returnUrl)

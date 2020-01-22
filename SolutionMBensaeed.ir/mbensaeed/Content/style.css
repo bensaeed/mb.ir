@@ -527,11 +527,13 @@ header {
     height: 100%;
 }
 .hero-area {
-    background: url("image/bg-min.png") no-repeat 5% top;
-    background-size: auto 100%;
+    background: url("image/bg-min.jpg") no-repeat 5% top;
+    background-size: 100% 100%;
 }
 .hero-content {
-    color: #464646
+    /*color: #464646*/
+    /*by mb*/
+    color:white;
 }
 .hero-content h5 {
     font-size: 30px;
@@ -814,34 +816,40 @@ header {
 /*==================================
           Services Style
 ==================================*/
-#services {
+/*#servicesSectionID {
     background: url("image/work-bg.jpg") no-repeat center;
     background-size: cover;
     position: relative;
     z-index: 1;
+}*/
+#servicesSectionID {
+    background: url("image/work-bg.png") no-repeat left;
+    background-size: inherit;
+    position: relative;
+    z-index: 1;
 }
-#services:after {
-    position: absolute;
-    content: "";
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 100%;
-    background-image: -webkit-linear-gradient(right, rgba(235, 235, 235, 0.8), transparent);
-    background-image: -moz-linear-gradient(right, rgba(235, 235, 235, 0.8), transparent);
-    background-image: linear-gradient(to left, rgba(235, 235, 235, 0.8), transparent);
-    z-index: -1;
-    opacity: 0.5;
-    filter: alpha(opacity=50);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-}
-#services .section-header {
-    text-align: right;
-}
-#services .section-title:after {
-    right: 0;
-    margin: 0;
-}
+    #servicesSectionID:after {
+        position: absolute;
+        content: "";
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-image: -webkit-linear-gradient(right, rgba(235, 235, 235, 0.8), transparent);
+        background-image: -moz-linear-gradient(right, rgba(235, 235, 235, 0.8), transparent);
+        background-image: linear-gradient(to left, rgba(235, 235, 235, 0.8), transparent);
+        z-index: -1;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+    }
+    #servicesSectionID .section-header {
+        text-align: right;
+    }
+    #servicesSectionID .section-title:after {
+        right: 0;
+        margin: 0;
+    }
 .work-icon {
     display: inline-block;
     height: 50px;

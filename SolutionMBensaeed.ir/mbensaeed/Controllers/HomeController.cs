@@ -21,7 +21,7 @@ namespace mbensaeed.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(string year)
+        public ActionResult Index(string SectionID)
         {
             //throw new System.Exception("hhhh");
             return View();

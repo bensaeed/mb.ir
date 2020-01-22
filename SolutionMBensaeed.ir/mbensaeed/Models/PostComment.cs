@@ -21,6 +21,7 @@ namespace mbensaeed.Models
         public string Comment { get; set; }
         public string SendDate { get; set; }
         public string SendTime { get; set; }
+        public string Is_Read { get; set; }
         public string Is_Active { get; set; }
         public string IP_Address { get; set; }
         public string Browser { get; set; }

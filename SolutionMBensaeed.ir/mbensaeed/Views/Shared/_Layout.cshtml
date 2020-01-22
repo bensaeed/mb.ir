@@ -28,13 +28,14 @@
         <nav class="navigation">
             <div class="navigation-inner">
                 <ul class="main-menu nav navbar-nav">
-                    <li class="smooth-scroll active"><a href="#homeSectionID" >خانه</a></li>
-                    <li class="smooth-scroll"><a href="#aboutSectionID">درباره من</a></li>
-                    <li class="smooth-scroll"><a href="#experiencesSectionID">تجربیات</a></li>
+                    <li class="smooth-scroll active"><a href="@Url.Action("Index","Home")">خانه</a></li>
+                    @*<li class="smooth-scroll active"><a href="#homeSectionID">خانه</a></li>*@
+                    <li class="smooth-scroll"><a href="#aboutSectionID" onclick="ScrollIntoDivByID('aboutSectionID')">درباره من</a></li>
+                    <li class="smooth-scroll"><a href="#experiencesSectionID" onclick="ScrollIntoDivByID('experiencesSectionID')">تجربیات</a></li>
                     <li class="smooth-scroll"><a href="#servicesSectionID" onclick="ScrollIntoDivByID('servicesSectionID')">خدمات</a></li>
-                    <li class="smooth-scroll"><a href="#portfolioSectionID">نمونه کار</a></li>
+                    <li class="smooth-scroll"><a href="#portfolioSectionID" onclick="ScrollIntoDivByID('portfolioSectionID')">نمونه کار</a></li>
                     @*<li class="smooth-scroll"><a href="#testimonialSectionID">دیدگاه ها</a></li>*@
-                    <li class="smooth-scroll"><a href="#blogSectionID">وبلاگ</a></li>
+                    <li class="smooth-scroll"><a href="#blogSectionID" onclick="ScrollIntoDivByID('blogSectionID')">وبلاگ</a></li>
                     <li class="smooth-scroll"><a href="@Url.Action("Contact_US","Home")">تماس با من</a></li>
                     @*<li class="smooth-scroll"><a href="#contactSectionID">تماس با من</a></li>*@
                     @*<li class="smooth-scroll"><a href="@Url.Action("Register","Account")">ثبت نام در سيستم</a></li>*@
@@ -42,10 +43,10 @@
                 </ul>
             </div>
         </nav>
-    <!-- Start Hero Area -->
-    <div class="hero-area">
-        @Html.Partial("~/Views/PartialView/_PartialPageHeroArea.cshtml")
-    </div>
+        <!-- Start Hero Area -->
+        <div class="hero-area">
+            @Html.Partial("~/Views/PartialView/_PartialPageHeroArea.cshtml")
+        </div>
     </header>
     <!-- Header End -->
     @RenderBody()
@@ -71,14 +72,12 @@
         });
 
         function ScrollIntoDivByID(IdOfElement) {
-            alert(IdOfElement);
             if (document.getElementById(IdOfElement) == null) {
-                alert("false");
-                window.location.href='@Url.Action("index", "home")';
+                var url = '/home/index/#' + IdOfElement.toString();
+                window.location.href = url;
             } else {
-                alert("true");
                 document.getElementById(IdOfElement).scrollIntoView({ behavior: "smooth" });
-            } 
+            }
         }
     </script>
 </body>
