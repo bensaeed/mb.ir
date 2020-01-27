@@ -233,13 +233,9 @@
     <Compile Include="Helper\HelpOperation.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
-    <Compile Include="Migrations\202001111053010_CerateNewDataBase.cs" />
-    <Compile Include="Migrations\202001111053010_CerateNewDataBase.Designer.cs">
-      <DependentUpon>202001111053010_CerateNewDataBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001221140359_AddNewFieldToPostComment.cs" />
-    <Compile Include="Migrations\202001221140359_AddNewFieldToPostComment.Designer.cs">
-      <DependentUpon>202001221140359_AddNewFieldToPostComment.cs</DependentUpon>
+    <Compile Include="Migrations\202001271249382_Init.cs" />
+    <Compile Include="Migrations\202001271249382_Init.Designer.cs">
+      <DependentUpon>202001271249382_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -260,6 +256,7 @@
     <Compile Include="Repositories\IRepositoryPattern.cs" />
     <Compile Include="Repositories\RepositoryPattern.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\IpInformation_Copy.cs" />
     <Compile Include="ViewModels\IpInformation.cs" />
     <Compile Include="ViewModels\PagingStatus.cs" />
     <Compile Include="ViewModels\vmComment.cs" />
@@ -854,11 +851,8 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001111053010_CerateNewDataBase.resx">
-      <DependentUpon>202001111053010_CerateNewDataBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001221140359_AddNewFieldToPostComment.resx">
-      <DependentUpon>202001221140359_AddNewFieldToPostComment.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001271249382_Init.resx">
+      <DependentUpon>202001271249382_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

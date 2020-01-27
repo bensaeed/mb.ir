@@ -27,7 +27,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">جدول داده ها</h4>
@@ -42,21 +41,34 @@
                                             @*<th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 151.983px;" aria-label="دفتر(محل کار): activate to sort column ascending">دفتر(محل کار)</th>*@
                                             @*<th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 64.1833px;" aria-label="سن: activate to sort column ascending">سن</th>*@
                                             <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 132.75px;" aria-label="تاریخ ثبت: activate to sort column ascending">تاریخ ثبت</th>
-                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 117.717px;" aria-label="شناسه پست: activate to sort column ascending">شناسه پست</th>
+                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 117.717px;" aria-label="شناسه پست: activate to sort column ascending">وضعيت</th>
+                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 117.717px;" aria-label="وضعيت ديدگاه: activate to sort column ascending">جزئيات</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @{ foreach (var item in ListCommnet)
                                             {
                                                 var StrDateTime = @item.SendDate + "-" + @item.SendTime;
+                                                var strState = item.Is_Active == "1" ? "فعال" :  "غير فعال";
+
+
                                                 <tr role="row" class="odd">
                                                     <td class="sorting_1">@item.FullName</td>
                                                     <td>@item.Comment</td>
-                                                  
+
                                                     <td>@StrDateTime</td>
-                                                    <td>@item.PostID</td>
+                                                    <td>
+                                                        @strState
+                                                    </td>
+                                                    <td align="center">
+                                                        @{
+                                                            var AssignLoadFuntionValue = "LoadEntity('" + item.ID + "')";
+                                                        }
+                                                        <button class="btn btn-default btn-xs" onclick="@AssignLoadFuntionValue"><i class="fa fa-pencil text-inverse m-r-10"></i></button>
+                                                    </td>
                                                 </tr>
-                                            }
+                                                            }
                                         }
                                     </tbody>
                                 </table><div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">نمایش 1 تا 10 از 61 مورد</div><div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate"><a class="paginate_button previous disabled" aria-controls="myTable" data-dt-idx="0" tabindex="0" id="myTable_previous">قبلی</a><span><a class="paginate_button current" aria-controls="myTable" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="5" tabindex="0">5</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="6" tabindex="0">6</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="7" tabindex="0">7</a></span><a class="paginate_button next" aria-controls="myTable" data-dt-idx="8" tabindex="0" id="myTable_next">بعدی</a></div>
@@ -68,3 +80,79 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="CurrentCommentID" />
+
+<div id="EditEntityModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">ديدگاه</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label"> عنوان پست مرتبط:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">ديدگاه:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-danger waves-effect waves-light">ذخیره تغییرات</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        function LoadEntity(id) {
+            $('#EditEntityModal').modal();
+            $("#CurrentCommentID").val(id);
+            $("#CurrentCommentStateReadID").val(null);
+            var options = {};
+            options.url = "@Url.Action("GetCommentsDetails", "BlogManage")";
+            options.type = "POST";
+            options.data = JSON.stringify({ id: id });
+            options.datatype = "json";
+            options.contentType = "application/json";
+            options.success = function (x) {
+                $("#FullNameID").val(x.FullName);
+                $("#CommentID").val(x.Comment);
+                $("#CurrentCommentStateReadID").val(x.Is_Read);
+                $('#EditEntityModal').modal();
+                //ReadComment(id);
+            };
+            $.ajax(options);
+        }
+        //$('body').on('hidden.bs.modal', '.modal', function () {
+        //    if ($("#CurrentCommentStateReadID").val() != "1")
+        //    {
+        //        ReadComment($("#CurrentCommentID").val());
+        //    }
+
+        //})
+        function ReadComment(id) {
+            var options = {};
+            options.url = "@Url.Action("ReadComment", "CommentAdmin")";
+            options.type = "POST";
+            options.data = JSON.stringify({
+                id: id
+            });
+            options.datatype = "json";
+            options.contentType = "application/json";
+            options.success = function (x) {
+                if (x === "OK") {
+                    location.reload();
+                }
+            };
+            $.ajax(options);
+        }
+    </script>
+}

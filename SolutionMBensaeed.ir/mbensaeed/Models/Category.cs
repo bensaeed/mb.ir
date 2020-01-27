@@ -7,24 +7,20 @@ using System.Web;
 
 namespace mbensaeed.Models
 {
-    //[Table("CatView")]
     public class Category
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         public int ID { get; set; }
+        [MaxLength(200, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
+        [Display(Name = "توضيحات فارسی")]
+        [Required]
         public string DescriptionFa { get; set; }
+        [MaxLength(200, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
+        [Display(Name = "توضيحات لاتين")]
         public string DescriptionEn { get; set; }
+        [MaxLength(1, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
+        [Display(Name = "وضعيت")]
         public string IsActive { get; set; }
         //public virtual ICollection<Post> Posts { get; set; }
     }
-
-    //class CategoryPosts
-    //{
-    //    public int CategoryId { get; set; }
-    //    [ForeignKey("CategoryId")]
-    //    public Category MyProperty { get; set; }
-
-    //    public string Name { get; set; }
-    //}
 }

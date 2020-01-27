@@ -74,9 +74,8 @@
                             <br />
                             <br />
                             <div class="row">
-                                <div class="col-md-8">
-                                </div>
-                                <div class="col-md-4">
+                               
+                                <div class="col-md-12">
                                     <h6>دسته بندی :   <a href="@Url.Action("Index", "Blog", new {@Page=1, @Category = @PostDetails.Category })"><span class="badge">@PostDetails.Category</span></a></h6>
                                 </div>
 
@@ -84,9 +83,8 @@
 
                             <br />
                             <div class="row">
-                                <div class="col-md-8">
-                                </div>
-                                <div class="col-md-4">
+                                
+                                <div class="col-md-12">
                                     <h6>
                                         برچسب ها :
                                         @{
@@ -191,7 +189,7 @@
 @section scripts{
     <script type="text/javascript">
 
-        $("#PostContentID").css("fontFamily", "Tahoma");
+        //$("#PostContentID").css("fontFamily", "Tahoma");
 
         $("#SubmitButton").click(function () {
             SubmitData();
@@ -221,7 +219,8 @@
                     FullName: $("#FullNameID").val(),
                     Email: $("#EmailID").val(),
                     Comment: $("#CommentID").val(),
-                    CaptchaText: $("#CaptchaTextID").val()
+                    CaptchaText: $("#CaptchaTextID").val(),
+                    IsRead:"12346781385009"
                 });
                 options.datatype = "json";
                 options.contentType = "application/json";

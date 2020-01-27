@@ -30,24 +30,24 @@ namespace mbensaeed.Helper
                 DeviceInfo = objNetworkOperation.ClientDeviceType(),
                 IP_Address = CurrentClientIP,
                 HostName = objNetworkOperation.ClientHostName(),
-                Country = IpInfo.country,
+                country = IpInfo.country,
                 //asn = IpInfo.@as,
                 city = IpInfo.city,
                 countryCode = IpInfo.countryCode,
                 isp = IpInfo.isp,
-                //lat = Convert.ToString(IpInfo.lat),
-                lon = Convert.ToString(IpInfo.lon),
+                lat = IpInfo.lat,
+                lon =(IpInfo.lon),
                 org = IpInfo.org,
-                //query = IpInfo.query,
+                query = IpInfo.query,
                 region = IpInfo.region,
                 regionName = IpInfo.regionName,
-                Status = IpInfo.status,
+                status = IpInfo.status,
                 timezone = IpInfo.timezone,
-                //zip = IpInfo.zip,
-                //district = IpInfo.district,
-                mobile = IpInfo.mobile == true ? "1" : "0",
-                proxy = IpInfo.proxy == true ? "1" : "0"
-                //reverse = IpInfo.reverse
+                zip = IpInfo.zip,
+                district = IpInfo.district,
+                mobile = IpInfo.mobile,// == true? "1" : "0",
+                proxy = IpInfo.proxy,// == true ? "1" : "0"
+                reverse = IpInfo.reverse
             };
             _objEntityWebsiteVisit.Insert(newItem);
             _objEntityWebsiteVisit.Save();

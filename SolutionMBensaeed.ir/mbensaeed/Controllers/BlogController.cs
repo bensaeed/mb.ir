@@ -123,9 +123,13 @@ namespace mbensaeed.Controllers
         }
         [AjaxOnly]
         public ActionResult AddComment(vmComment input)//int PostID, string Name, string Email, string Message, string CaptchaText)
-        {
-            if (input is null)
+        { 
+            if (!ModelState.IsValid)
             {
+                foreach (var item in ModelState)
+                {
+                    var errors = item.Value.Errors.ToList();
+                }
                 return Json("null");
             }
 
@@ -150,15 +154,15 @@ namespace mbensaeed.Controllers
                     DeviceInfo = objNetworkOperation.ClientDeviceType(),
                     IP_Address = CurrentClientIP,
                     HostName = objNetworkOperation.ClientHostName(),
-                    Country = IpInfo.country,
+                    country = IpInfo.country,
                     city = IpInfo.city,
                     countryCode = IpInfo.countryCode,
                     org = IpInfo.org,
                     region = IpInfo.region,
                     regionName = IpInfo.regionName,
-                    Status = IpInfo.status,
+                    status = IpInfo.status,
                     timezone = IpInfo.timezone,
-                    mobile = IpInfo.mobile == true ? "1" : "0",
+                    mobile = IpInfo.mobile == true ? true :false,
                     Is_Active = "1"
                 };
                 _objEntityMessage.Insert(NewItem);

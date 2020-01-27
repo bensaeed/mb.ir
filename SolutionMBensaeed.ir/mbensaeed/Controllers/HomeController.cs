@@ -11,6 +11,8 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Controllers
 {
+  
+
     [WebStatusAttribute]
     public class HomeController : Controller
     {
@@ -23,7 +25,6 @@ namespace mbensaeed.Controllers
         [HttpPost]
         public ActionResult Index(string SectionID)
         {
-            //throw new System.Exception("hhhh");
             return View();
         }
         public ActionResult About()

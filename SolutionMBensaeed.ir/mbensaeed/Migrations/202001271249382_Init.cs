@@ -3,7 +3,7 @@ namespace mbensaeed.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CerateNewDataBase : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -12,14 +12,14 @@ namespace mbensaeed.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        DateShamsi = c.String(),
-                        DateMiladi = c.String(),
-                        ActionTime = c.String(),
-                        IP_Address = c.String(),
-                        Browser = c.String(),
-                        Device = c.String(),
-                        HostName = c.String(),
-                        MoreInfo = c.String(),
+                        DateShamsi = c.String(maxLength: 8),
+                        DateMiladi = c.String(maxLength: 8),
+                        ActionTime = c.String(maxLength: 8),
+                        IP_Address = c.String(maxLength: 30),
+                        Browser = c.String(maxLength: 100),
+                        Device = c.String(maxLength: 500),
+                        HostName = c.String(maxLength: 100),
+                        MoreInfo = c.String(maxLength: 500),
                         PostId = c.Int(),
                         ActivityTypeId = c.Int(),
                     })
@@ -34,8 +34,8 @@ namespace mbensaeed.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Description = c.String(),
+                        Title = c.String(nullable: false, maxLength: 20),
+                        Description = c.String(maxLength: 100),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -44,12 +44,12 @@ namespace mbensaeed.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Content = c.String(),
-                        IsActive = c.String(),
-                        PostDate = c.String(),
-                        PostTime = c.String(),
-                        Labels = c.String(),
+                        Title = c.String(nullable: false, maxLength: 300),
+                        Content = c.String(nullable: false),
+                        IsActive = c.String(maxLength: 1),
+                        PostDate = c.String(maxLength: 8),
+                        PostTime = c.String(maxLength: 10),
+                        Labels = c.String(maxLength: 1000),
                         ImageID = c.String(maxLength: 128),
                         CategoryID = c.Int(nullable: false),
                     })
@@ -64,9 +64,9 @@ namespace mbensaeed.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        DescriptionFa = c.String(),
-                        DescriptionEn = c.String(),
-                        IsActive = c.String(),
+                        DescriptionFa = c.String(nullable: false, maxLength: 200),
+                        DescriptionEn = c.String(maxLength: 200),
+                        IsActive = c.String(maxLength: 1),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -75,11 +75,11 @@ namespace mbensaeed.Migrations
                 c => new
                     {
                         ID = c.String(nullable: false, maxLength: 128),
-                        FileName = c.String(),
-                        FileSize = c.String(),
-                        TitleUrl = c.String(),
-                        FileUrl = c.String(),
-                        FilePathOnServer = c.String(),
+                        FileName = c.String(nullable: false, maxLength: 60),
+                        FileSize = c.String(maxLength: 10),
+                        TitleUrl = c.String(maxLength: 50),
+                        FileUrl = c.String(nullable: false, maxLength: 1200),
+                        FilePathOnServer = c.String(nullable: false, maxLength: 1200),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -88,16 +88,16 @@ namespace mbensaeed.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        FullName = c.String(),
-                        PhoneNumber = c.String(),
-                        Email = c.String(),
-                        CommentUser = c.String(),
-                        SendDate = c.String(),
-                        SendTime = c.String(),
-                        Is_Read = c.String(),
-                        ReadTime = c.String(),
-                        ReadDateMiladi = c.String(),
-                        ReadDateShamsi = c.String(),
+                        FullName = c.String(maxLength: 100),
+                        PhoneNumber = c.String(nullable: false, maxLength: 30),
+                        Email = c.String(maxLength: 120),
+                        CommentUser = c.String(nullable: false),
+                        SendDate = c.String(maxLength: 8),
+                        SendTime = c.String(maxLength: 8),
+                        Is_Read = c.String(maxLength: 1),
+                        ReadTime = c.String(maxLength: 8),
+                        ReadDateMiladi = c.String(maxLength: 8),
+                        ReadDateShamsi = c.String(maxLength: 8),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -116,25 +116,35 @@ namespace mbensaeed.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         PostID = c.Int(nullable: false),
-                        FullName = c.String(),
-                        Email = c.String(),
-                        Comment = c.String(),
-                        SendDate = c.String(),
-                        SendTime = c.String(),
-                        Is_Active = c.String(),
-                        IP_Address = c.String(),
-                        Browser = c.String(),
-                        DeviceInfo = c.String(),
-                        HostName = c.String(),
-                        Country = c.String(),
-                        countryCode = c.String(),
-                        org = c.String(),
-                        region = c.String(),
-                        regionName = c.String(),
-                        city = c.String(),
-                        Status = c.String(),
-                        timezone = c.String(),
-                        mobile = c.String(),
+                        FullName = c.String(maxLength: 100),
+                        Email = c.String(maxLength: 120),
+                        Comment = c.String(nullable: false),
+                        SendDate = c.String(maxLength: 8),
+                        SendTime = c.String(maxLength: 8),
+                        Is_Read = c.String(maxLength: 1),
+                        Is_Active = c.String(maxLength: 1),
+                        IP_Address = c.String(maxLength: 30),
+                        Browser = c.String(maxLength: 100),
+                        DeviceInfo = c.String(maxLength: 500),
+                        HostName = c.String(maxLength: 100),
+                        query = c.String(maxLength: 100),
+                        status = c.String(maxLength: 30),
+                        country = c.String(maxLength: 100),
+                        countryCode = c.String(maxLength: 20),
+                        region = c.String(maxLength: 10),
+                        regionName = c.String(maxLength: 100),
+                        city = c.String(maxLength: 100),
+                        district = c.String(maxLength: 100),
+                        zip = c.String(maxLength: 80),
+                        lat = c.Double(nullable: false),
+                        lon = c.Double(nullable: false),
+                        timezone = c.String(maxLength: 40),
+                        isp = c.String(maxLength: 100),
+                        org = c.String(maxLength: 100),
+                        _as = c.String(name: "as", maxLength: 100),
+                        reverse = c.String(maxLength: 100),
+                        mobile = c.Boolean(nullable: false),
+                        proxy = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Posts", t => t.PostID, cascadeDelete: true)
@@ -213,25 +223,31 @@ namespace mbensaeed.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        DateShamsi = c.String(),
-                        DateMiladi = c.String(),
-                        VisitTime = c.String(),
-                        IP_Address = c.String(),
-                        Browser = c.String(),
-                        DeviceInfo = c.String(),
-                        HostName = c.String(),
-                        Country = c.String(),
-                        countryCode = c.String(),
-                        org = c.String(),
-                        region = c.String(),
-                        regionName = c.String(),
-                        city = c.String(),
-                        Status = c.String(),
-                        timezone = c.String(),
-                        mobile = c.String(),
-                        proxy = c.String(),
-                        isp = c.String(),
-                        lon = c.String(),
+                        DateMiladi = c.String(maxLength: 8),
+                        DateShamsi = c.String(maxLength: 8),
+                        VisitTime = c.String(maxLength: 8),
+                        IP_Address = c.String(maxLength: 30),
+                        Browser = c.String(maxLength: 100),
+                        DeviceInfo = c.String(maxLength: 500),
+                        HostName = c.String(maxLength: 100),
+                        query = c.String(maxLength: 100),
+                        status = c.String(maxLength: 30),
+                        country = c.String(maxLength: 100),
+                        countryCode = c.String(maxLength: 20),
+                        region = c.String(maxLength: 10),
+                        regionName = c.String(maxLength: 100),
+                        city = c.String(maxLength: 100),
+                        district = c.String(maxLength: 100),
+                        zip = c.String(maxLength: 80),
+                        lat = c.Double(nullable: false),
+                        lon = c.Double(nullable: false),
+                        timezone = c.String(maxLength: 40),
+                        isp = c.String(maxLength: 100),
+                        org = c.String(maxLength: 100),
+                        _as = c.String(name: "as", maxLength: 100),
+                        reverse = c.String(maxLength: 100),
+                        mobile = c.Boolean(nullable: false),
+                        proxy = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             

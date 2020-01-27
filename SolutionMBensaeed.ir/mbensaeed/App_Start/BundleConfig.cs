@@ -55,8 +55,9 @@ namespace mbensaeed
                     "~/Content/ControlPanel/assets/plugins/bootstrap-select/bootstrap-select.min.css",
                     "~/Content/ControlPanel/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css",
                     "~/Content/ControlPanel/assets/plugins/morrisjs/morris.css",
-                    "~/Content/ControlPanel/assets/plugins/summernote/dist/summernote.css",
-                    "~/Content/ControlPanel/css/style.css"));
+                    "~/Content/ControlPanel/css/style.css",
+                     "~/Content/ControlPanel/assets/plugins/summernote/dist/summernote.css"
+                   ));
 
             bundles.Add(new ScriptBundle("~/bundles/jsCP").Include(
                 "~/Scripts/ControlPanel/assets/plugins/jquery/jquery.min.js",
