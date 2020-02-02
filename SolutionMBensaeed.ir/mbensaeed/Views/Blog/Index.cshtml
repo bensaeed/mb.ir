@@ -4,7 +4,7 @@
 @using mbensaeed.Helper
 @{
     ViewBag.Title = "وبلاگ";
-    Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     //var AllPost = ViewBag.AllPost;
     //var CountAllPost = Model.Count();
 }
@@ -12,12 +12,20 @@
 <h2 class="section-title text-center">وبلاگ</h2>
 
 @{
-    if (Model == null)
+    if (Model == null || Model.Count()==0)
     {
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
-            <h2 class="pull-right"> مطلبی وجود ندارد </h2>
             <br /><br /><br />
+            <h2 class="text-center"> متاسفانه تاكنون مطلبی پست نشده است. </h2>
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br /><br />
+            <br /><br />
         </div>
         <div class="col-lg-1"></div>
     }

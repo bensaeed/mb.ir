@@ -95,6 +95,10 @@ namespace mbensaeed.Controllers
         {
             return View();
         }
+        public ActionResult GetPartialPageHeroArea()
+        {
+            return PartialView("~/Views/PartialView/_PartialPageHeroArea.cshtml");
+        }
   
     }
 }

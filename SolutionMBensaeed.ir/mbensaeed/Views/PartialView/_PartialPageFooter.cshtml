@@ -1,14 +1,29 @@
-﻿<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="copyright">
-                    ۱۳۹۸
-                    &copy;
-                    تمام حقوق محفوظ می باشد
-                    <a href="http://www.mBensaeed.ir" target="_blank">محمد بن سعيد</a>
+﻿<div class="footer">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="text-center" style="margin-top:0px;margin-bottom:14px;">
+                        @Html.Partial("~/Views/PartialView/_PartialPageSocial.cshtml")
+                    </div>
+
+                    @*<div class="social-area text-center" style="margin-top:0px;margin-bottom:14px;">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/bensaeed.mohammad"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>*@
+                </div>
+                <div class="col-md-6 text-center" style="margin-top:10px;">
+                    <div class="copyright">
+                        @PersianDateTime.Now.Year.ToString()
+                        &copy;
+                        تمام حقوق این سایت متعلق به
+                        <a href="http://www.mBensaeed.ir" target="_blank">محمد بن سعيد</a>
+                        می باشد.
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>

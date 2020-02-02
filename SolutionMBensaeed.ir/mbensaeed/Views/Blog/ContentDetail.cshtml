@@ -3,7 +3,7 @@
 @{
     var PostDetails = Model.FirstOrDefault();
     ViewBag.Title = PostDetails.Title;
-    Layout = "~/Views/Shared/_LayoutBlog.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var strTags = (string)PostDetails.Labels;
     string[] PostTags = HelpOperation.SplitString(strTags).ToArray();
 }
@@ -131,7 +131,7 @@
                                 <br />
                                 <div class="row">
                                     <div class="col-md-2 col-sm-2">
-                                        <input type="button" id="SubmitButton" class="form-control" value="ثبت پيام" />
+                                        <input type="button" id="SubmitButton" class="form-control btn-primary" value="ثبت پيام" />
                                     </div>
                                     <div class="col-md-7 col-sm-7">
                                     </div>

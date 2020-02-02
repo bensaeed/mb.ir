@@ -1,0 +1,19 @@
+﻿<nav class="navigation">
+    <div class="navigation-inner">
+        <ul class="main-menu nav navbar-nav">
+            <li class="smooth-scroll active"><a href="@Url.Action("Index","Home")">خانه</a></li>
+            @*<li class="smooth-scroll active"><a href="#homeSectionID">خانه</a></li>*@
+            <li class="smooth-scroll"><a href="#aboutSectionID" onclick="ScrollIntoDivByID('aboutSectionID')">درباره من</a></li>
+            <li class="smooth-scroll"><a href="#experiencesSectionID" onclick="ScrollIntoDivByID('experiencesSectionID')">تجربیات</a></li>
+            <li class="smooth-scroll"><a href="#servicesSectionID" onclick="ScrollIntoDivByID('servicesSectionID')">خدمات</a></li>
+            <li class="smooth-scroll"><a href="#portfolioSectionID" onclick="ScrollIntoDivByID('portfolioSectionID')">نمونه کار</a></li>
+            @*<li class="smooth-scroll"><a href="#testimonialSectionID">دیدگاه ها</a></li>*@
+            <li class="smooth-scroll">@*<a href="#blogSectionID" onclick="ScrollIntoDivByID('blogSectionID')">وبلاگ</a>*@</li>
+            <li class="smooth-scroll"><a href="@Url.Action("Index","Blog")">وبلاگ</a></li>
+            <li class="smooth-scroll"><a href="@Url.Action("Contact_US","Home")">تماس با من</a></li>
+            @*<li class="smooth-scroll"><a href="#contactSectionID">تماس با من</a></li>*@
+            @*<li class="smooth-scroll"><a href="@Url.Action("Register","Account")">ثبت نام در سيستم</a></li>*@
+            @*<li class="smooth-scroll"><a href="@Url.Action("Login","Account")">ورود به سيستم</a></li>*@
+        </ul>
+    </div>
+</nav>

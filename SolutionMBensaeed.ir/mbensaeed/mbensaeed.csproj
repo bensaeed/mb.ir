@@ -670,6 +670,7 @@
     <Content Include="MediaFiles\Image\Other\iconfinder-telegram_32.png" />
     <Content Include="MediaFiles\Image\Other\iconfinder_gmail_32.png" />
     <Content Include="MediaFiles\Image\Other\logoUpdating.png" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap\js\bootstrap.min.js" />
@@ -840,7 +841,6 @@
     <Content Include="Areas\ControlPanel\Views\WebSetting\WebsiteStatus.cshtml" />
     <Content Include="Areas\ControlPanel\Views\BlogManage\CommnetDetails.cshtml" />
     <None Include="packages.config" />
-    <Content Include="Views\Shared\_LayoutBlog.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\ContentDetail.cshtml" />
     <Content Include="Views\PartialView\_PartialPageHeroArea.cshtml" />
@@ -862,6 +862,8 @@
     <Content Include="Views\Shared\_LayoutPageError.cshtml" />
     <Content Include="Views\Error\What.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\PartialView\_PartialPageNavMenu.cshtml" />
+    <Content Include="Views\PartialView\_PartialPageSocial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001271249382_Init.resx">

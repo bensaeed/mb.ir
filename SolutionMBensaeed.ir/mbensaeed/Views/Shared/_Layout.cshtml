@@ -16,42 +16,43 @@
     </div>
     <!-- Pre-loader End -->
     <!-- Header Start -->
-    <header>
-        <!-- Menu Bars -->
-        <div class="menu-bars">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <!-- Nav Start -->
-        <nav class="navigation">
-            <div class="navigation-inner">
-                <ul class="main-menu nav navbar-nav">
-                    <li class="smooth-scroll active"><a href="@Url.Action("Index","Home")">خانه</a></li>
-                    @*<li class="smooth-scroll active"><a href="#homeSectionID">خانه</a></li>*@
-                    <li class="smooth-scroll"><a href="#aboutSectionID" onclick="ScrollIntoDivByID('aboutSectionID')">درباره من</a></li>
-                    <li class="smooth-scroll"><a href="#experiencesSectionID" onclick="ScrollIntoDivByID('experiencesSectionID')">تجربیات</a></li>
-                    <li class="smooth-scroll"><a href="#servicesSectionID" onclick="ScrollIntoDivByID('servicesSectionID')">خدمات</a></li>
-                    <li class="smooth-scroll"><a href="#portfolioSectionID" onclick="ScrollIntoDivByID('portfolioSectionID')">نمونه کار</a></li>
-                    @*<li class="smooth-scroll"><a href="#testimonialSectionID">دیدگاه ها</a></li>*@
-                    <li class="smooth-scroll"><a href="#blogSectionID" onclick="ScrollIntoDivByID('blogSectionID')">وبلاگ</a></li>
-                    <li class="smooth-scroll"><a href="@Url.Action("Contact_US","Home")">تماس با من</a></li>
-                    @*<li class="smooth-scroll"><a href="#contactSectionID">تماس با من</a></li>*@
-                    @*<li class="smooth-scroll"><a href="@Url.Action("Register","Account")">ثبت نام در سيستم</a></li>*@
-                    @*<li class="smooth-scroll"><a href="@Url.Action("Login","Account")">ورود به سيستم</a></li>*@
-                </ul>
+    <!-- Start Hero Area -->
+    @{
+        var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+        if (!(controllerName == "blog" || controllerName == "Blog"))
+        {
+            <header>
+                <!-- Menu Bars -->
+                <div class="menu-bars">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <!-- Nav Start -->
+                @Html.Partial("~/Views/PartialView/_PartialPageNavMenu.cshtml")
+                <div class="hero-area">
+                    @Html.Partial("~/Views/PartialView/_PartialPageHeroArea.cshtml")
+                </div>
+            </header>
+        }
+        else
+        {
+            <!-- Menu Bars -->
+            <div class="menu-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-        </nav>
-        <!-- Start Hero Area -->
-        <div class="hero-area">
-            @Html.Partial("~/Views/PartialView/_PartialPageHeroArea.cshtml")
-        </div>
-    </header>
+            @Html.Partial("~/Views/PartialView/_PartialPageNavMenu.cshtml")
+        }
+    }
+
     <!-- Header End -->
     @RenderBody()
     <!-- Contact Start -->
-    @Html.Partial("~/Views/PartialView/_PartialPageContact.cshtml")
+    @*@Html.Partial("~/Views/PartialView/_PartialPageContact.cshtml")*@
     <!-- Contact End -->
     <!-- The ScrollToTop Start -->
     <div class="ScrollToTop" style="display: none;">
