@@ -35,8 +35,8 @@
                 new Models.Category() { ID = 14, DescriptionFa = "سبک زندگی", IsActive = "1" }
                 );
             context.ActivityTypes.AddOrUpdate(x => x.ID,
-                new Models.ActivityType() {ID=1,Title= "view",Description="بازديد" },
-                new Models.ActivityType() {ID=2,Title= "like",Description="پسنديدن" });
-                }
+                new Models.ActivityType() { ID = 1, Title = "view", Description = "بازديد" },
+                new Models.ActivityType() { ID = 2, Title = "like", Description = "پسنديدن" });
+        }
     }
 }

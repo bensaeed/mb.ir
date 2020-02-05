@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
-    // [Authorize]
+    [Authorize]
     public class BlogManageController : Controller
     {
         private readonly ApplicationDbContext _db = new ApplicationDbContext();
@@ -71,7 +71,6 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                         var objEntityPost = new RepositoryPattern<Post>(_ContextPost);
                         var newItemPost = new Post
                         {
-
                             Title = input.Title,
                             ImageID = NewImageID,
                             CategoryID = input.CategoryID,

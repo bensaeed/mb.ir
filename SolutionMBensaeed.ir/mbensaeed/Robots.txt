@@ -1,3 +1,4 @@
 ﻿User-agent: *
 Disallow: /ControlPanel/
 Disallow: /account/
+Allow:*****/Blog/

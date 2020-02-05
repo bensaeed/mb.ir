@@ -64,6 +64,20 @@ namespace mbensaeed.Controllers
                 _objEntityMessage.Insert(NewItem);
                 _objEntityMessage.Save();
                 _objEntityMessage.Dispose();
+
+                try
+                {
+                    OpratingClasses.EmailService emailService = new OpratingClasses.EmailService();
+                    var strSubject = " نام و نام خانوادگی : " + NewItem.FullName;
+                    strSubject += " ایمیل : " + NewItem.Email;
+                    strSubject += " شماره تلفن : " + NewItem.PhoneNumber;
+                    var strMessage = NewItem.CommentUser + "\n" + " تاریخ و ساعت ارسال  : " + NewItem.SendDate + " - " + NewItem.SendTime;
+                    emailService.SendEmail(strSubject, strMessage);
+                }
+                catch (Exception)
+                {
+                }
+              
                 return Json("OK");
             }
             else

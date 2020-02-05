@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
+    [Authorize]
     public class DefaultController : Controller
     {
         private readonly ApplicationDbContext _context = new ApplicationDbContext();

@@ -126,7 +126,6 @@
                     <input type="file" class="form-control" id="PostInputFile" name="PostInputFile" aria-describedby="fileHelp">
                 </div>
                 <div class="form-group">
-
                     <input type="checkbox" id="IsActiveID" class="filled-in chk-col-black" checked="checked">
                     <label for="IsActiveID">ثبت موقت و عدم نمايش  پست</label>
                 </div>
@@ -306,6 +305,7 @@
             var strContent;
             var URL = '@Url.Action("PublishPost", "BlogManage")';
             var IsActiveID = $("#IsActiveID").is(":checked");
+            
             if (FlagOperation == true) {
                 var formdata = new FormData();
                 if (FlagHaveFile == true)

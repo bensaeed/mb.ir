@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
+    [Authorize]
     public class WebSettingController : Controller
     {
         // GET: ControlPanel/WebSetting

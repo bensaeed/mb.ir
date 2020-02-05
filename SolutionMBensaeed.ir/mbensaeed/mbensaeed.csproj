@@ -237,6 +237,18 @@
     <Compile Include="Migrations\202001271249382_Init.Designer.cs">
       <DependentUpon>202001271249382_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002041245260_AddEmaiInfo.cs" />
+    <Compile Include="Migrations\202002041245260_AddEmaiInfo.Designer.cs">
+      <DependentUpon>202002041245260_AddEmaiInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002041259477_EditEmaiInfo.cs" />
+    <Compile Include="Migrations\202002041259477_EditEmaiInfo.Designer.cs">
+      <DependentUpon>202002041259477_EditEmaiInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002050440075_EditEmaiInfo1.cs" />
+    <Compile Include="Migrations\202002050440075_EditEmaiInfo1.Designer.cs">
+      <DependentUpon>202002050440075_EditEmaiInfo1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -245,6 +257,7 @@
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\InfoEmail.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Post.cs" />
@@ -252,6 +265,7 @@
     <Compile Include="Models\PostComment.cs" />
     <Compile Include="Models\WebsiteVisit.cs" />
     <Compile Include="OpratingClasses\C_LikeViewList.cs" />
+    <Compile Include="OpratingClasses\EmailService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepositoryPattern.cs" />
     <Compile Include="Repositories\RepositoryPattern.cs" />
@@ -611,6 +625,7 @@
     <Content Include="Content\ControlPanel\scss\icons\weather-icons\fonts\weathericons-regular-webfont.txt" />
     <Content Include="Content\css\animate.min.css" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\favicon.ico" />
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\owl.carousel.css" />
     <Content Include="Content\css\owl.theme.default.css" />
@@ -868,6 +883,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001271249382_Init.resx">
       <DependentUpon>202001271249382_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002041245260_AddEmaiInfo.resx">
+      <DependentUpon>202002041245260_AddEmaiInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002041259477_EditEmaiInfo.resx">
+      <DependentUpon>202002041259477_EditEmaiInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002050440075_EditEmaiInfo1.resx">
+      <DependentUpon>202002050440075_EditEmaiInfo1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

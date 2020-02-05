@@ -29,6 +29,7 @@ namespace mbensaeed.Models
         public DbSet<Category> Category { get; set; }
         public DbSet<Comment> Comment { get; set; }
         public DbSet<PostComment> PostComment { get; set; }
+        public DbSet<EmailInfo> EmailInfo { get; set; }
         public ApplicationDbContext()
         : base("DefaultConnection", throwIfV1Schema: false)
         {
