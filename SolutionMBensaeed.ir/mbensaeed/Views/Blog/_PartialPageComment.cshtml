@@ -1,12 +1,21 @@
 ﻿@model mbensaeed.Models.PostComment
+@using mbensaeed.Helper
 
-<div class="CommentsBox">
-    <div class="row">
-        <div class="col-md-2"><h6 class="pull-left"> تاریخ ارسال : @Model.SendDate</h6></div>
-        <div class="col-md-7"></div>
-        <div class="col-md-3"><h6>@Model.FullName</h6></div>
-    </div>
-    <hr />
-    @Model.Comment
-</div>
-               
+    
+    <div class="CommentsBox">
+        <div class="row">
+            @{
+                string strSendTime = @Model.SendTime;
+                <div class="col-md-3"><h6 class="pull-left"> تاریخ ارسال : @strSendTime &nbsp;@DateConvertor.NumberToDate(@Model.SendDate)  </h6></div>
+            }
+            <div class="col-md-6"></div>
+            <div class="col-md-3">
+                <h6>@Model.FullName </h6>
+            </div>
+        </div>
+            <hr />
+            <h6>
+                @Html.Raw(@Model.Comment)
+            </h6>
+        </div>
+
