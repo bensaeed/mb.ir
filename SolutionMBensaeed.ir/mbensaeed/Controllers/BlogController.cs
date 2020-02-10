@@ -122,7 +122,7 @@ namespace mbensaeed.Controllers
             return Json("OK");
         }
         [AjaxOnly]
-        public ActionResult AddComment(vmComment input)//int PostID, string Name, string Email, string Message, string CaptchaText)
+        public async Task<ActionResult> AddComment(vmComment input)
         { 
             if (!ModelState.IsValid)
             {
@@ -135,7 +135,7 @@ namespace mbensaeed.Controllers
 
             if (input.CaptchaText.ToLower() == HttpContext.Session["captchastring"].ToString().ToLower())
             {
-
+                Session.Remove("captchastring");
                 NetworkOperation objNetworkOperation = new NetworkOperation();
                 VisitWebsiteLog visitWebsiteLog = new VisitWebsiteLog();
                 string CurrentClientIP = null;
@@ -168,6 +168,25 @@ namespace mbensaeed.Controllers
                 _objEntityMessage.Insert(NewItem);
                 _objEntityMessage.Save();
                 _objEntityMessage.Dispose();
+                try
+                {
+                    var _objEntityPost = new RepositoryPattern<Post>(new ApplicationDbContext());
+                    OpratingClasses.EmailService emailService = new OpratingClasses.EmailService();
+                    var strSubject = " نام و نام خانوادگی : " + NewItem.FullName;
+                    var strMessage =
+                        " ديدگاه كاربر راجع به پست : " + _objEntityPost.GetByPredicate(X=>X.ID==NewItem.PostID).Title.Trim() +
+                        " <br /> " + NewItem.Comment +
+                        " <br /> " + " ایمیل : " + NewItem.Email +
+                        " <br /> " + " ساير اطلاعات : " + NewItem.DeviceInfo + " - " + NewItem.country + NewItem.city +
+                        " <br /> " + " تاریخ و ساعت ارسال : " + NewItem.SendDate + " - " + NewItem.SendTime ;
+
+                //" <br /> <p styel=\"font-family:\"Tahoma;\"\">" + NewItem.Comment +
+
+                await emailService.SendMail(strSubject, strMessage);
+                }
+                catch (Exception)
+                {
+                }
                 return PartialView("_PartialPageComment", NewItem);
             }
             else

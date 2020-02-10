@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
 namespace mbensaeed.Controllers
 {
-  
+
 
     [WebStatusAttribute]
     public class HomeController : Controller
@@ -46,16 +47,17 @@ namespace mbensaeed.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Contact_US(string Name, string Phone, string Email, string Message, string CaptchaText)
+        public async Task<ActionResult> Contact_US(string Name, string Phone, string Email, string Message, string CaptchaText)
         {
             if (CaptchaText.ToLower() == HttpContext.Session["captchastring"].ToString().ToLower())
             {
+                Session.Remove("captchastring");
                 var _objEntityMessage = new RepositoryPattern<Comment>(new ApplicationDbContext());
                 var NewItem = new Comment
                 {
                     FullName = Name,
                     PhoneNumber = Phone,
-                    Email = Email, 
+                    Email = Email,
                     CommentUser = Message,
                     SendDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                     SendTime = DateConvertor.TimeNow(),
@@ -69,15 +71,19 @@ namespace mbensaeed.Controllers
                 {
                     OpratingClasses.EmailService emailService = new OpratingClasses.EmailService();
                     var strSubject = " نام و نام خانوادگی : " + NewItem.FullName;
-                    strSubject += " ایمیل : " + NewItem.Email;
-                    strSubject += " شماره تلفن : " + NewItem.PhoneNumber;
-                    var strMessage = NewItem.CommentUser + "\n" + " تاریخ و ساعت ارسال  : " + NewItem.SendDate + " - " + NewItem.SendTime;
-                    emailService.SendEmail(strSubject, strMessage);
+                    var strMessage =
+                        " ارتباط با مديريت وب سايت" +
+                        " \n " + NewItem.CommentUser +
+                        " \n " + " ایمیل : " + NewItem.Email +
+                        " \n " + " شماره همراه : " + NewItem.PhoneNumber +
+                        " \n " + " تاریخ و ساعت ارسال : " + NewItem.SendDate + " - " + NewItem.SendTime;
+
+                    await emailService.SendMail(strSubject, strMessage);
                 }
                 catch (Exception)
                 {
                 }
-              
+
                 return Json("OK");
             }
             else
@@ -113,6 +119,6 @@ namespace mbensaeed.Controllers
         {
             return PartialView("~/Views/PartialView/_PartialPageHeroArea.cshtml");
         }
-  
+
     }
 }

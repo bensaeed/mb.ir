@@ -25,5 +25,16 @@ namespace mbensaeed.Models
         [MaxLength(1, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
         [Display(Name = "وضعيت")]
         public string IsActive { get; set; }
+        [MaxLength(100, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
+        [Display(Name = "ميل سرور")]
+        [Required]
+        public string SMTP { get; set; }
+        [Display(Name = "شماره پورت ")]
+        public int SMTP_Port { get; set; }
+        [MaxLength(100, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
+        [Display(Name = "نام هاست")]
+        [Required]
+        public string HostName { get; set; }
+
     }
 }

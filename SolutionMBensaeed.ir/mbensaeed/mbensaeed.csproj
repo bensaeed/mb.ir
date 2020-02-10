@@ -212,6 +212,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\ControlPanel\Controllers\BlogManageController.cs" />
     <Compile Include="Areas\ControlPanel\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\ControlPanel\Controllers\ReportController.cs" />
     <Compile Include="Areas\ControlPanel\Controllers\WebSettingController.cs" />
     <Compile Include="Areas\ControlPanel\ControlPanelAreaRegistration.cs" />
     <Compile Include="Attributes\WebStatusAttribute.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Helper\CaptchaImageResult.cs" />
     <Compile Include="Helper\CaptchaResult.cs" />
     <Compile Include="Helper\C_NumberToString.cs" />
+    <Compile Include="Helper\Data.cs" />
     <Compile Include="Helper\DatabaseOperation.cs" />
     <Compile Include="Helper\DateConvertor.cs" />
     <Compile Include="Helper\EnumMethod.cs" />
@@ -248,6 +250,18 @@
     <Compile Include="Migrations\202002050440075_EditEmaiInfo1.cs" />
     <Compile Include="Migrations\202002050440075_EditEmaiInfo1.Designer.cs">
       <DependentUpon>202002050440075_EditEmaiInfo1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002090807225_AddFieldSMTP_PortEmailInfo.cs" />
+    <Compile Include="Migrations\202002090807225_AddFieldSMTP_PortEmailInfo.Designer.cs">
+      <DependentUpon>202002090807225_AddFieldSMTP_PortEmailInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002090853199_AddFieldSMTPEmailInfo.cs" />
+    <Compile Include="Migrations\202002090853199_AddFieldSMTPEmailInfo.Designer.cs">
+      <DependentUpon>202002090853199_AddFieldSMTPEmailInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002090902125_AddFieldHostNameEmailInfo.cs" />
+    <Compile Include="Migrations\202002090902125_AddFieldHostNameEmailInfo.Designer.cs">
+      <DependentUpon>202002090902125_AddFieldHostNameEmailInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -855,6 +869,7 @@
     <Content Include="Views\Shared\_LayoutPageLogin.cshtml" />
     <Content Include="Areas\ControlPanel\Views\WebSetting\WebsiteStatus.cshtml" />
     <Content Include="Areas\ControlPanel\Views\BlogManage\CommnetDetails.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\Report\WebSiteVisit.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\ContentDetail.cshtml" />
@@ -892,6 +907,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002050440075_EditEmaiInfo1.resx">
       <DependentUpon>202002050440075_EditEmaiInfo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002090807225_AddFieldSMTP_PortEmailInfo.resx">
+      <DependentUpon>202002090807225_AddFieldSMTP_PortEmailInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002090853199_AddFieldSMTPEmailInfo.resx">
+      <DependentUpon>202002090853199_AddFieldSMTPEmailInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002090902125_AddFieldHostNameEmailInfo.resx">
+      <DependentUpon>202002090902125_AddFieldHostNameEmailInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data;
+using WebApp.Helpers;
 
 namespace mbensaeed.Areas.ControlPanel.Controllers
 {
@@ -103,12 +105,46 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             using (var _Context=new ApplicationDbContext())
             {
                 var objPostCommnet = new RepositoryPattern<PostComment>(_Context);
-                var AllCommnet = objPostCommnet.GetAll().OrderByDescending(x => x.SendTime).OrderByDescending(x => x.SendDate); ;
+                var AllCommnet = objPostCommnet.GetAll().OrderByDescending(x => x.SendTime).OrderByDescending(x => x.SendDate).OrderBy(x => x.Is_Read);
                 return View(AllCommnet);
             }
           
         }
-
+        [AjaxOnly]
+        public JsonResult GetCommentsDetails(int id)
+        {
+            using (var _Context = new ApplicationDbContext())
+            {
+                var _objEntityComment = new RepositoryPattern<PostComment>(_Context);
+                var result = _objEntityComment.GetByPredicate(x => x.ID == id);
+                // _objEntityMedia.Dispose();
+                return Json(Data.UnProxy(_Context, result));
+            }
+        }
+        [AjaxOnly]
+        public JsonResult ReadComment(int id)
+        {
+            try
+            {
+                using (var _Context = new ApplicationDbContext())
+                {
+                    var _objEntityComment = new RepositoryPattern<PostComment>(_Context);
+                    var CurrentItem = _objEntityComment.GetByPredicate(x => x.ID == id);
+                    if (CurrentItem != null)
+                    {
+                        CurrentItem.Is_Read = "1";
+                        _objEntityComment.Update(CurrentItem);
+                        _objEntityComment.Save();
+                        _objEntityComment.Dispose();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return Json("OK");
+            }
+            return Json("OK");
+        }
         [HttpGet]
         public ActionResult WebManagement()//(string returnUrl)
         {

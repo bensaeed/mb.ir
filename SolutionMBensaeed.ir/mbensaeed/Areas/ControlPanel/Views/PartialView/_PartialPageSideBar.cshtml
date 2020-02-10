@@ -58,7 +58,7 @@
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="@Url.Action("CreatePost","BlogManage",new { Area ="ControlPanel"})">ايجاد پست جديد</a></li>
-                   
+
                         <li><a href="@Url.Action("CommnetDetails","BlogManage",new { Area ="ControlPanel"})">مشاهده ديدگاه ها</a></li>
                     </ul>
                 </li>
@@ -69,7 +69,13 @@
                         <li><a href="@Url.Action("WebsiteStatus","WebSetting",new { Area ="ControlPanel"})">وضعیت نمایش وبسایت</a></li>
                     </ul>
                 </li>
-
+                <li class="nav-small-cap">گزارشات</li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="@Url.Action("WebSiteVisit","Report",new { Area ="ControlPanel"})">وضعیت بازديد وبسایت</a></li>
+                    </ul>
+                </li>
                 <li class="nav-small-cap">اجزاء اضافی</li>
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">طرح بندی صفحه</span></a>
