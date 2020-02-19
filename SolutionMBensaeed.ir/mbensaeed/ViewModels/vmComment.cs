@@ -8,6 +8,7 @@ namespace mbensaeed.ViewModels
 {
     public class vmComment
     {
+        public int ID { get; set; }
         public int PostID { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
@@ -16,5 +17,6 @@ namespace mbensaeed.ViewModels
         [MaxLength(8, ErrorMessage = "اطلاعات {0} وارد شده نبايد كمتر از {1} كاركتر باشد")]
         [Display(Name = "تاريخ خوانده شده شمسی")]
         public string IsRead { get; set; }
+        public string Is_Active { get; set; }
     }
 }

@@ -73,10 +73,10 @@ namespace mbensaeed.Controllers
                     var strSubject = " نام و نام خانوادگی : " + NewItem.FullName;
                     var strMessage =
                         " ارتباط با مديريت وب سايت" +
-                        " \n " + NewItem.CommentUser +
-                        " \n " + " ایمیل : " + NewItem.Email +
-                        " \n " + " شماره همراه : " + NewItem.PhoneNumber +
-                        " \n " + " تاریخ و ساعت ارسال : " + NewItem.SendDate + " - " + NewItem.SendTime;
+                        "  <br />  " + NewItem.CommentUser +
+                        "  <br />  " + " ایمیل : " + NewItem.Email +
+                        "  <br />  " + " شماره همراه : " + NewItem.PhoneNumber +
+                        "  <br />  " + " تاریخ و ساعت ارسال : " + NewItem.SendDate + " - " + NewItem.SendTime;
 
                     await emailService.SendMail(strSubject, strMessage);
                 }

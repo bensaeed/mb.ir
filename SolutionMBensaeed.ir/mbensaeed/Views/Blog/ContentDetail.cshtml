@@ -232,6 +232,11 @@
                     else
                     {
                         $("#NewComment").append(x);
+                        toastr.success('با تشکر، ديدگاه شما با موفقیت ارسال شد.', 'ارسال ديدگاه', { timeOut: 6000 })
+                        setTimeout(function () {
+                            //dialog.modal('hide');
+                            //location.reload();
+                        }, 3000)
                     }
                     }
                 };

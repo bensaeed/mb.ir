@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace mbensaeed.Helper
@@ -49,12 +50,33 @@ namespace mbensaeed.Helper
                 proxy = IpInfo.proxy,// == true ? "1" : "0"
                 reverse = IpInfo.reverse
             };
+
+
             _objEntityWebsiteVisit.Insert(newItem);
             _objEntityWebsiteVisit.Save();
+
+            //try
+            //{
+                //var strSubject = " بازديد از وبسايت " + newItem.DateShamsi + " "  + newItem.VisitTime;
+                //var strMessage =
+                //    " بازديد وب سايت" +
+                //    "  <br />  " + newItem.IP_Address +
+                //    "  <br />  " + " مشخصات دستگاه : " + newItem.DeviceInfo +
+                //    "  <br />  " + " كشور : " + newItem.country +
+                //    "  <br />  " + " شهر و منطقه : " + newItem.regionName + " - " + newItem.city;
+            
+                //OpratingClasses.EmailService emailService = new OpratingClasses.EmailService();
+                //emailService.SendMail(strSubject, strMessage).GetAwaiter().GetResult();
+               
+            //}
+            //catch (Exception)
+            //{
+            //}
             var cou = newItem.ID;
             _objEntityWebsiteVisit.Dispose();
 
         }
+   
         public static string TimeNow()
         {
             return DateTime.Now.ToString("HH:mm:ss");

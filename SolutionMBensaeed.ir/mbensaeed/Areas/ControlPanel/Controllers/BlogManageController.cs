@@ -100,15 +100,15 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             }
         }
 
-        public  ActionResult CommnetDetails()
+        public ActionResult CommnetDetails()
         {
-            using (var _Context=new ApplicationDbContext())
+            using (var _Context = new ApplicationDbContext())
             {
                 var objPostCommnet = new RepositoryPattern<PostComment>(_Context);
                 var AllCommnet = objPostCommnet.GetAll().OrderByDescending(x => x.SendTime).OrderByDescending(x => x.SendDate).OrderBy(x => x.Is_Read);
                 return View(AllCommnet);
             }
-          
+
         }
         [AjaxOnly]
         public JsonResult GetCommentsDetails(int id)
@@ -133,6 +133,36 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                     if (CurrentItem != null)
                     {
                         CurrentItem.Is_Read = "1";
+                        _objEntityComment.Update(CurrentItem);
+                        _objEntityComment.Save();
+                        _objEntityComment.Dispose();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return Json("OK");
+            }
+            return Json("OK");
+        }
+        [AjaxOnly]
+        public JsonResult EditComment(vmComment input)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json("faild");
+            }
+            try
+            {
+                using (var _Context = new ApplicationDbContext())
+                {
+                    var _objEntityComment = new RepositoryPattern<PostComment>(_Context);
+                    var CurrentItem = _objEntityComment.GetByPredicate(x => x.ID == input.ID);
+                    if (CurrentItem != null)
+                    {
+                        CurrentItem.Is_Active =input.Is_Active;
+                        CurrentItem.FullName = input.FullName;
+                        CurrentItem.Comment = input.Comment;
                         _objEntityComment.Update(CurrentItem);
                         _objEntityComment.Save();
                         _objEntityComment.Dispose();

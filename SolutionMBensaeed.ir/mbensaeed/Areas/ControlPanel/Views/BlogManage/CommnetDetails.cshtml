@@ -65,11 +65,11 @@
                                                             var AssignLoadFuntionValue = "LoadEntity('" + item.ID + "')";
                                                             if (item.Is_Read != "1")
                                                             {
-                                                                <button class="btn btn-danger btn-xs" onclick="@AssignLoadFuntionValue"><i class="fa fa-pencil text-inverse m-r-10"></i></button>
+                                                                <button class="btn btn-danger btn-xs" onclick="@AssignLoadFuntionValue"><i class="fa fa-pencil text-inverse m-r-10" ></i></button>
                                                             }
                                                             else
                                                             {
-                                                                <button class="btn btn-default btn-xs" onclick="@AssignLoadFuntionValue"><i class="fa fa-pencil text-inverse m-r-10"></i></button>
+                                                                <button class="btn btn-default btn-xs" onclick="@AssignLoadFuntionValue"><i class="fa fa-pencil text-inverse m-r-10" ></i></button>
                                                             }
                                                         }
                                                     </td>
@@ -89,7 +89,7 @@
 <input type="hidden" id="CurrentCommentID" />
 <input type="hidden" id="CurrentCommentStateReadID" />
 <div id="EditEntityModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">ديدگاه</h4>
@@ -111,17 +111,34 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="control-label">
-                            @Html.DisplayNameFor(x => x.Is_Active)
+                        @*<div class="control-label">
+                                @Html.DisplayNameFor(x => x.Is_Active)
+                            </div>*@
+
+                        <h4 class="card-title">وضعیت نمایش ديدگاه</h4>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="switch">
+                                            <label>
+                                                نمايش
+                                                <input type="checkbox" id="StatusActive_ID" name="OptRadioActiveStateID" checked="" >
+
+                                                <span class="lever"></span>
+                                                عدم نمايش
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    
-                        @Html.CheckBox(true, new { @class = "form-control", id = "Is_ActiveID" })
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">بستن</button>
-                @*<button type="button" class="btn btn-danger waves-effect waves-light">ذخیره تغییرات</button>*@
+                <button id="submitButton" type="submit" class="btn btn-danger waves-effect waves-light">ذخیره تغییرات</button>
             </div>
         </div>
     </div>
@@ -129,6 +146,20 @@
 
 @section scripts {
     <script type="text/javascript">
+        $(document).ready(function () {
+        toastr.options.positionClass = "toast-bottom-left";
+        }
+        );
+          $("#StatusActive_ID").on('change', function (){
+            if ($(this).is(':checked')) {
+                $(this).attr('value', 'true');
+                //alert($(this).val());
+            }
+            else {
+               $(this).attr('value', 'false');
+               //alert($(this).val());
+            }
+        });
         function LoadEntity(id) {
             //$('#EditEntityModal').modal();
             $("#CurrentCommentID").val(id);
@@ -143,6 +174,14 @@
                 $("#FullNameID").val(x.FullName);
                 $("#CommentID").val(x.Comment);
                 $("#CurrentCommentStateReadID").val(x.Is_Read);
+
+                if (x.Is_Active === "1") {
+                    document.getElementById("StatusActive_ID").checked = true;
+                    document.getElementById("StatusActive_ID").val = true;
+                } else {
+                    document.getElementById("StatusActive_ID").checked = false;
+                    document.getElementById("StatusActive_ID").val = false;
+                }
                 $('#EditEntityModal').modal();
             };
             $.ajax(options);
@@ -164,11 +203,47 @@
             options.datatype = "json";
             options.contentType = "application/json";
             options.success = function (x) {
-                if (x === "OK") {
-                    //location.reload();
-                }
+                //if (x === "OK") {
+                //    location.reload();
+                //}
             };
             $.ajax(options);
         }
+        function EditComment(ID, FullName, Comment, Is_Active) {
+            //toastr.options.positionClass = "toast-bottom-left";
+            var options = {};
+            options.url = "@Url.Action("EditComment", "BlogManage", new { area ="ControlPanel"})";
+            options.type = "POST";
+            options.data = JSON.stringify({
+                ID:ID,
+                FullName:FullName,
+                Comment:Comment,
+                Is_Active:Is_Active
+            });
+            options.datatype = "json";
+            options.contentType = "application/json";
+            options.success = function (x) {
+                $('#EditEntityModal').modal('hide');
+                if (x === "OK") {
+                        toastr.success('ديدگاه با موفقیت ويرايش گرديد.', 'ويرايش ديدگاه', { timeOut: 6000 })
+                        setTimeout(function () {
+                        dialog.modal('hide');
+                           // location.reload();
+                        }, 3000)
+                }
+            };
+            $.ajax(options);
+        }@**@
+        $("#submitButton")
+            .click(function () {
+                var ID = $("#CurrentCommentID").val();
+                var FullName=$("#FullNameID").val();
+                var Comment = $("#CommentID").val();
+                var Is_Active = "1";
+                if (document.getElementById("StatusActive_ID").checked == false)
+                    Is_Active = "0";
+
+                EditComment(ID, FullName, Comment,Is_Active);
+            });
     </script>
 }

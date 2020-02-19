@@ -55,6 +55,7 @@ namespace mbensaeed
                     "~/Content/ControlPanel/assets/plugins/bootstrap-select/bootstrap-select.min.css",
                     "~/Content/ControlPanel/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.css",
                     "~/Content/ControlPanel/assets/plugins/morrisjs/morris.css",
+                      "~/Content/css/toastr.min.css",
                     "~/Content/ControlPanel/css/style.css",
                      "~/Content/ControlPanel/assets/plugins/summernote/dist/summernote.css"
                    ));
@@ -74,6 +75,7 @@ namespace mbensaeed
                 "~/Scripts/ControlPanel/assets/plugins/summernote/dist/summernote.min.js",
                 "~/Scripts/ControlPanel/js/dashboard1.js",
                 "~/Scripts/CustomOperation.js",
+                "~/Scripts/js/toastr.min.js",
                 "~/Scripts/ControlPanel/assets/plugins/bootstrap-select/bootstrap-select.min.js",
                 "~/Scripts/ControlPanel/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js",
                 "~/Scripts/ControlPanel/assets/plugins/styleswitcher/jQuery.style.switcher.js"));
