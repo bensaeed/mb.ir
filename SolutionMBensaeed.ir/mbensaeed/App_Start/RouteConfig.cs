@@ -18,6 +18,7 @@ namespace mbensaeed
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            //https://devblogs.microsoft.com/aspnet/attribute-routing-in-asp-net-mvc-5/
         }
     }
 }

@@ -18,7 +18,7 @@ namespace mbensaeed.Helper
         {
             NetworkOperation objNetworkOperation = new NetworkOperation();
             //string CurrentClientIP = ClientIPaddress();
-            IpInformation IpInfo= GetLocationIPINFO(CurrentClientIP);
+            IpInformation IpInfo = GetLocationIPINFO(CurrentClientIP);
 
             var _objEntityWebsiteVisit = new RepositoryPattern<WebsiteVisit>(new ApplicationDbContext());
 
@@ -37,7 +37,7 @@ namespace mbensaeed.Helper
                 countryCode = IpInfo.countryCode,
                 isp = IpInfo.isp,
                 lat = IpInfo.lat,
-                lon =(IpInfo.lon),
+                lon = (IpInfo.lon),
                 org = IpInfo.org,
                 query = IpInfo.query,
                 region = IpInfo.region,
@@ -55,28 +55,28 @@ namespace mbensaeed.Helper
             _objEntityWebsiteVisit.Insert(newItem);
             _objEntityWebsiteVisit.Save();
 
-            //try
-            //{
-                //var strSubject = " بازديد از وبسايت " + newItem.DateShamsi + " "  + newItem.VisitTime;
-                //var strMessage =
-                //    " بازديد وب سايت" +
-                //    "  <br />  " + newItem.IP_Address +
-                //    "  <br />  " + " مشخصات دستگاه : " + newItem.DeviceInfo +
-                //    "  <br />  " + " كشور : " + newItem.country +
-                //    "  <br />  " + " شهر و منطقه : " + newItem.regionName + " - " + newItem.city;
-            
-                //OpratingClasses.EmailService emailService = new OpratingClasses.EmailService();
-                //emailService.SendMail(strSubject, strMessage).GetAwaiter().GetResult();
-               
-            //}
-            //catch (Exception)
-            //{
-            //}
+            try
+            {
+                var strSubject = " بازديد از وبسايت " + newItem.DateShamsi + " " + newItem.VisitTime;
+                var strMessage =
+                    " بازديد وب سايت" +
+                    "  <br />  " + " IP Address : "+ newItem.IP_Address +
+                    "  <br />  " + " مشخصات دستگاه : " + newItem.DeviceInfo +
+                    "  <br />  " + " كشور : " + newItem.country +
+                    "  <br />  " + " شهر و منطقه : " + newItem.regionName + " - " + newItem.city;
+
+                OpratingClasses.EmailService emailService = new OpratingClasses.EmailService();
+                Task.Factory.StartNew(() => emailService.SendMail(strSubject, strMessage));
+
+            }
+            catch (Exception)
+            {
+            }
             var cou = newItem.ID;
             _objEntityWebsiteVisit.Dispose();
 
         }
-   
+
         public static string TimeNow()
         {
             return DateTime.Now.ToString("HH:mm:ss");

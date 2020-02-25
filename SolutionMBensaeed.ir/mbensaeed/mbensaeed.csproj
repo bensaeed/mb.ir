@@ -870,6 +870,8 @@
     <Content Include="Areas\ControlPanel\Views\WebSetting\WebsiteStatus.cshtml" />
     <Content Include="Areas\ControlPanel\Views\BlogManage\CommnetDetails.cshtml" />
     <Content Include="Areas\ControlPanel\Views\Report\WebSiteVisit.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\BlogManage\AllPost.cshtml" />
+    <Content Include="Areas\ControlPanel\Views\BlogManage\EditPost.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\ContentDetail.cshtml" />

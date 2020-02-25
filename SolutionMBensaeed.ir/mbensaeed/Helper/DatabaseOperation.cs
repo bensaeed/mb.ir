@@ -46,7 +46,8 @@ namespace mbensaeed.Helper
                               Title = pst.Title,
                               ViewCount = pst.Activity.Where(x => x.ActivityTypeId == 1).Count(),
                               ImageUrl = im.FileUrl.Substring(1),//_image.Single(x=>x.ID==pst.ImageID).FileUrl, //pst.Image.FileUrl,
-                              IsActive = pst.IsActive
+                              IsActive = pst.IsActive,
+                              CategoryID=pst.CategoryID
                           }
                             ).OrderByDescending(x => x.PostTime)
                             .ThenByDescending(x => x.PostDate)

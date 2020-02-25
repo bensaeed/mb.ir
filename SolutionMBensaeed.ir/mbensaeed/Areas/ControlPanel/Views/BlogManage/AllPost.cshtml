@@ -1,0 +1,100 @@
+﻿@model IEnumerable<mbensaeed.Models.Post>
+@using mbensaeed.Helper
+@{
+    DatabaseOperation _dop = new DatabaseOperation();
+    _dop.SaveLog();
+    var ListPost = _dop.GetAllPost("all").ToList();
+
+    ViewBag.Title = "ليست پست های وبسايت";
+    Layout = "~/Areas/ControlPanel/Views/Shared/_LayoutPageMain.cshtml";
+
+}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">ليست پست های وبسايت</h3>
+        </div>
+        @*<div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">مديريت وبلاگ</a></li>
+                    <li class="breadcrumb-item">پست هاي وبلاگ</li>
+                    <li class="breadcrumb-item active">ايجاد پست جديد</li>
+                </ol>
+            </div>*@
+        <div class="">
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">ليست پست ها</h4>
+                        <h6 class="card-subtitle">ليست پست ها</h6>
+                        <div class="table-responsive m-t-40">
+                            <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                                <div class="dataTables_length" id="myTable_length"><label>نمایش <select name="myTable_length" aria-controls="myTable" class=""><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> مورد</label></div><div id="myTable_filter" class="dataTables_filter"><label>جستجو:<input type="search" class="" placeholder="" aria-controls="myTable"></label></div><table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid" aria-describedby="myTable_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 93.883px;" aria-sort="ascending" aria-label="عنوان: activate to sort column descending">عنوان</th>
+                                            <th class="sorting_asc" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 93.883px;" aria-sort="ascending" aria-label="طبقه بندی: activate to sort column descending">طبقه بندی</th>
+                                            @*<th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 217.483px;" aria-label="محتوای پست: activate to sort column ascending">محتوای پست</th>*@
+                                            @*<th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 151.983px;" aria-label="دفتر(محل کار): activate to sort column ascending">دفتر(محل کار)</th>*@
+                                            @*<th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 64.1833px;" aria-label="سن: activate to sort column ascending">سن</th>*@
+                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 132.75px;" aria-label="تاریخ ثبت: activate to sort column ascending">تاریخ و ساعت ثبت</th>
+                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 117.717px;" aria-label="وضعيت: activate to sort column ascending">وضعيت</th>
+                                            <th class="sorting" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1" style="width: 117.717px;" aria-label="جزئيات: activate to sort column ascending">مشاهده جزئيات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{ foreach (var item in ListPost)
+                                            {
+                                                var StrDateTime = @item.PostDate + "-" + @item.PostTime;
+                                                var strState = @item.IsActive == "1" ? "فعال" : "غير فعال";
+                                                <tr role="row" class="odd">
+                                                    <td class="sorting_1">@item.Title</td>
+                                                    <td class="sorting_1">@item.Category</td>
+                                                    @*<td>@Html.Raw(@item.Content)</td>*@
+
+                                                    <td>@StrDateTime</td>
+                                                    <td>
+                                                        @strState
+                                                    </td>
+                                                    <td align="center">
+                                                        @{
+                                                            @*<button class="btn btn-primary btn-xs">*@
+                                                            @*<i class="fa fa-pencil text-inverse m-r-10">
+                                                                <a href="@Html.Action("EditPost","BlogManage",new { id=item.PostID})">
+                                                                </a>
+                                                            </i>*@
+
+                                                            <a class="blog-btn" href="@Url.Action("EditPost", "BlogManage" ,new { id =item.PostID })">
+                                                                @*<i class="fas fa-long-arrow-alt-left"></i>*@
+                                                                <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                                            </a>
+
+                                                            @*</button>*@
+                                                        }
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table><div class="dataTables_info" id="myTable_info" role="status" aria-live="polite">نمایش 1 تا 10 از 61 مورد</div><div class="dataTables_paginate paging_simple_numbers" id="myTable_paginate"><a class="paginate_button previous disabled" aria-controls="myTable" data-dt-idx="0" tabindex="0" id="myTable_previous">قبلی</a><span><a class="paginate_button current" aria-controls="myTable" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="5" tabindex="0">5</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="6" tabindex="0">6</a><a class="paginate_button " aria-controls="myTable" data-dt-idx="7" tabindex="0">7</a></span><a class="paginate_button next" aria-controls="myTable" data-dt-idx="8" tabindex="0" id="myTable_next">بعدی</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="CurrentCommentID" />
+<input type="hidden" id="CurrentCommentStateReadID" />
+
+

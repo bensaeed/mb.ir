@@ -44,7 +44,7 @@
                 <li class="nav-devider"></li>
                 <li class="nav-small-cap">اطلاعات پايه</li>
                 <li>
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">داشبورد <span class="label label-rouded label-themecolor pull-right">4</span></span></a>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">اطلاعات پايه <span class="label label-rouded label-themecolor pull-right">4</span></span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="index.html">مینیمال</a></li>
                         <li><a href="index2.html">تحلیلی</a></li>
@@ -57,28 +57,28 @@
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
                     <ul aria-expanded="false" class="collapse">
+                        <li><a href="@Url.Action("ALLPost","BlogManage",new { Area ="ControlPanel"})">مشاهده پست ها</a></li>
                         <li><a href="@Url.Action("CreatePost","BlogManage",new { Area ="ControlPanel"})">ايجاد پست جديد</a></li>
-
                         <li><a href="@Url.Action("CommnetDetails","BlogManage",new { Area ="ControlPanel"})">مشاهده ديدگاه ها</a></li>
                     </ul>
                 </li>
                 <li class="nav-small-cap">تنظيمات وبسايت</li>
                 <li>
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-settings"></i><span class="hide-menu">تنظيمات وبسايت</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="@Url.Action("WebsiteStatus","WebSetting",new { Area ="ControlPanel"})">وضعیت نمایش وبسایت</a></li>
                     </ul>
                 </li>
-                <li class="nav-small-cap">گزارشات</li>
+                <li class="nav-small-cap">داشبورد</li>
                 <li>
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">پست هاي وبلاگ</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="@Url.Action("WebSiteVisit","Report",new { Area ="ControlPanel"})">وضعیت بازديد وبسایت</a></li>
                     </ul>
                 </li>
                 <li class="nav-small-cap">اجزاء اضافی</li>
                 <li>
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">طرح بندی صفحه</span></a>
+                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">طرح بندی صفحه</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="layout-single-column.html">1 ستون</a></li>
                         <li><a href="layout-fix-header.html">سرتیتر ثابت</a></li>

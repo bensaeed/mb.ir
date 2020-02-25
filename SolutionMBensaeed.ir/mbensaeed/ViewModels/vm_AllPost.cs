@@ -15,6 +15,7 @@ namespace mbensaeed.ViewModels
         public string PostDate { get; set; }
         public string PostTime { get; set; }
         public string Labels { get; set; }
+        public int CategoryID { get; set; }
         public string Category { get; set; }
         public int ViewCount { get; set; }
         public int LikeCount { get; set; }
