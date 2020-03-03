@@ -233,6 +233,7 @@
     <Compile Include="Helper\DateConvertor.cs" />
     <Compile Include="Helper\EnumMethod.cs" />
     <Compile Include="Helper\HelpOperation.cs" />
+    <Compile Include="Helper\HtmlPageSEO.cs" />
     <Compile Include="Helper\NetworkOperation.cs" />
     <Compile Include="Helper\VisitWebsiteLog.cs" />
     <Compile Include="Migrations\202001271249382_Init.cs" />

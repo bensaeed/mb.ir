@@ -9,6 +9,7 @@ using mbensaeed.Helper;
 using System.Threading.Tasks;
 using mbensaeed.Attributes;
 using mbensaeed.Repositories;
+using HD.Commons;
 
 namespace mbensaeed.Controllers
 {
@@ -26,17 +27,26 @@ namespace mbensaeed.Controllers
         [HttpGet]
         public async Task<ActionResult> Index(int? Page, string Tag, string Category)
         {
-            ViewBag.Title = "وبلاگ";
+           
+           // ViewBag.Title = "وبلاگ";
             string TitlePage = "آخرين مطالب";
             if (!(Tag == "" || Tag == null))
             {
-                TitlePage = "مطالب مشابه به : " + Tag;
+                TitlePage = "مطالب وبلاگ مشابه به : " + Tag;
             }
             else if (!(Category == "" || Category == null))
             {
-                TitlePage = "مطالب در دسته بندی : " + Category;
+                TitlePage = "مطالب وبلاگ در دسته بندی : " + Category;
             }
             ViewBag.TitlePage = TitlePage;
+               ViewBag.SeoData = HtmlPageSEO.GetHeadPageData(TitlePage, new robot[] { robot.noindex, robot.nofollow },
+               new HtmlMetaTag[]
+               {
+                new HtmlMetaTag(){name = MetaName.author , content ="محمد بن سعيد"},
+                new HtmlMetaTag(){name = MetaName.description , content ="مطالب پست شده در قالب وبلاگ وبسايت شخصی محمد بن سعيد - فناوری اطلاعات"}
+               },
+               null);
+
             PagingStatus.PageIndex = (Page ?? 1) - 1;
             var ListAllPost = await GetPost(PagingStatus.PageIndex, PagingStatus.ItemsPerPage/*, out int totalCount*/, Tag, Category);
             var result = new StaticPagedList<vm_AllPost>(ListAllPost, PagingStatus.PageIndex + 1, PagingStatus.ItemsPerPage, ListAllPost.Count());
@@ -90,6 +100,16 @@ namespace mbensaeed.Controllers
                 var _PostComment = _objEntityPostComment.SearchFor(x=>x.PostID==PostID && x.Is_Active=="1").ToList();
                 ViewBag.listPostComment = _PostComment;
             }
+
+            ViewBag.SeoData = HtmlPageSEO.GetHeadPageData(Result.FirstOrDefault().Title, new robot[] { robot.index, robot.follow },
+             new HtmlMetaTag[]
+             {
+                new HtmlMetaTag(){name = MetaName.author , content ="محمد بن سعيد"},
+                new HtmlMetaTag(){name = MetaName.keywords , content =Result.FirstOrDefault().Labels},
+                new HtmlMetaTag(){name = MetaName.description , content =""}
+             },
+             null);
+
             return View(Result);
         }
         [AjaxOnly]

@@ -1,4 +1,5 @@
-﻿using mbensaeed.Attributes;
+﻿using HD.Commons;
+using mbensaeed.Attributes;
 using mbensaeed.Helper;
 using mbensaeed.Models;
 using mbensaeed.Repositories;
@@ -21,6 +22,17 @@ namespace mbensaeed.Controllers
         public ActionResult Index()
         {
             //throw new System.Exception("hhhh");
+
+
+            ViewBag.SeoData = HtmlPageSEO.GetHeadPageData("وبسايت شخصی محمد بن سعيد", new robot[] { robot.index, robot.follow },
+               new HtmlMetaTag[]
+               {
+                new HtmlMetaTag(){name = MetaName.author , content ="محمد بن سعيد"},
+                new HtmlMetaTag(){name = MetaName.description , content ="وبسايت شخصی محمد بن سعيد - فناوری اطلاعات"}
+               },
+               null);
+               //PublicDigiNotesInfo.ServerAddress + "/AboutUs");
+
             return View();
         }
         [HttpPost]
@@ -44,6 +56,12 @@ namespace mbensaeed.Controllers
         [HttpGet]
         public ActionResult Contact_US()
         {
+            ViewBag.SeoData = HtmlPageSEO.GetHeadPageData("ارتباط با مديريت وبسايت", new robot[] { robot.noindex, robot.nofollow },
+               new HtmlMetaTag[]
+               {
+                new HtmlMetaTag(){name = MetaName.author , content ="محمد بن سعيد"}
+               },
+               null);
             return View();
         }
         [HttpPost]

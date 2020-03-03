@@ -207,103 +207,103 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
         [HttpPost]
         [AjaxOnly]
         [ValidateInput(false)]
-        public JsonResult EditPost(vmPublishPost input)
-        {
-           //delete image
-                using (var _Context = new HeyatEntities())
-                {
-                    var _objEntityMedia = new RepositoryPattern<TBL_Media>(_Context);
-                    var _objEntityCover = new RepositoryPattern<TBL_Cover>(_Context);
-                    var _objEntityAction = new RepositoryPattern<TBL_Action>(_Context);
-                    var tId = Convert.ToString(MediaID);
-                    var itemMedia = _objEntityMedia.GetByPredicate(x => x.ID == tId);
-                    var itemCover = _objEntityCover.GetByPredicate(x => x.ID == itemMedia.ID_Cover);
-                    var itemAction = _objEntityAction.GetByPredicate(x => x.ID_Media == tId);
-                    if (HelpOperation.RemoveMediaFromServer(itemMedia.FilePathOnServer) && HelpOperation.RemoveMediaFromServer(itemMedia.TBL_Cover.FilePathOnServer))
-                    {
-                        if (itemAction != null)
-                        {
-                            _objEntityAction.DeleteMoreItem(x => x.ID_Media == tId);
-                            _objEntityAction.Save();
+        //public JsonResult EditPost(vmPublishPost input)
+        //{
+        //   //delete image
+        //        using (var _Context = new HeyatEntities())
+        //        {
+        //            var _objEntityMedia = new RepositoryPattern<TBL_Media>(_Context);
+        //            var _objEntityCover = new RepositoryPattern<TBL_Cover>(_Context);
+        //            var _objEntityAction = new RepositoryPattern<TBL_Action>(_Context);
+        //            var tId = Convert.ToString(MediaID);
+        //            var itemMedia = _objEntityMedia.GetByPredicate(x => x.ID == tId);
+        //            var itemCover = _objEntityCover.GetByPredicate(x => x.ID == itemMedia.ID_Cover);
+        //            var itemAction = _objEntityAction.GetByPredicate(x => x.ID_Media == tId);
+        //            if (HelpOperation.RemoveMediaFromServer(itemMedia.FilePathOnServer) && HelpOperation.RemoveMediaFromServer(itemMedia.TBL_Cover.FilePathOnServer))
+        //            {
+        //                if (itemAction != null)
+        //                {
+        //                    _objEntityAction.DeleteMoreItem(x => x.ID_Media == tId);
+        //                    _objEntityAction.Save();
 
-                        }
+        //                }
 
-                        _objEntityMedia.Delete(itemMedia.ID);
+        //                _objEntityMedia.Delete(itemMedia.ID);
 
 
-                        _objEntityCover.Delete(itemCover.ID);
+        //                _objEntityCover.Delete(itemCover.ID);
 
-                        _objEntityMedia.Save();
-                        _objEntityCover.Save();
+        //                _objEntityMedia.Save();
+        //                _objEntityCover.Save();
 
-                        _objEntityAction.Dispose();
-                        _objEntityMedia.Dispose();
-                        _objEntityCover.Dispose();
+        //                _objEntityAction.Dispose();
+        //                _objEntityMedia.Dispose();
+        //                _objEntityCover.Dispose();
 
                
-                }
-            }
-                //edit
-            if (!ModelState.IsValid)
-            {
-                return Json("faild");
-            }
+        //        }
+        //    }
+        //        //edit
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Json("faild");
+        //    }
 
-            string NewImageID;
-            //InfoUser AppUser = new InfoUser();
-            var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
-            //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
-            if (input.FlagHaveFile == true)
-            {
-                HelpOperation.CreateArchiveFolderOnTheServer();
-                HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
-                var FileSize = HelpOperation.ToFileSize(hpf.ContentLength);
-                var GuidID = HelpOperation.NewGuidID();
-                var FileNameOnServer = GuidID + Path.GetExtension(hpf.FileName);
-                var FilePath = @"~\MediaFiles\Image\" + FileNameOnServer;
-                var FilePathOnServer = Server.MapPath(FilePath);
-                var FileUrl = HelpOperation.MapToUrl(FilePath);
-                Request.Files[0].SaveAs(FilePathOnServer);
-                using (var _ContextImage = new ApplicationDbContext())
-                {
-                    var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
-                    var NewItemImage = new Image
-                    {
-                        ID = GuidID,
-                        TitleUrl = input.Title,
-                        FileName = FileNameOnServer,
-                        FileSize = FileSize,
-                        FileUrl = FileUrl,
-                        FilePathOnServer = FilePath
-                    };
-                    NewImageID = GuidID;
-                    _objEntityImage.Insert(NewItemImage);
-                    _objEntityImage.Save();
-                    _objEntityImage.Dispose();
-                }
-            }
+        //    string NewImageID;
+        //    //InfoUser AppUser = new InfoUser();
+        //    var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
+        //    //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
+        //    if (input.FlagHaveFile == true)
+        //    {
+        //        HelpOperation.CreateArchiveFolderOnTheServer();
+        //        HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
+        //        var FileSize = HelpOperation.ToFileSize(hpf.ContentLength);
+        //        var GuidID = HelpOperation.NewGuidID();
+        //        var FileNameOnServer = GuidID + Path.GetExtension(hpf.FileName);
+        //        var FilePath = @"~\MediaFiles\Image\" + FileNameOnServer;
+        //        var FilePathOnServer = Server.MapPath(FilePath);
+        //        var FileUrl = HelpOperation.MapToUrl(FilePath);
+        //        Request.Files[0].SaveAs(FilePathOnServer);
+        //        using (var _ContextImage = new ApplicationDbContext())
+        //        {
+        //            var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
+        //            var NewItemImage = new Image
+        //            {
+        //                ID = GuidID,
+        //                TitleUrl = input.Title,
+        //                FileName = FileNameOnServer,
+        //                FileSize = FileSize,
+        //                FileUrl = FileUrl,
+        //                FilePathOnServer = FilePath
+        //            };
+        //            NewImageID = GuidID;
+        //            _objEntityImage.Insert(NewItemImage);
+        //            _objEntityImage.Save();
+        //            _objEntityImage.Dispose();
+        //        }
+        //    }
 
-            using (var _context = new ApplicationDbContext())
-            {
-                var objEntityPost = new RepositoryPattern<Post>(_context);
-                var CurrentItem = objEntityPost.GetByPredicate(x => x.ID == input.PostID);
+        //    using (var _context = new ApplicationDbContext())
+        //    {
+        //        var objEntityPost = new RepositoryPattern<Post>(_context);
+        //        var CurrentItem = objEntityPost.GetByPredicate(x => x.ID == input.PostID);
 
-                CurrentItem.Title = input.Title;
-                CurrentItem.CategoryID = input.CategoryID;
-                //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
-                CurrentItem.Content = input.Content;
-                CurrentItem.IsActive = input.IsActive == "true" ? "1" : "0";
-                CurrentItem.Labels = input.Tagsinput;
-                CurrentItem.PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate());
-                CurrentItem.PostTime = DateConvertor.TimeNowShort();
+        //        CurrentItem.Title = input.Title;
+        //        CurrentItem.CategoryID = input.CategoryID;
+        //        //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
+        //        CurrentItem.Content = input.Content;
+        //        CurrentItem.IsActive = input.IsActive == "true" ? "1" : "0";
+        //        CurrentItem.Labels = input.Tagsinput;
+        //        CurrentItem.PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate());
+        //        CurrentItem.PostTime = DateConvertor.TimeNowShort();
 
-                objEntityPost.Update(CurrentItem);
-                objEntityPost.Save();
+        //        objEntityPost.Update(CurrentItem);
+        //        objEntityPost.Save();
 
-                objEntityPost.Dispose();
-            }
-            return Json("OK");
-        }
+        //        objEntityPost.Dispose();
+        //    }
+        //    return Json("OK");
+        //}
         [HttpGet]
         public ActionResult WebManagement()//(string returnUrl)
         {
