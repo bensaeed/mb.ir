@@ -16,5 +16,6 @@ namespace mbensaeed.ViewModels
         public string IsActive { get; set; }
         public bool FlagHaveFile { get; set; }
         public string Tagsinput { get; set; }
+        public string SeoMetaDescription { get; set; }
     }
 }

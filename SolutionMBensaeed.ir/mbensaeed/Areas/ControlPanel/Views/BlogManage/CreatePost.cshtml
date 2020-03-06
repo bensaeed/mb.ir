@@ -117,6 +117,15 @@
 
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">شرح پست در سئو</h4>
+                        <div class="tags-default">
+                            <textarea rows="2" value="" class="form-control" id="SeoMetaDescriptionID">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label>بارگذاری فایل پیش فرض</label>
@@ -202,6 +211,14 @@
                 return FlagOperation;
             }
 
+            var strSeoMetaDescriptionID = $("#SeoMetaDescriptionID").val();
+            if (strSeoMetaDescriptionID == null || strSeoMetaDescriptionID == "" || strSeoMetaDescriptionID.Length <10)
+            {
+                bootbox.alert("لطفا شرح پست در سئو را وارد نمایید");
+                FlagOperation = false;
+                return FlagOperation;
+            }
+
             var extFile = "";
             try {
 
@@ -279,6 +296,7 @@
                 formdata.append("IsActiveID", IsActiveID);
                 formdata.append("FlagHaveFile", FlagHaveFile);
                 formdata.append("Tagsinput", $("#tagsinput").val());
+                formdata.append("SeoMetaDescription", strSeoMetaDescriptionID);
                 $.ajax({
                     url: URL,
                     type: 'POST',

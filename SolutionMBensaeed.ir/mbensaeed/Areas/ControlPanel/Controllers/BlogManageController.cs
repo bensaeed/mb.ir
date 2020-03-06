@@ -89,6 +89,7 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                             Content = input.Content,
                             IsActive = input.IsActive == "true" ? "1" : "0",
                             Labels = input.Tagsinput,
+                            SeoMetaDescription=input.SeoMetaDescription,
                             PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                             PostTime = DateConvertor.TimeNowShort()
                         };

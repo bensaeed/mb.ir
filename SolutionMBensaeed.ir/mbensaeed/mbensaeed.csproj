@@ -264,6 +264,10 @@
     <Compile Include="Migrations\202002090902125_AddFieldHostNameEmailInfo.Designer.cs">
       <DependentUpon>202002090902125_AddFieldHostNameEmailInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003041740202_add_SeoMetaDescription_to_Post.cs" />
+    <Compile Include="Migrations\202003041740202_add_SeoMetaDescription_to_Post.Designer.cs">
+      <DependentUpon>202003041740202_add_SeoMetaDescription_to_Post.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Activity.cs" />
@@ -919,6 +923,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002090902125_AddFieldHostNameEmailInfo.resx">
       <DependentUpon>202002090902125_AddFieldHostNameEmailInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003041740202_add_SeoMetaDescription_to_Post.resx">
+      <DependentUpon>202003041740202_add_SeoMetaDescription_to_Post.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

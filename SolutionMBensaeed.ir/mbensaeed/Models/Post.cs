@@ -15,11 +15,15 @@ namespace mbensaeed.Models
         [MaxLength(300, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
         [Display(Name = "عنوان")]
         [Required]
-        public string Title { get; set; }
+        public string Title { get; set; } 
         [AllowHtml]
         [Display(Name = "محتوای پست")]
         [Required]
         public string Content { get; set; }
+        [AllowHtml]
+        [Display(Name = "شرح پست در سئو")]
+        [Required]
+        public string SeoMetaDescription { get; set; }
         [MaxLength(1, ErrorMessage = "اطلاعات وارد شده {0} نبايد كمتر از {1} كاركتر باشد")]
         [Display(Name = "وضعيت")]
         public string IsActive { get; set; }
