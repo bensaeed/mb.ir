@@ -11,6 +11,7 @@ namespace mbensaeed.ViewModels
         public int PostID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
+        public string SeoMetaDescription { get; set; }
         public string IsActive { get; set; }
         public string PostDate { get; set; }
         public string PostTime { get; set; }

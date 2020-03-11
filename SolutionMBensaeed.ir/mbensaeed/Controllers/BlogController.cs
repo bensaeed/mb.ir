@@ -106,7 +106,7 @@ namespace mbensaeed.Controllers
              {
                 new HtmlMetaTag(){name = MetaName.author , content ="محمد بن سعيد"},
                 new HtmlMetaTag(){name = MetaName.keywords , content =Result.FirstOrDefault().Labels},
-                new HtmlMetaTag(){name = MetaName.description , content =""}
+                new HtmlMetaTag(){name = MetaName.description , content =Result.FirstOrDefault().SeoMetaDescription}
              },
              null);
 

@@ -24,7 +24,7 @@ namespace mbensaeed.Controllers
             //throw new System.Exception("hhhh");
 
             
-            MViewBag.SeoData = HtmlPageSEO.GetHeadPageData("وبسايت شخصی محمد بن سعيد", new robot[] { robot.index, robot.follow },
+            ViewBag.SeoData = HtmlPageSEO.GetHeadPageData("وبسايت شخصی محمد بن سعيد", new robot[] { robot.index, robot.follow },
                new HtmlMetaTag[]
                {
                 new HtmlMetaTag(){name = MetaName.author , content ="محمد بن سعيد"},

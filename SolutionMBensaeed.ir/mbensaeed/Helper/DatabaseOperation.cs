@@ -38,6 +38,7 @@ namespace mbensaeed.Helper
                           {
                               PostID = pst.ID,
                               Content = pst.Content,
+                              SeoMetaDescription=pst.SeoMetaDescription,
                               LikeCount = pst.Activity.Where(x=>x.ActivityTypeId == 2).Count(),//totalCount(ac.Posts.ID),
                               Category = cat.DescriptionFa,
                               Labels = pst.Labels,
