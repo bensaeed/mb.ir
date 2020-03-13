@@ -210,46 +210,45 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
         [ValidateInput(false)]
         public JsonResult EditPost(vmPublishPost input)
         {
-            //delete image
-            if (input.FlagHaveFile ==true)
-            {
-                using (var _ContextImage = new ApplicationDbContext())
-                {
-                    var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
-
-                    DeleteImageOfPost(input.PostID)
-            }
-            string ImageID_Edited;
-            //InfoUser AppUser = new InfoUser();
-            var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
-            //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
+            //delete image of Post To Insert New Image For Post (Update)
             if (input.FlagHaveFile == true)
             {
-                HelpOperation.CreateArchiveFolderOnTheServer();
-                HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
-                var FileSize = HelpOperation.ToFileSize(hpf.ContentLength);
-                var GuidID = HelpOperation.NewGuidID();
-                var FileNameOnServer = GuidID + Path.GetExtension(hpf.FileName);
-                var FilePath = @"~\MediaFiles\Image\" + FileNameOnServer;
-                var FilePathOnServer = Server.MapPath(FilePath);
-                var FileUrl = HelpOperation.MapToUrl(FilePath);
-                Request.Files[0].SaveAs(FilePathOnServer);
-                using (var _ContextImage = new ApplicationDbContext())
+                DatabaseOperation objDatabaseOperation = new DatabaseOperation();
+                using (var _Context1 = new ApplicationDbContext())
                 {
-                    var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
-                    var NewItemImage = new Image
+                    var objEntityPost = new RepositoryPattern<Post>(_Context1);
+                    var CurrentItem = objEntityPost.GetByPredicate(x => x.ID == input.PostID);
+                    if (objDatabaseOperation.DeleteImageOfPost(CurrentItem.ImageID))
                     {
-                        ID = GuidID,
-                        TitleUrl = input.Title,
-                        FileName = FileNameOnServer,
-                        FileSize = FileSize,
-                        FileUrl = FileUrl,
-                        FilePathOnServer = FilePath
-                    };
-                    NewImageID = GuidID;
-                    _objEntityImage.Insert(NewItemImage);
-                    _objEntityImage.Save();
-                    _objEntityImage.Dispose();
+                        //InfoUser AppUser = new InfoUser();
+                        var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
+                        //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
+                        HelpOperation.CreateArchiveFolderOnTheServer();
+                        HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
+                        var FileSize = HelpOperation.ToFileSize(hpf.ContentLength);
+                        var GuidID = CurrentItem.ImageID;
+                        var FileNameOnServer = GuidID + Path.GetExtension(hpf.FileName);
+                        var FilePath = @"~\MediaFiles\Image\" + FileNameOnServer;
+                        var FilePathOnServer = Server.MapPath(FilePath);
+                        var FileUrl = HelpOperation.MapToUrl(FilePath);
+                        Request.Files[0].SaveAs(FilePathOnServer);
+                        using (var _ContextImage = new ApplicationDbContext())
+                        {
+                            var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
+                            var NewItemImage = new Image
+                            {
+                                ID = GuidID,
+                                TitleUrl = input.Title,
+                                FileName = FileNameOnServer,
+                                FileSize = FileSize,
+                                FileUrl = FileUrl,
+                                FilePathOnServer = FilePath
+                            };
+                            _objEntityImage.Insert(NewItemImage);
+                            _objEntityImage.Save();
+                            _objEntityImage.Dispose();
+                        }
+                    }
                 }
             }
 
@@ -274,32 +273,7 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
             }
             return Json("OK");
         }
-        public bool DeleteImageOfPost(string MediaID)
-        {
-            if (MediaID == null || MediaID == "")
-            {
-                return false;
-            }
-            using (var _Context = new ApplicationDbContext())
-            {
-                var _objEntityImage = new RepositoryPattern<Image>(_Context);
 
-                var tId = Convert.ToString(MediaID);
-                var itemMedia = _objEntityImage.GetByPredicate(x => x.ID == tId);
-                if (HelpOperation.RemoveMediaFromServer(itemMedia.FilePathOnServer))
-                {
-                    _objEntityImage.Delete(itemMedia.ID);
-                    _objEntityImage.Save();
-                    _objEntityImage.Dispose();
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-        }
         [HttpGet]
         public ActionResult WebManagement()//(string returnUrl)
         {

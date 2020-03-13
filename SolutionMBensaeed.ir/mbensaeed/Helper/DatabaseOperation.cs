@@ -202,5 +202,33 @@ namespace mbensaeed.Helper
             }
             return false;
         }
+        /// <summary>
+        /// پاک کردن تصویر یک پست - وبلاگ
+        /// </summary>
+        /// <param name="PostID"></param>
+        /// <returns></returns>
+        public bool DeleteImageOfPost(string MediaID)
+        {
+            if (MediaID == null || MediaID=="")
+            {
+                return false;
+            }
+            using (var _Context = new ApplicationDbContext())
+            {
+                var _objEntityImage = new RepositoryPattern<Image>(_Context);
+                var itemMedia = _objEntityImage.GetByPredicate(x => x.ID == MediaID);
+                if (HelpOperation.RemoveMediaFromServer(itemMedia.FilePathOnServer))
+                {
+                    _objEntityImage.Delete(itemMedia.ID);
+                    _objEntityImage.Save();
+                    _objEntityImage.Dispose();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
