@@ -77,8 +77,8 @@
                 <div class="card">
                     <div class="card-body">
                         @*<div class="summernote" id="summernote" name="summernote">
-                                <h3></h3>
-                            </div>*@
+                    <h3></h3>
+                </div>*@
 
                         <div id="summernoteID">
                             @Html.Raw(@Model.Content)
@@ -95,7 +95,15 @@
 
                     </div>
                 </div>
-
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">شرح پست در سئو</h4>
+                        <div class="tags-default">
+                            <textarea rows="2" value="" class="form-control" id="SeoMetaDescriptionID">
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label>بارگذاری فایل پیش فرض</label>
                     <input type="file" class="form-control" id="PostInputFile" name="PostInputFile" aria-describedby="fileHelp">
@@ -140,7 +148,8 @@
 
 @section scripts {
     <script type="text/javascript">
-        var FlagOperation = true;
+       var FlagHaveFile = false;
+       var FlagOperation = true;
       $('#summernote').summernote('fontSize', 22);
         $(document).ready(function() {
             $('#summernoteID').summernote(
@@ -186,6 +195,14 @@
             if (strTagsInput == null || strTagsInput == "" || strTagsInput.Length < 3)
             {
                 bootbox.alert("لطفا حداقل یک برچسب برای پست خود را وارد نمایید");
+                FlagOperation = false;
+                return FlagOperation;
+            }
+
+            var strSeoMetaDescriptionID = $("#SeoMetaDescriptionID").val();
+            if (strSeoMetaDescriptionID == null || strSeoMetaDescriptionID == "" || strSeoMetaDescriptionID.Length <10)
+            {
+                bootbox.alert("لطفا شرح پست در سئو را وارد نمایید");
                 FlagOperation = false;
                 return FlagOperation;
             }
@@ -249,9 +266,10 @@
             var strContent;
             var URL = '@Url.Action("EditPost", "BlogManage")';
             var IsActiveID = $("#IsActiveID").is(":checked");
-
+ 
             if (FlagOperation == true) {
                 var formdata = new FormData();
+                alert(FlagHaveFile);
                 if (FlagHaveFile == true)
                 {
                     var file = $("#PostInputFile").get(0).files;
@@ -266,7 +284,11 @@
 
                 formdata.append("IsActiveID", IsActiveID);
                 formdata.append("FlagHaveFile", FlagHaveFile);
+
                 formdata.append("Tagsinput", $("#tagsinput").val());
+alert("update1");
+                formdata.append("SeoMetaDescription", strSeoMetaDescriptionID);
+alert(strSeoMetaDescriptionID);
                 $.ajax({
                     url: URL,
                     type: 'POST',
