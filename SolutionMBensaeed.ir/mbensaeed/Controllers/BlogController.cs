@@ -57,7 +57,7 @@ namespace mbensaeed.Controllers
             return Task.Run(() =>
             {
                 var Result = new List<vm_AllPost>();
-                Result = _dop.GetAllPost("all").ToList();
+                Result = _dop.GetAllPost("all").Where(x => x.IsActive == "1").ToList();
                 if (!(Tag == "" || Tag == null))
                 {
                     Result = Result.Where(x => x.Labels.Contains(Tag)).ToList();
@@ -93,7 +93,7 @@ namespace mbensaeed.Controllers
             }
             ViewAndLikeLog(PostID, Convert.ToInt32(EnumMethod.ActionType.View));
             var Result = new List<vm_AllPost>();
-            Result = _dop.GetAllPost("all").Where(x => x.PostID == PostID).ToList();
+            Result = _dop.GetAllPost("all").Where(x => x.PostID == PostID && x.IsActive == "1").ToList();
             using (var _Context = new ApplicationDbContext())
             {
                 var _objEntityPostComment = new RepositoryPattern<PostComment>(_Context);

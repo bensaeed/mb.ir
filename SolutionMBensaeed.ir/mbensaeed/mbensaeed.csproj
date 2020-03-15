@@ -705,6 +705,7 @@
     <Content Include="MediaFiles\Image\Other\iconfinder_gmail_32.png" />
     <Content Include="MediaFiles\Image\Other\logoUpdating.png" />
     <Content Include="robots.txt" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-select\bootstrap-select.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap-tagsinput\dist\bootstrap-tagsinput.min.js" />
     <Content Include="Scripts\ControlPanel\assets\plugins\bootstrap\js\bootstrap.min.js" />

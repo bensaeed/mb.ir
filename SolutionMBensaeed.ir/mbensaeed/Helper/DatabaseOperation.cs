@@ -16,7 +16,8 @@ namespace mbensaeed.Helper
             using (var _Context = new ApplicationDbContext())
             {
                 var _objEntityPost = new RepositoryPattern<Post>(_Context);
-                var _post = _objEntityPost.SearchFor(x => x.IsActive == "1").ToList();
+                var _post = _objEntityPost.GetAll();
+                //var _post = _objEntityPost.SearchFor(x => x.IsActive == "1").ToList();
 
                 var _objEntityCategory = new RepositoryPattern<Category>(_Context);
                 var _category = _objEntityCategory.GetAll();
@@ -64,7 +65,8 @@ namespace mbensaeed.Helper
                 }
                 else if (Convert.ToInt32(PostCount) > 0)
                 {
-                    return Result.Take(Convert.ToInt32(PostCount));
+                    
+                    return Result.Where(x => x.IsActive == "1").Take(Convert.ToInt32(PostCount));
                 }
                 else
                 {

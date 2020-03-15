@@ -75,7 +75,8 @@ namespace mbensaeed
                 "~/Scripts/ControlPanel/assets/plugins/summernote/dist/summernote.min.js",
                 "~/Scripts/ControlPanel/js/dashboard1.js",
                 "~/Scripts/CustomOperation.js",
-                "~/Scripts/js/toastr.min.js",
+                "~/Scripts/js/toastr.min.js", 
+                "~/Scripts/bootbox.min.js",
                 "~/Scripts/ControlPanel/assets/plugins/bootstrap-select/bootstrap-select.min.js",
                 "~/Scripts/ControlPanel/assets/plugins/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js",
                 "~/Scripts/ControlPanel/assets/plugins/styleswitcher/jQuery.style.switcher.js"));

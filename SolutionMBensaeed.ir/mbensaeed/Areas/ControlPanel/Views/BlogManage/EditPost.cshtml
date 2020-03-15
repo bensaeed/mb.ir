@@ -5,7 +5,7 @@
     var ListCategory = ViewBag.ListCategory;
     //var CurrentPost = Model;
 }
-
+<input type="hidden" id="CurrentPostID" value="@Model.PostID"/>
 <!-- ============================================================== -->
 <!-- Page wrapper  -->
 <!-- ============================================================== -->
@@ -99,7 +99,8 @@
                     <div class="card-body">
                         <h4 class="card-title">شرح پست در سئو</h4>
                         <div class="tags-default">
-                            <textarea rows="2" value="" class="form-control" id="SeoMetaDescriptionID">
+                            <textarea rows="2" class="form-control" id="SeoMetaDescriptionID" >
+                                    @Model.SeoMetaDescription
                             </textarea>
                         </div>
                     </div>
@@ -109,19 +110,23 @@
                     <input type="file" class="form-control" id="PostInputFile" name="PostInputFile" aria-describedby="fileHelp">
                 </div>
                 <div class="form-group">
-                    @{
-                        if (@Model.IsActive == "1")
-                        {
-                            <input type="checkbox" id="IsActiveID" class="filled-in chk-col-black">
-                        }
-                        else
-                        {
-                            <input type="checkbox" id="IsActiveID" class="filled-in chk-col-black" checked="checked">
-                        }
-                    }
+          
+                                @{
+                               
+                                    if (@Model.IsActive == "1")
+                                    {
 
-                    <label for="IsActiveID">ثبت موقت و عدم نمايش  پست</label>
-                </div>
+                                        <input type="checkbox" id="IsActiveID" class="filled-in chk-col-black">
+                                    }
+                                    else
+                                    {
+
+                                        <input type="checkbox" id="IsActiveID" class="filled-in chk-col-black" checked>
+                                    }
+                                }
+
+                                <label for="IsActiveID">ثبت موقت و عدم نمايش  پست</label>
+                            </div>
                 <div class="card">
                     <div class="card-body">
                         @*<button id="edit" class="btn btn-info btn-rounded" onclick="edit()" type="button">ویرایش</button>*@
@@ -269,26 +274,21 @@
  
             if (FlagOperation == true) {
                 var formdata = new FormData();
-                alert(FlagHaveFile);
+               
                 if (FlagHaveFile == true)
                 {
                     var file = $("#PostInputFile").get(0).files;
                     formdata.append("PostInputFile", file[0]);
                 }
-
-                formdata.append("Title", $("#TitleID").val());
+                formdata.append("PostID", $("#CurrentPostID").val());
+                formdata.append("Title", $("#TitleID").val().trim());
                 formdata.append("CategoryID", $("#CategoryID").val());
-
                 strContent = $('#summernoteID').summernote('code')
                 formdata.append("Content", strContent);
-
-                formdata.append("IsActiveID", IsActiveID);
+                formdata.append("IsActive", IsActiveID);
                 formdata.append("FlagHaveFile", FlagHaveFile);
-
-                formdata.append("Tagsinput", $("#tagsinput").val());
-alert("update1");
-                formdata.append("SeoMetaDescription", strSeoMetaDescriptionID);
-alert(strSeoMetaDescriptionID);
+                formdata.append("Tagsinput", $("#tagsinput").val().trim());
+                formdata.append("SeoMetaDescription", $("#SeoMetaDescriptionID").val().trim());
                 $.ajax({
                     url: URL,
                     type: 'POST',
@@ -298,8 +298,9 @@ alert(strSeoMetaDescriptionID);
                     async: true,
                     success: function (x) {
                         if (x == "OK") {
+                         
                             var dialog = bootbox.dialog({
-                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> پست جدید با موفقیت ثبت شد</p>',
+                                message: '<p class="text-center mb-0"><i class="fa fa-spin fa-cog"></i> پست با موفقیت بروزرسانی شد</p>',
                                 closeButton: false
                             });
                             setTimeout(function () {

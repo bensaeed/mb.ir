@@ -121,7 +121,7 @@
                     <div class="card-body">
                         <h4 class="card-title">شرح پست در سئو</h4>
                         <div class="tags-default">
-                            <textarea rows="2" value="" class="form-control" id="SeoMetaDescriptionID">
+                            <textarea rows="2" class="form-control" id="SeoMetaDescriptionID">
                             </textarea>
                         </div>
                     </div>
@@ -287,7 +287,7 @@
                     formdata.append("PostInputFile", file[0]);
                 }
 
-                formdata.append("Title", $("#TitleID").val());
+                formdata.append("Title", $("#TitleID").val().trim());
                 formdata.append("CategoryID", $("#CategoryID").val());
 
                 strContent = $('#summernoteID').summernote('code')
@@ -295,8 +295,8 @@
 
                 formdata.append("IsActiveID", IsActiveID);
                 formdata.append("FlagHaveFile", FlagHaveFile);
-                formdata.append("Tagsinput", $("#tagsinput").val());
-                formdata.append("SeoMetaDescription", strSeoMetaDescriptionID);
+                formdata.append("Tagsinput", $("#tagsinput").val().trim());
+                formdata.append("SeoMetaDescription", $("#SeoMetaDescriptionID").val().trim());
                 $.ajax({
                     url: URL,
                     type: 'POST',

@@ -82,14 +82,14 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
                         var objEntityPost = new RepositoryPattern<Post>(_ContextPost);
                         var newItemPost = new Post
                         {
-                            Title = input.Title,
+                            Title = input.Title.Trim(),
                             ImageID = NewImageID,
                             CategoryID = input.CategoryID,
                             //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
                             Content = input.Content,
-                            IsActive = input.IsActive == "true" ? "1" : "0",
-                            Labels = input.Tagsinput,
-                            SeoMetaDescription = input.SeoMetaDescription,
+                            IsActive = input.IsActive == "true" ? "0" : "1",
+                            Labels = input.Tagsinput.Trim(),
+                            SeoMetaDescription = input.SeoMetaDescription.Trim(),
                             PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate()),
                             PostTime = DateConvertor.TimeNowShort()
                         };
@@ -210,68 +210,76 @@ namespace mbensaeed.Areas.ControlPanel.Controllers
         [ValidateInput(false)]
         public JsonResult EditPost(vmPublishPost input)
         {
-            //delete image of Post To Insert New Image For Post (Update)
-            if (input.FlagHaveFile == true)
+            try
             {
-                DatabaseOperation objDatabaseOperation = new DatabaseOperation();
-                using (var _Context1 = new ApplicationDbContext())
+                //delete image of Post To Insert New Image For Post (Update)
+                if (input.FlagHaveFile == true)
                 {
-                    var objEntityPost = new RepositoryPattern<Post>(_Context1);
-                    var CurrentItem = objEntityPost.GetByPredicate(x => x.ID == input.PostID);
-                    if (objDatabaseOperation.DeleteImageOfPost(CurrentItem.ImageID))
+                    DatabaseOperation objDatabaseOperation = new DatabaseOperation();
+                    using (var _Context1 = new ApplicationDbContext())
                     {
-                        //InfoUser AppUser = new InfoUser();
-                        var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
-                        //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
-                        HelpOperation.CreateArchiveFolderOnTheServer();
-                        HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
-                        var FileSize = HelpOperation.ToFileSize(hpf.ContentLength);
-                        var GuidID = CurrentItem.ImageID;
-                        var FileNameOnServer = GuidID + Path.GetExtension(hpf.FileName);
-                        var FilePath = @"~\MediaFiles\Image\" + FileNameOnServer;
-                        var FilePathOnServer = Server.MapPath(FilePath);
-                        var FileUrl = HelpOperation.MapToUrl(FilePath);
-                        Request.Files[0].SaveAs(FilePathOnServer);
-                        using (var _ContextImage = new ApplicationDbContext())
+                        var objEntityPost = new RepositoryPattern<Post>(_Context1);
+                        var CurrentItem = objEntityPost.GetByPredicate(x => x.ID == input.PostID);
+                        if (objDatabaseOperation.DeleteImageOfPost(CurrentItem.ImageID))
                         {
-                            var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
-                            var NewItemImage = new Image
+                            //InfoUser AppUser = new InfoUser();
+                            var TodayDateShamsi = DateConvertor.DateToNumber(DateConvertor.TodayDate());
+                            //var NewNewsCode = HelpOperation.NewsCode(Convert.ToInt32(TodayDateShamsi));
+                            HelpOperation.CreateArchiveFolderOnTheServer();
+                            HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
+                            var FileSize = HelpOperation.ToFileSize(hpf.ContentLength);
+                            var GuidID = CurrentItem.ImageID;
+                            var FileNameOnServer = GuidID + Path.GetExtension(hpf.FileName);
+                            var FilePath = @"~\MediaFiles\Image\" + FileNameOnServer;
+                            var FilePathOnServer = Server.MapPath(FilePath);
+                            var FileUrl = HelpOperation.MapToUrl(FilePath);
+                            Request.Files[0].SaveAs(FilePathOnServer);
+                            using (var _ContextImage = new ApplicationDbContext())
                             {
-                                ID = GuidID,
-                                TitleUrl = input.Title,
-                                FileName = FileNameOnServer,
-                                FileSize = FileSize,
-                                FileUrl = FileUrl,
-                                FilePathOnServer = FilePath
-                            };
-                            _objEntityImage.Insert(NewItemImage);
-                            _objEntityImage.Save();
-                            _objEntityImage.Dispose();
+                                var _objEntityImage = new RepositoryPattern<Image>(_ContextImage);
+                                var NewItemImage = new Image
+                                {
+                                    ID = GuidID,
+                                    TitleUrl = input.Title,
+                                    FileName = FileNameOnServer,
+                                    FileSize = FileSize,
+                                    FileUrl = FileUrl,
+                                    FilePathOnServer = FilePath
+                                };
+                                _objEntityImage.Insert(NewItemImage);
+                                _objEntityImage.Save();
+                                _objEntityImage.Dispose();
+                            }
                         }
                     }
                 }
-            }
 
-            using (var _context = new ApplicationDbContext())
+                using (var _context = new ApplicationDbContext())
+                {
+                    var objEntityPost = new RepositoryPattern<Post>(_context);
+                    var CurrentItem = objEntityPost.GetByPredicate(x => x.ID == input.PostID);
+
+                    CurrentItem.Title = input.Title.Trim();
+                    CurrentItem.CategoryID = input.CategoryID;
+                    //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
+                    CurrentItem.Content = input.Content;
+                    CurrentItem.IsActive = input.IsActive == "true" ? "0" : "1";
+                    CurrentItem.Labels = input.Tagsinput.Trim();
+                    CurrentItem.SeoMetaDescription = input.SeoMetaDescription.Trim();
+                    //CurrentItem.PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate());
+                    //CurrentItem.PostTime = DateConvertor.TimeNowShort();
+
+                    objEntityPost.Update(CurrentItem);
+                    objEntityPost.Save();
+
+                    objEntityPost.Dispose();
+                }
+                return Json("OK");
+            }
+            catch (Exception)
             {
-                var objEntityPost = new RepositoryPattern<Post>(_context);
-                var CurrentItem = objEntityPost.GetByPredicate(x => x.ID == input.PostID);
-
-                CurrentItem.Title = input.Title;
-                CurrentItem.CategoryID = input.CategoryID;
-                //Categories = new List<Category>() {  new Category() {ID = CategoryID, } },
-                CurrentItem.Content = input.Content;
-                CurrentItem.IsActive = input.IsActive == "true" ? "1" : "0";
-                CurrentItem.Labels = input.Tagsinput;
-                CurrentItem.PostDate = DateConvertor.DateToNumber(DateConvertor.TodayDate());
-                CurrentItem.PostTime = DateConvertor.TimeNowShort();
-
-                objEntityPost.Update(CurrentItem);
-                objEntityPost.Save();
-
-                objEntityPost.Dispose();
+                return Json("Faild");
             }
-            return Json("OK");
         }
 
         [HttpGet]
